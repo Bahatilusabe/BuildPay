@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.canvas.Canvas?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Circle?>
+
+<VBox fx:id="rootPane"
+      xmlns="http://javafx.com/javafx/21"
+      xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="com.buildpay.controller.ReportsController"
+      prefWidth="1320" prefHeight="860"
+      styleClass="reports-root"
+      stylesheets="@../css/reports.css"
+      spacing="20">
+
+    <padding>
+        <Insets top="28" right="32" bottom="24" left="32" />
+    </padding>
+
+    <!-- ================= TOOLBAR ================= -->
+    <HBox fx:id="toolbar" styleClass="toolbar" alignment="CENTER_LEFT" spacing="14">
+        <Button fx:id="backButton" text="&#8592;" styleClass="back-button" onAction="#handleBack" />
+        <VBox spacing="4">
+            <Label text="Reports &amp; Analytics" styleClass="page-title" />
+            <Label text="Generate, export and print business reports" styleClass="page-subtitle" />
+        </VBox>
+        <Region HBox.hgrow="ALWAYS" />
+        <Button fx:id="exportPdfButton" text="PDF" styleClass="secondary-button" onAction="#handleExportPdf" />
+        <Button fx:id="exportExcelButton" text="Excel" styleClass="secondary-button" onAction="#handleExportExcel" />
+        <Button fx:id="exportCsvButton" text="CSV" styleClass="secondary-button" onAction="#handleExportCsv" />
+        <Button fx:id="printButton" text="Print" styleClass="secondary-button" onAction="#handlePrint" />
+    </HBox>
+
+    <ScrollPane fx:id="mainScroll" styleClass="main-scroll" fitToWidth="true" VBox.vgrow="ALWAYS">
+        <VBox fx:id="mainContent" spacing="20">
+
+            <!-- ================= REPORT GENERATOR ================= -->
+            <HBox fx:id="generatorCard" styleClass="enterprise-card" alignment="CENTER_LEFT" spacing="16">
+                <VBox spacing="6">
+                    <Label text="Report Type" styleClass="form-field-label" />
+                    <ComboBox fx:id="reportTypeSelector" styleClass="form-combo" prefWidth="180" />
+                </VBox>
+                <VBox spacing="6">
+                    <Label text="Period" styleClass="form-field-label" />
+                    <ComboBox fx:id="periodSelector" styleClass="form-combo" prefWidth="160" />
+                </VBox>
+                <Region HBox.hgrow="ALWAYS" />
+                <Button fx:id="generateReportButton" text="Generate Report" styleClass="generate-btn"
+                        onAction="#handleGenerateReport" />
+            </HBox>
+
+            <!-- ================= DASHBOARD CARDS ================= -->
+            <HBox fx:id="statsRow" spacing="16">
+                <VBox styleClass="stat-card, stat-card-revenue" spacing="10" HBox.hgrow="ALWAYS">
+                    <Label text="Total Revenue" styleClass="stat-label" />
+                    <Label fx:id="statRevenueValue" text="KES 0" styleClass="stat-value" />
+                    <Label fx:id="statRevenueTrend" text="&#9650; 0%" styleClass="stat-trend-up" />
+                </VBox>
+                <VBox styleClass="stat-card, stat-card-payroll" spacing="10" HBox.hgrow="ALWAYS">
+                    <Label text="Total Payroll" styleClass="stat-label" />
+                    <Label fx:id="statPayrollValue" text="KES 0" styleClass="stat-value" />
+                    <Label fx:id="statPayrollTrend" text="&#9650; 0%" styleClass="stat-trend-up" />
+                </VBox>
+                <VBox styleClass="stat-card, stat-card-attendance" spacing="10" HBox.hgrow="ALWAYS">
+                    <Label text="Attendance Rate" styleClass="stat-label" />
+                    <Label fx:id="statAttendanceValue" text="0%" styleClass="stat-value" />
+                    <Label fx:id="statAttendanceTrend" text="&#9650; 0%" styleClass="stat-trend-up" />
+                </VBox>
+                <VBox styleClass="stat-card, stat-card-projects" spacing="10" HBox.hgrow="ALWAYS">
+                    <Label text="Active Projects" styleClass="stat-label" />
+                    <Label fx:id="statProjectsValue" text="0" styleClass="stat-value" />
+                    <Label fx:id="statProjectsTrend" text="&#9650; 0 new" styleClass="stat-trend-up" />
+                </VBox>
+            </HBox>
+
+            <!-- ================= CHARTS (2x2) ================= -->
+            <GridPane fx:id="chartsGrid" hgap="20" vgap="20">
+                <columnConstraints>
+                    <ColumnConstraints percentWidth="50" />
+                    <ColumnConstraints percentWidth="50" />
+                </columnConstraints>
+                <rowConstraints>
+                    <RowConstraints />
+                    <RowConstraints />
+                </rowConstraints>
+
+                <VBox styleClass="module-card" spacing="14" GridPane.rowIndex="0" GridPane.columnIndex="0">
+                    <Label text="Revenue Trend" styleClass="card-title" />
+                    <Label text="Last 6 months" styleClass="card-subtitle" />
+                    <Canvas fx:id="revenueCanvas" width="420" height="220" />
+                </VBox>
+
+                <VBox styleClass="module-card" spacing="14" GridPane.rowIndex="0" GridPane.columnIndex="1">
+                    <Label text="Payroll Trend" styleClass="card-title" />
+                    <Label text="Last 6 months" styleClass="card-subtitle" />
+                    <Canvas fx:id="payrollCanvas" width="420" height="220" />
+                </VBox>
+
+                <VBox styleClass="module-card" spacing="14" GridPane.rowIndex="1" GridPane.columnIndex="0">
+                    <Label text="Attendance Breakdown" styleClass="card-title" />
+                    <Label text="Current period" styleClass="card-subtitle" />
+                    <StackPane alignment="CENTER">
+                        <Canvas fx:id="attendanceCanvas" width="180" height="180" />
+                        <VBox alignment="CENTER" spacing="0">
+                            <Label fx:id="attendanceCenterLabel" text="0%" styleClass="doughnut-center-value" />
+                            <Label text="Present" styleClass="doughnut-center-label" />
+                        </VBox>
+                    </StackPane>
+                    <HBox spacing="16" alignment="CENTER">
+                        <HBox spacing="6" alignment="CENTER_LEFT"><Circle radius="4" styleClass="legend-dot-present" /><Label text="Present" styleClass="legend-text" /></HBox>
+                        <HBox spacing="6" alignment="CENTER_LEFT"><Circle radius="4" styleClass="legend-dot-late" /><Label text="Late" styleClass="legend-text" /></HBox>
+                        <HBox spacing="6" alignment="CENTER_LEFT"><Circle radius="4" styleClass="legend-dot-absent" /><Label text="Absent" styleClass="legend-text" /></HBox>
+                    </HBox>
+                </VBox>
+
+                <VBox styleClass="module-card" spacing="14" GridPane.rowIndex="1" GridPane.columnIndex="1">
+                    <Label text="Projects Overview" styleClass="card-title" />
+                    <Label text="Cost by project" styleClass="card-subtitle" />
+                    <Canvas fx:id="projectsCanvas" width="420" height="220" />
+                </VBox>
+            </GridPane>
+
+            <!-- ================= GENERATED REPORTS ================= -->
+            <VBox styleClass="enterprise-card" spacing="0">
+                <HBox alignment="CENTER_LEFT" styleClass="table-card-header">
+                    <VBox spacing="2">
+                        <Label text="Generated Reports" styleClass="card-title" />
+                        <Label fx:id="reportCountLabel" text="0 reports" styleClass="card-subtitle" />
+                    </VBox>
+                    <Region HBox.hgrow="ALWAYS" />
+                </HBox>
+
+                <TableView fx:id="reportsTable" styleClass="reports-table">
+                    <columns>
+                        <TableColumn fx:id="nameColumn" text="Report Name" prefWidth="220" />
+                        <TableColumn fx:id="typeColumn" text="Type" prefWidth="130" sortable="false" />
+                        <TableColumn fx:id="periodColumn" text="Period" prefWidth="150" />
+                        <TableColumn fx:id="generatedColumn" text="Generated On" prefWidth="150" />
+                        <TableColumn fx:id="actionsColumn" text="Actions" prefWidth="260" sortable="false" />
+                    </columns>
+                </TableView>
+
+                <HBox fx:id="paginationBar" styleClass="pagination-bar" alignment="CENTER_LEFT" spacing="10">
+                    <Label fx:id="paginationSummaryLabel" text="Showing 0 of 0" styleClass="pagination-summary" />
+                    <Region HBox.hgrow="ALWAYS" />
+                    <Button fx:id="prevPageButton" text="&#8592; Prev" styleClass="pagination-nav-btn" onAction="#handlePrevPage" />
+                    <HBox fx:id="pageNumbersBox" spacing="6" alignment="CENTER" />
+                    <Button fx:id="nextPageButton" text="Next &#8594;" styleClass="pagination-nav-btn" onAction="#handleNextPage" />
+                </HBox>
+            </VBox>
+
+        </VBox>
+    </ScrollPane>
+
+</VBox>

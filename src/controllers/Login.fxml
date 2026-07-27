@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.Hyperlink?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Text?>
+
+<StackPane fx:id="rootPane"
+           xmlns="http://javafx.com/javafx/21"
+           xmlns:fx="http://javafx.com/fxml/1"
+           fx:controller="com.buildpay.controller.LoginController"
+           prefWidth="1120" prefHeight="720"
+           styleClass="login-root"
+           stylesheets="@../css/login.css">
+
+    <HBox fx:id="loginCard" styleClass="login-card" prefWidth="1120" prefHeight="720">
+
+        <!-- ================= LEFT PANEL ================= -->
+        <StackPane fx:id="leftPanel" styleClass="left-panel" prefWidth="480" minWidth="480" maxWidth="480">
+
+            <Region styleClass="left-bg-image" />
+            <Region styleClass="left-overlay" />
+
+            <VBox fx:id="leftContent" styleClass="left-content" alignment="CENTER_LEFT" spacing="26">
+
+                <StackPane styleClass="brand-logo-container" maxWidth="72" maxHeight="72">
+                    <Circle radius="38" styleClass="brand-glow" />
+                    <Rectangle width="62" height="62" arcWidth="18" arcHeight="18" styleClass="brand-badge" />
+                    <Text text="BP" styleClass="brand-text" />
+                </StackPane>
+
+                <VBox spacing="6">
+                    <Label text="BuildPay" styleClass="left-title" />
+                    <Label text="Construction Payroll System" styleClass="left-subtitle" wrapText="true" />
+                </VBox>
+
+                <VBox spacing="16" styleClass="feature-list">
+                    <HBox spacing="12" alignment="CENTER_LEFT" styleClass="feature-item">
+                        <Circle radius="4" styleClass="feature-dot" />
+                        <Label text="Real-time Attendance Tracking" styleClass="feature-text" />
+                    </HBox>
+                    <HBox spacing="12" alignment="CENTER_LEFT" styleClass="feature-item">
+                        <Circle radius="4" styleClass="feature-dot" />
+                        <Label text="Automated PAYE Tax Calculations" styleClass="feature-text" />
+                    </HBox>
+                    <HBox spacing="12" alignment="CENTER_LEFT" styleClass="feature-item">
+                        <Circle radius="4" styleClass="feature-dot" />
+                        <Label text="Payroll Reports and Payslips" styleClass="feature-text" />
+                    </HBox>
+                </VBox>
+
+            </VBox>
+        </StackPane>
+
+        <!-- ================= RIGHT PANEL ================= -->
+        <VBox fx:id="rightPanel" styleClass="right-panel" alignment="CENTER" HBox.hgrow="ALWAYS">
+
+            <VBox fx:id="formBox" styleClass="form-box" maxWidth="360" minWidth="360" spacing="20" alignment="CENTER_LEFT">
+
+                <VBox spacing="6">
+                    <Label text="Welcome Back" styleClass="welcome-title" />
+                    <Label text="Sign in to continue to your dashboard" styleClass="welcome-subtitle" wrapText="true" />
+                </VBox>
+
+                <VBox spacing="6">
+                    <Label text="Username" styleClass="field-label" />
+                    <TextField fx:id="usernameField" promptText="Enter your username" styleClass="text-field" />
+                    <Label fx:id="usernameErrorLabel" styleClass="error-label" managed="false" visible="false" text="Username is required" />
+                </VBox>
+
+                <VBox spacing="6">
+                    <Label text="Password" styleClass="field-label" />
+                    <PasswordField fx:id="passwordField" promptText="Enter your password" styleClass="text-field" />
+                    <Label fx:id="passwordErrorLabel" styleClass="error-label" managed="false" visible="false" text="Password must be at least 4 characters" />
+                </VBox>
+
+                <HBox alignment="CENTER_LEFT" styleClass="options-row">
+                    <CheckBox fx:id="rememberMeCheck" text="Remember Me" styleClass="remember-check" />
+                    <Region HBox.hgrow="ALWAYS" />
+                    <Hyperlink fx:id="forgotPasswordLink" text="Forgot Password?" styleClass="forgot-link"
+                               onAction="#handleForgotPassword" />
+                </HBox>
+
+                <Button fx:id="signInButton" text="Sign In" styleClass="sign-in-button"
+                        maxWidth="Infinity" onAction="#handleSignIn" defaultButton="true" />
+
+                <Button fx:id="adminLoginButton" text="Login as Admin" styleClass="admin-login-button"
+                        maxWidth="Infinity" onAction="#handleAdminLogin" />
+
+                <Label fx:id="footerLabel" styleClass="footer-label" text="© 2026 BuildPay. All rights reserved." />
+
+            </VBox>
+        </VBox>
+
+    </HBox>
+</StackPane>

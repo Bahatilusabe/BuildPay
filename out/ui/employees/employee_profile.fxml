@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.shape.*?>
+
+<BorderPane xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.buildpay.controller.EmployeeProfileController"
+            prefWidth="720" prefHeight="520" stylesheets="@employees.css">
+
+    <center>
+        <VBox spacing="12" padding="16">
+            <HBox spacing="16" alignment="CENTER_LEFT">
+                <StackPane>
+                    <Circle fx:id="photoCircle" radius="40" styleClass="photo-bg-yellow"/>
+                    <Label fx:id="photoEmoji" text="👷" styleClass="photo-emoji"/>
+                </StackPane>
+                <VBox spacing="4">
+                    <Label fx:id="lblName" text="Name" styleClass="page-title"/>
+                    <Label fx:id="lblPosition" text="Position" styleClass="muted"/>
+                </VBox>
+                <Region HBox.hgrow="ALWAYS"/>
+                <Button text="Close" onAction="#handleClose"/>
+            </HBox>
+
+            <TabPane>
+                <tabs>
+                    <Tab text="Personal">
+                        <VBox spacing="8" padding="12">
+                            <Label fx:id="lblPhone" text="Phone: -"/>
+                            <Label fx:id="lblEmail" text="Email: -"/>
+                            <Label fx:id="lblAddress" text="Address: -"/>
+                        </VBox>
+                    </Tab>
+                    <Tab text="Employment">
+                        <VBox spacing="8" padding="12">
+                            <Label fx:id="lblEmployeeId" text="Employee ID: -"/>
+                            <Label fx:id="lblDepartment" text="Department: -"/>
+                            <Label fx:id="lblJoined" text="Joined: -"/>
+                        </VBox>
+                    </Tab>
+                    <Tab text="Salary">
+                        <VBox spacing="8" padding="12">
+                            <Label fx:id="lblSalary" text="Salary: -"/>
+                            <Label fx:id="lblBank" text="Bank: -"/>
+                        </VBox>
+                    </Tab>
+                    <Tab text="Attendance">
+                        <VBox spacing="8" padding="12">
+                            <Label text="Present: 20"/>
+                            <Label text="Absent: 2"/>
+                        </VBox>
+                    </Tab>
+                    <Tab text="Payroll History">
+                        <VBox spacing="8" padding="12">
+                            <Label text="Recent Payslips"/>
+                        </VBox>
+                    </Tab>
+                </tabs>
+            </TabPane>
+        </VBox>
+    </center>
+</BorderPane>

@@ -1,0 +1,377 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.canvas.Canvas?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.ToggleButton?>
+<?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Text?>
+
+<BorderPane fx:id="rootPane"
+            xmlns="http://javafx.com/javafx/21"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.buildpay.controller.DashboardController"
+            prefWidth="1280" prefHeight="800"
+            styleClass="dashboard-root"
+            stylesheets="@../css/dashboard.css">
+
+    <!-- ================= SIDEBAR ================= -->
+    <left>
+        <VBox fx:id="sidebar" styleClass="sidebar" prefWidth="250" minWidth="250" maxWidth="250">
+
+            <VBox styleClass="sidebar-brand" alignment="CENTER_LEFT" spacing="10">
+                <HBox alignment="CENTER_LEFT" spacing="10">
+                    <StackPane maxWidth="42" maxHeight="42">
+                        <Circle radius="22" styleClass="brand-glow" />
+                        <Rectangle width="38" height="38" arcWidth="12" arcHeight="12" styleClass="brand-badge" />
+                        <Text text="BP" styleClass="brand-text-small" />
+                    </StackPane>
+                    <Label text="BuildPay" styleClass="sidebar-brand-label" />
+                </HBox>
+            </VBox>
+
+            <VBox fx:id="navContainer" styleClass="nav-container" spacing="4">
+                <fx:define>
+                    <ToggleGroup fx:id="navGroup" />
+                </fx:define>
+
+                <ToggleButton fx:id="navDashboardBtn" text="Dashboard" toggleGroup="$navGroup"
+                              selected="true" styleClass="nav-item" maxWidth="Infinity"
+                              onAction="#handleNavDashboard" />
+                <ToggleButton fx:id="navEmployeesBtn" text="Employees" toggleGroup="$navGroup"
+                              styleClass="nav-item" maxWidth="Infinity" onAction="#handleNavEmployees" />
+                <ToggleButton fx:id="navAttendanceBtn" text="Attendance" toggleGroup="$navGroup"
+                              styleClass="nav-item" maxWidth="Infinity" onAction="#handleNavAttendance" />
+                <ToggleButton fx:id="navPayrollBtn" text="Payroll" toggleGroup="$navGroup"
+                              styleClass="nav-item" maxWidth="Infinity" onAction="#handleNavPayroll" />
+                <ToggleButton fx:id="navReportsBtn" text="Reports" toggleGroup="$navGroup"
+                              styleClass="nav-item" maxWidth="Infinity" onAction="#handleNavReports" />
+            </VBox>
+
+            <Region VBox.vgrow="ALWAYS" />
+
+            <VBox styleClass="theme-switch-row" alignment="CENTER_LEFT" spacing="10">
+                <Label text="Dark Mode" styleClass="theme-switch-label" />
+                <StackPane fx:id="themeToggleTrack" styleClass="theme-toggle-track"
+                           alignment="CENTER_LEFT" onMouseClicked="#handleThemeToggle">
+                    <Circle fx:id="themeToggleKnob" radius="9" styleClass="theme-toggle-knob"
+                            translateX="3" />
+                </StackPane>
+            </VBox>
+
+            <VBox fx:id="userCard" styleClass="user-card" alignment="CENTER_LEFT" spacing="10">
+                <HBox alignment="CENTER_LEFT" spacing="10">
+                    <StackPane maxWidth="38" maxHeight="38" styleClass="user-avatar">
+                        <Circle radius="19" styleClass="user-avatar-circle" />
+                        <Text text="AU" styleClass="user-avatar-text" />
+                    </StackPane>
+                    <VBox spacing="1">
+                        <Label fx:id="userCardName" text="Admin User" styleClass="user-card-name" />
+                        <Label fx:id="userCardRole" text="Payroll Administrator" styleClass="user-card-role" />
+                    </VBox>
+                </HBox>
+            </VBox>
+
+        </VBox>
+    </left>
+
+    <!-- ================= MAIN CONTENT ================= -->
+    <center>
+        <ScrollPane fx:id="mainScroll" styleClass="main-scroll" fitToWidth="true">
+            <VBox fx:id="mainContent" styleClass="main-content" spacing="24">
+
+                <!-- ===== HEADER ===== -->
+                <HBox fx:id="headerBar" styleClass="header-bar" alignment="CENTER_LEFT" spacing="20">
+
+                    <VBox spacing="4" HBox.hgrow="NEVER">
+                        <Label text="Dashboard" styleClass="header-title" />
+                        <Label fx:id="welcomeLabel" text="Welcome back, Admin 👋" styleClass="header-subtitle" />
+                    </VBox>
+
+                    <!-- Decorative construction skyline, drawn purely with shapes -->
+                    <HBox fx:id="skylineBox" styleClass="skyline-box" alignment="BOTTOM_CENTER" spacing="4"
+                          HBox.hgrow="ALWAYS">
+                        <Rectangle width="14" height="34" styleClass="skyline-bldg" />
+                        <Rectangle width="18" height="52" styleClass="skyline-bldg" />
+                        <Rectangle width="12" height="26" styleClass="skyline-bldg" />
+                        <StackPane alignment="BOTTOM_CENTER">
+                            <Rectangle width="20" height="64" styleClass="skyline-bldg-accent" />
+                            <Rectangle width="2" height="30" translateY="-70" styleClass="skyline-crane-mast" />
+                            <Rectangle width="26" height="2" translateY="-84" styleClass="skyline-crane-arm" />
+                        </StackPane>
+                        <Rectangle width="16" height="40" styleClass="skyline-bldg" />
+                        <Rectangle width="12" height="24" styleClass="skyline-bldg" />
+                    </HBox>
+
+                    <ComboBox fx:id="monthSelector" styleClass="month-selector" prefWidth="130" />
+
+                    <StackPane fx:id="notificationBell" styleClass="icon-button" onMouseClicked="#handleNotifications">
+                        <Text text="&#128276;" styleClass="icon-button-glyph" />
+                        <Label fx:id="notificationBadge" text="3" styleClass="notification-badge"
+                               StackPane.alignment="TOP_RIGHT" />
+                    </StackPane>
+
+                    <HBox fx:id="profileWidget" styleClass="profile-widget" alignment="CENTER_LEFT" spacing="8"
+                          onMouseClicked="#handleProfileMenu">
+                        <StackPane maxWidth="36" maxHeight="36" styleClass="user-avatar">
+                            <Circle radius="18" styleClass="user-avatar-circle" />
+                            <Text text="AU" styleClass="user-avatar-text" />
+                        </StackPane>
+                        <Label text="Admin" styleClass="profile-name" />
+                        <Text text="&#9662;" styleClass="profile-caret" />
+                    </HBox>
+
+                </HBox>
+
+                <!-- ===== STATISTICS CARDS ===== -->
+                <HBox fx:id="statsRow" styleClass="stats-row" spacing="20">
+
+                    <VBox fx:id="totalEmployeesCard" styleClass="stat-card, stat-card-1" spacing="14" HBox.hgrow="ALWAYS">
+                        <StackPane styleClass="stat-icon-badge">
+                            <StackPane styleClass="stat-icon-shape">
+                                <Circle radius="9" translateY="-9" />
+                                <Rectangle width="26" height="14" arcWidth="14" arcHeight="14" translateY="8" />
+                            </StackPane>
+                        </StackPane>
+                        <Label fx:id="totalEmployeesValue" text="0" styleClass="stat-value" />
+                        <Label text="Total Employees" styleClass="stat-label" />
+                        <Label fx:id="totalEmployeesTrend" text="&#9650; 4.2% this month" styleClass="stat-trend-up" />
+                    </VBox>
+
+                    <VBox fx:id="projectsCard" styleClass="stat-card, stat-card-2" spacing="14" HBox.hgrow="ALWAYS">
+                        <StackPane styleClass="stat-icon-badge">
+                            <StackPane styleClass="stat-icon-shape">
+                                <Rectangle width="28" height="30" arcWidth="4" arcHeight="4" />
+                                <Rectangle width="6" height="6" translateX="-8" translateY="-9" styleClass="stat-icon-window" />
+                                <Rectangle width="6" height="6" translateX="2" translateY="-9" styleClass="stat-icon-window" />
+                                <Rectangle width="6" height="6" translateX="-8" translateY="1" styleClass="stat-icon-window" />
+                                <Rectangle width="6" height="6" translateX="2" translateY="1" styleClass="stat-icon-window" />
+                            </StackPane>
+                        </StackPane>
+                        <Label fx:id="projectsValue" text="0" styleClass="stat-value" />
+                        <Label text="Active Projects" styleClass="stat-label" />
+                        <Label fx:id="projectsTrend" text="&#9650; 2 new sites" styleClass="stat-trend-up" />
+                    </VBox>
+
+                    <VBox fx:id="payrollCard" styleClass="stat-card, stat-card-3" spacing="14" HBox.hgrow="ALWAYS">
+                        <StackPane styleClass="stat-icon-badge">
+                            <StackPane styleClass="stat-icon-shape">
+                                <Rectangle width="32" height="24" arcWidth="8" arcHeight="8" />
+                                <Circle radius="5" translateX="9" styleClass="stat-icon-window" />
+                            </StackPane>
+                        </StackPane>
+                        <Label fx:id="payrollValue" text="KES 0" styleClass="stat-value" />
+                        <Label text="Payroll This Month" styleClass="stat-label" />
+                        <Label fx:id="payrollTrend" text="&#9650; 6.1% vs last month" styleClass="stat-trend-up" />
+                    </VBox>
+
+                    <VBox fx:id="pendingPayslipsCard" styleClass="stat-card, stat-card-4" spacing="14" HBox.hgrow="ALWAYS">
+                        <StackPane styleClass="stat-icon-badge">
+                            <StackPane styleClass="stat-icon-shape">
+                                <Rectangle width="24" height="30" arcWidth="4" arcHeight="4" />
+                                <Rectangle width="14" height="2.4" translateY="-8" styleClass="stat-icon-window" />
+                                <Rectangle width="14" height="2.4" translateY="-2" styleClass="stat-icon-window" />
+                                <Rectangle width="14" height="2.4" translateY="4" styleClass="stat-icon-window" />
+                            </StackPane>
+                        </StackPane>
+                        <Label fx:id="pendingPayslipsValue" text="0" styleClass="stat-value" />
+                        <Label text="Pending Payslips" styleClass="stat-label" />
+                        <Label fx:id="pendingPayslipsTrend" text="&#9660; 3 resolved today" styleClass="stat-trend-down" />
+                    </VBox>
+
+                </HBox>
+
+                <!-- ===== CHARTS ===== -->
+                <HBox fx:id="chartsRow" styleClass="charts-row" spacing="20">
+
+                    <VBox fx:id="payrollChartCard" styleClass="chart-card" spacing="16" HBox.hgrow="ALWAYS">
+                        <HBox alignment="CENTER_LEFT">
+                            <Label text="Payroll Trend" styleClass="card-title" />
+                            <Region HBox.hgrow="ALWAYS" />
+                            <Label text="Last 6 months" styleClass="card-subtitle" />
+                        </HBox>
+                        <Canvas fx:id="payrollCanvas" width="560" height="230" />
+                    </VBox>
+
+                    <VBox fx:id="attendanceChartCard" styleClass="chart-card" spacing="16" prefWidth="360" minWidth="360" maxWidth="360">
+                        <Label text="Attendance Overview" styleClass="card-title" />
+                        <StackPane alignment="CENTER">
+                            <Canvas fx:id="attendanceCanvas" width="220" height="220" />
+                            <VBox alignment="CENTER" spacing="0">
+                                <Label fx:id="attendanceCenterValue" text="0%" styleClass="doughnut-center-value" />
+                                <Label text="Present" styleClass="doughnut-center-label" />
+                            </VBox>
+                        </StackPane>
+                        <VBox fx:id="attendanceLegend" spacing="10">
+                            <HBox spacing="8" alignment="CENTER_LEFT">
+                                <Circle radius="5" styleClass="legend-dot-present" />
+                                <Label text="Present" styleClass="legend-text" />
+                                <Region HBox.hgrow="ALWAYS" />
+                                <Label fx:id="legendPresentValue" text="0%" styleClass="legend-value" />
+                            </HBox>
+                            <HBox spacing="8" alignment="CENTER_LEFT">
+                                <Circle radius="5" styleClass="legend-dot-late" />
+                                <Label text="Late" styleClass="legend-text" />
+                                <Region HBox.hgrow="ALWAYS" />
+                                <Label fx:id="legendLateValue" text="0%" styleClass="legend-value" />
+                            </HBox>
+                            <HBox spacing="8" alignment="CENTER_LEFT">
+                                <Circle radius="5" styleClass="legend-dot-absent" />
+                                <Label text="Absent" styleClass="legend-text" />
+                                <Region HBox.hgrow="ALWAYS" />
+                                <Label fx:id="legendAbsentValue" text="0%" styleClass="legend-value" />
+                            </HBox>
+                        </VBox>
+                    </VBox>
+
+                </HBox>
+
+                <!-- ===== ACTIVITIES / COST SUMMARY / QUICK ACTIONS ===== -->
+                <HBox fx:id="bottomRow" styleClass="bottom-row" spacing="20">
+
+                    <VBox fx:id="activitiesCard" styleClass="panel-card" spacing="16" prefWidth="380" minWidth="380" maxWidth="380">
+                        <Label text="Recent Activities" styleClass="card-title" />
+                        <VBox fx:id="activitiesList" styleClass="timeline" spacing="0">
+
+                            <HBox styleClass="timeline-item" spacing="12">
+                                <VBox alignment="TOP_CENTER" styleClass="timeline-rail">
+                                    <Circle radius="4" styleClass="timeline-dot" />
+                                    <Region styleClass="timeline-line" VBox.vgrow="ALWAYS" />
+                                </VBox>
+                                <VBox spacing="2">
+                                    <Label text="Payroll processed for July" styleClass="timeline-title" />
+                                    <Label text="42 employees &#183; 10 minutes ago" styleClass="timeline-meta" />
+                                </VBox>
+                            </HBox>
+
+                            <HBox styleClass="timeline-item" spacing="12">
+                                <VBox alignment="TOP_CENTER" styleClass="timeline-rail">
+                                    <Circle radius="4" styleClass="timeline-dot" />
+                                    <Region styleClass="timeline-line" VBox.vgrow="ALWAYS" />
+                                </VBox>
+                                <VBox spacing="2">
+                                    <Label text="New employee onboarded" styleClass="timeline-title" />
+                                    <Label text="James Otieno &#183; 1 hour ago" styleClass="timeline-meta" />
+                                </VBox>
+                            </HBox>
+
+                            <HBox styleClass="timeline-item" spacing="12">
+                                <VBox alignment="TOP_CENTER" styleClass="timeline-rail">
+                                    <Circle radius="4" styleClass="timeline-dot" />
+                                    <Region styleClass="timeline-line" VBox.vgrow="ALWAYS" />
+                                </VBox>
+                                <VBox spacing="2">
+                                    <Label text="Attendance flagged for review" styleClass="timeline-title" />
+                                    <Label text="Riverside Site &#183; 3 hours ago" styleClass="timeline-meta" />
+                                </VBox>
+                            </HBox>
+
+                            <HBox styleClass="timeline-item" spacing="12">
+                                <VBox alignment="TOP_CENTER" styleClass="timeline-rail">
+                                    <Circle radius="4" styleClass="timeline-dot" />
+                                </VBox>
+                                <VBox spacing="2">
+                                    <Label text="Monthly report generated" styleClass="timeline-title" />
+                                    <Label text="June payroll summary &#183; Yesterday" styleClass="timeline-meta" />
+                                </VBox>
+                            </HBox>
+
+                        </VBox>
+                    </VBox>
+
+                    <VBox fx:id="projectCostCard" styleClass="panel-card" spacing="16" HBox.hgrow="ALWAYS">
+                        <Label text="Project Cost Summary" styleClass="card-title" />
+                        <VBox fx:id="projectCostList" spacing="16">
+
+                            <VBox spacing="6">
+                                <HBox alignment="CENTER_LEFT">
+                                    <Label text="Riverside Apartments" styleClass="cost-row-label" />
+                                    <Region HBox.hgrow="ALWAYS" />
+                                    <Label text="KES 2.1M" styleClass="cost-row-value" />
+                                </HBox>
+                                <StackPane alignment="CENTER_LEFT" styleClass="cost-track">
+                                    <Region fx:id="costFill1" styleClass="cost-fill" maxWidth="0" />
+                                </StackPane>
+                            </VBox>
+
+                            <VBox spacing="6">
+                                <HBox alignment="CENTER_LEFT">
+                                    <Label text="Westgate Office Park" styleClass="cost-row-label" />
+                                    <Region HBox.hgrow="ALWAYS" />
+                                    <Label text="KES 1.4M" styleClass="cost-row-value" />
+                                </HBox>
+                                <StackPane alignment="CENTER_LEFT" styleClass="cost-track">
+                                    <Region fx:id="costFill2" styleClass="cost-fill" maxWidth="0" />
+                                </StackPane>
+                            </VBox>
+
+                            <VBox spacing="6">
+                                <HBox alignment="CENTER_LEFT">
+                                    <Label text="Northbridge Housing" styleClass="cost-row-label" />
+                                    <Region HBox.hgrow="ALWAYS" />
+                                    <Label text="KES 980K" styleClass="cost-row-value" />
+                                </HBox>
+                                <StackPane alignment="CENTER_LEFT" styleClass="cost-track">
+                                    <Region fx:id="costFill3" styleClass="cost-fill" maxWidth="0" />
+                                </StackPane>
+                            </VBox>
+
+                            <VBox spacing="6">
+                                <HBox alignment="CENTER_LEFT">
+                                    <Label text="Coast Road Extension" styleClass="cost-row-label" />
+                                    <Region HBox.hgrow="ALWAYS" />
+                                    <Label text="KES 620K" styleClass="cost-row-value" />
+                                </HBox>
+                                <StackPane alignment="CENTER_LEFT" styleClass="cost-track">
+                                    <Region fx:id="costFill4" styleClass="cost-fill" maxWidth="0" />
+                                </StackPane>
+                            </VBox>
+
+                        </VBox>
+                    </VBox>
+
+                    <VBox fx:id="quickActionsCard" styleClass="panel-card" spacing="16" prefWidth="260" minWidth="260" maxWidth="260">
+                        <Label text="Quick Actions" styleClass="card-title" />
+                        <GridPane fx:id="quickActionsGrid" hgap="12" vgap="12">
+                            <Button fx:id="addEmployeeBtn" text="Add Employee" styleClass="quick-action-btn"
+                                    maxWidth="Infinity" GridPane.rowIndex="0" GridPane.columnIndex="0"
+                                    onAction="#handleAddEmployee" />
+                            <Button fx:id="attendanceBtn" text="Attendance" styleClass="quick-action-btn"
+                                    maxWidth="Infinity" GridPane.rowIndex="0" GridPane.columnIndex="1"
+                                    onAction="#handleNavAttendance" />
+                            <Button fx:id="payrollBtn" text="Payroll" styleClass="quick-action-btn"
+                                    maxWidth="Infinity" GridPane.rowIndex="1" GridPane.columnIndex="0"
+                                    onAction="#handleNavPayroll" />
+                            <Button fx:id="reportsBtn" text="Reports" styleClass="quick-action-btn"
+                                    maxWidth="Infinity" GridPane.rowIndex="1" GridPane.columnIndex="1"
+                                    onAction="#handleNavReports" />
+                            <columnConstraints>
+                                <ColumnConstraints percentWidth="50" />
+                                <ColumnConstraints percentWidth="50" />
+                            </columnConstraints>
+                        </GridPane>
+                    </VBox>
+
+                </HBox>
+
+                <padding>
+                    <Insets bottom="8" />
+                </padding>
+
+            </VBox>
+        </ScrollPane>
+    </center>
+
+</BorderPane>

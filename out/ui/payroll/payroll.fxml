@@ -1,0 +1,331 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.VBox?>
+<BorderPane xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.buildpay.controller.PayrollController" stylesheets="@payroll.css">
+    <center>
+        <VBox alignment="CENTER" spacing="12">
+            <Label text="Payroll" styleClass="page-title" />
+            <Label text="Placeholder payroll page." />
+        </VBox>
+    </center>
+</BorderPane>
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.text.*?>
+
+<BorderPane xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.buildpay.controller.PayrollController"
+            prefWidth="1400" prefHeight="900" stylesheets="@payroll.css">
+
+    <!-- Left Sidebar (Same as Dashboard/Employees/Attendance) -->
+    <left>
+        <VBox styleClass="sidebar" prefWidth="240" minWidth="240" maxWidth="240">
+            <!-- Logo Section -->
+            <VBox styleClass="logo-section" alignment="CENTER_LEFT" spacing="4">
+                <padding>
+                    <Insets top="24" right="20" bottom="24" left="20"/>
+                </padding>
+                <HBox spacing="10" alignment="CENTER_LEFT">
+                    <StackPane styleClass="logo-icon-container">
+                        <com.buildpay.ui.icons.LucideIcon iconName="LayoutDashboard" />
+                    </StackPane>
+                    <VBox spacing="2">
+                        <Label text="BuildPay" styleClass="logo-title"/>
+                        <Label text="CONSTRUCTION PAYROLL SYSTEM" styleClass="logo-subtitle"/>
+                    </VBox>
+                </HBox>
+            </VBox>
+
+            <!-- Navigation Menu -->
+            <VBox styleClass="nav-menu" spacing="4" VBox.vgrow="ALWAYS">
+                <padding>
+                    <Insets top="8" right="12" bottom="8" left="12"/>
+                </padding>
+
+                <Button text="Dashboard" styleClass="nav-button" onAction="#handleDashboardClick">
+                    <graphic>
+                        <com.buildpay.ui.icons.LucideIcon iconName="LayoutDashboard" />
+                    </graphic>
+                </Button>
+
+                <Button text="Employees" styleClass="nav-button" onAction="#handleEmployeesClick">
+                    <graphic>
+                        <com.buildpay.ui.icons.LucideIcon iconName="Users" />
+                    </graphic>
+                </Button>
+
+                <Button text="Attendance" styleClass="nav-button" onAction="#handleAttendanceClick">
+                    <graphic>
+                        <com.buildpay.ui.icons.LucideIcon iconName="CalendarCheck" />
+                    </graphic>
+                </Button>
+
+                <Button text="Payroll" styleClass="nav-button, nav-button-active">
+                    <graphic>
+                        <com.buildpay.ui.icons.LucideIcon iconName="Wallet" />
+                    </graphic>
+                </Button>
+
+                <Button text="Payslips" styleClass="nav-button" onAction="#handlePayslipsClick">
+                    <graphic>
+                        <com.buildpay.ui.icons.LucideIcon iconName="FileText" />
+                    </graphic>
+                </Button>
+
+                <Button text="Reports" styleClass="nav-button" onAction="#handleReportsClick">
+                    <graphic>
+                        <com.buildpay.ui.icons.LucideIcon iconName="BarChart3" />
+                    </graphic>
+                </Button>
+
+                <Button text="Projects" styleClass="nav-button" onAction="#handleProjectsClick">
+                    <graphic>
+                        <com.buildpay.ui.icons.LucideIcon iconName="Building2" />
+                    </graphic>
+                </Button>
+
+                <Button text="Settings" styleClass="nav-button" onAction="#handleSettingsClick">
+                    <graphic>
+                        <com.buildpay.ui.icons.LucideIcon iconName="Settings" />
+                    </graphic>
+                </Button>
+            </VBox>
+
+            <!-- User Profile Section -->
+            <VBox styleClass="user-section" spacing="12">
+                <padding>
+                    <Insets top="16" right="16" bottom="16" left="16"/>
+                </padding>
+                <HBox spacing="10" alignment="CENTER_LEFT">
+                    <StackPane styleClass="avatar-container">
+                        <Circle radius="20" styleClass="avatar-bg"/>
+                        <Label text="JK" styleClass="avatar-text"/>
+                        <Circle radius="4" styleClass="avatar-status" StackPane.alignment="BOTTOM_RIGHT">
+                            <StackPane.margin>
+                                <Insets right="2" bottom="2"/>
+                            </StackPane.margin>
+                        </Circle>
+                    </StackPane>
+                    <VBox spacing="2" HBox.hgrow="ALWAYS">
+                        <Label text="John Kamau" styleClass="user-name"/>
+                        <Label text="Payroll Officer" styleClass="user-role"/>
+                    </VBox>
+                    <Button styleClass="user-dropdown-btn">
+                        <graphic>
+                            <Region styleClass="icon-chevron-down"/>
+                        </graphic>
+                    </Button>
+                </HBox>
+            </VBox>
+        </VBox>
+    </left>
+
+    <!-- Main Content Area -->
+    <center>
+        <VBox styleClass="main-content">
+            <padding>
+                <Insets top="24" right="32" bottom="24" left="32"/>
+            </padding>
+            <spacing>24</spacing>
+
+            <!-- Page Header -->
+            <VBox spacing="8">
+                <Label text="Payroll" styleClass="page-title"/>
+                <HBox spacing="4" alignment="CENTER_LEFT">
+                    <Label text="Dashboard" styleClass="breadcrumb-link"/>
+                    <Label text=" / " styleClass="breadcrumb-separator"/>
+                    <Label text="Payroll" styleClass="breadcrumb-current"/>
+                    <Label text=" / " styleClass="breadcrumb-separator"/>
+                    <Label text="Calculate Salary" styleClass="breadcrumb-current"/>
+                </HBox>
+            </VBox>
+
+            <!-- Employee Info & Stats Cards Row -->
+            <HBox styleClass="employee-stats-row" spacing="16" alignment="CENTER_LEFT">
+                <!-- Employee Profile Card -->
+                <HBox styleClass="employee-card" spacing="16" alignment="CENTER_LEFT">
+                    <padding>
+                        <Insets top="16" right="20" bottom="16" left="16"/>
+                    </padding>
+                    <StackPane styleClass="employee-photo-large">
+                        <Circle radius="36" styleClass="photo-bg-yellow"/>
+                        <Label text="👷" styleClass="photo-emoji-large"/>
+                    </StackPane>
+                    <VBox spacing="4">
+                        <Label text="James Mwangi" styleClass="employee-name"/>
+                        <Label text="Site Engineer" styleClass="employee-position"/>
+                        <Label text="Engineering Department" styleClass="employee-dept"/>
+                        <HBox spacing="4" alignment="CENTER_LEFT">
+                            <Label text="EMP001" styleClass="employee-badge"/>
+                        </HBox>
+                    </VBox>
+                </HBox>
+
+                <!-- Basic Salary Card -->
+                <VBox styleClass="stat-card" alignment="CENTER_LEFT">
+                    <padding>
+                        <Insets top="16" right="20" bottom="16" left="20"/>
+                    </padding>
+                    <Label text="Basic Salary" styleClass="stat-label"/>
+                    <Label text="85,000" styleClass="stat-value"/>
+                </VBox>
+
+                <!-- Days Worked Card -->
+                <VBox styleClass="stat-card" alignment="CENTER_LEFT">
+                    <padding>
+                        <Insets top="16" right="20" bottom="16" left="20"/>
+                    </padding>
+                    <Label text="Days Worked" styleClass="stat-label"/>
+                    <Label text="26" styleClass="stat-value"/>
+                </VBox>
+
+                <!-- Overtime Card -->
+                <VBox styleClass="stat-card" alignment="CENTER_LEFT">
+                    <padding>
+                        <Insets top="16" right="20" bottom="16" left="20"/>
+                    </padding>
+                    <Label text="Overtime (hrs)" styleClass="stat-label"/>
+                    <Label text="12" styleClass="stat-value"/>
+                </VBox>
+
+                <!-- Pay Period Card -->
+                <VBox styleClass="stat-card" alignment="CENTER_LEFT">
+                    <padding>
+                        <Insets top="16" right="20" bottom="16" left="20"/>
+                    </padding>
+                    <Label text="Pay Period" styleClass="stat-label"/>
+                    <HBox spacing="8" alignment="CENTER_LEFT">
+                        <Label text="May 2025" styleClass="stat-value"/>
+                        <Region styleClass="icon-calendar-small"/>
+                    </HBox>
+                </VBox>
+            </HBox>
+
+            <!-- Earnings, Deductions & Net Salary Row -->
+            <HBox styleClass="payroll-details-row" spacing="20" VBox.vgrow="ALWAYS">
+                <!-- Earnings Panel -->
+                <VBox styleClass="panel-card" HBox.hgrow="ALWAYS">
+                    <padding>
+                        <Insets top="20" right="24" bottom="20" left="24"/>
+                    </padding>
+                    <Label text="Earnings" styleClass="panel-title"/>
+                    <VBox spacing="0" VBox.vgrow="ALWAYS">
+                        <padding>
+                            <Insets top="16" right="0" bottom="0" left="0"/>
+                        </padding>
+
+                        <HBox styleClass="payroll-line-item" alignment="CENTER_LEFT">
+                            <Label text="Basic Salary" styleClass="item-label" HBox.hgrow="ALWAYS"/>
+                            <Label text="KES 85,000" styleClass="item-value"/>
+                        </HBox>
+
+                        <HBox styleClass="payroll-line-item" alignment="CENTER_LEFT">
+                            <Label text="Overtime (12 hrs)" styleClass="item-label" HBox.hgrow="ALWAYS"/>
+                            <Label text="KES 6,000" styleClass="item-value"/>
+                        </HBox>
+
+                        <HBox styleClass="payroll-line-item" alignment="CENTER_LEFT">
+                            <Label text="Transport Allowance" styleClass="item-label" HBox.hgrow="ALWAYS"/>
+                            <Label text="KES 5,000" styleClass="item-value"/>
+                        </HBox>
+
+                        <HBox styleClass="payroll-line-item" alignment="CENTER_LEFT">
+                            <Label text="Housing Allowance" styleClass="item-label" HBox.hgrow="ALWAYS"/>
+                            <Label text="KES 4,000" styleClass="item-value"/>
+                        </HBox>
+
+                        <Region VBox.vgrow="ALWAYS"/>
+
+                        <HBox styleClass="total-row" alignment="CENTER_LEFT">
+                            <padding>
+                                <Insets top="16" right="0" bottom="0" left="0"/>
+                            </padding>
+                            <Label text="Total Earnings" styleClass="total-label" HBox.hgrow="ALWAYS"/>
+                            <Label text="KES 100,000" styleClass="total-value-earnings"/>
+                        </HBox>
+                    </VBox>
+                </VBox>
+
+                <!-- Deductions Panel -->
+                <VBox styleClass="panel-card" HBox.hgrow="ALWAYS">
+                    <padding>
+                        <Insets top="20" right="24" bottom="20" left="24"/>
+                    </padding>
+                    <Label text="Deductions" styleClass="panel-title"/>
+                    <VBox spacing="0" VBox.vgrow="ALWAYS">
+                        <padding>
+                            <Insets top="16" right="0" bottom="0" left="0"/>
+                        </padding>
+
+                        <HBox styleClass="payroll-line-item" alignment="CENTER_LEFT">
+                            <Label text="NSSF" styleClass="item-label" HBox.hgrow="ALWAYS"/>
+                            <Label text="KES 1,080" styleClass="item-value"/>
+                        </HBox>
+
+                        <HBox styleClass="payroll-line-item" alignment="CENTER_LEFT">
+                            <Label text="PAYE" styleClass="item-label" HBox.hgrow="ALWAYS"/>
+                            <Label text="KES 9,200" styleClass="item-value"/>
+                        </HBox>
+
+                        <HBox styleClass="payroll-line-item" alignment="CENTER_LEFT">
+                            <Label text="Advance Salary" styleClass="item-label" HBox.hgrow="ALWAYS"/>
+                            <Label text="KES 5,000" styleClass="item-value"/>
+                        </HBox>
+
+                        <HBox styleClass="payroll-line-item" alignment="CENTER_LEFT">
+                            <Label text="Other Deductions" styleClass="item-label" HBox.hgrow="ALWAYS"/>
+                            <Label text="KES 0" styleClass="item-value"/>
+                        </HBox>
+
+                        <Region VBox.vgrow="ALWAYS"/>
+
+                        <HBox styleClass="total-row" alignment="CENTER_LEFT">
+                            <padding>
+                                <Insets top="16" right="0" bottom="0" left="0"/>
+                            </padding>
+                            <Label text="Total Deductions" styleClass="total-label" HBox.hgrow="ALWAYS"/>
+                            <Label text="KES 15,280" styleClass="total-value-deductions"/>
+                        </HBox>
+                    </VBox>
+                </VBox>
+
+                <!-- Net Salary Card -->
+                <VBox styleClass="net-salary-card" prefWidth="320" minWidth="320" maxWidth="320">
+                    <padding>
+                        <Insets top="24" right="24" bottom="24" left="24"/>
+                    </padding>
+                    <VBox spacing="4">
+                        <Label text="Net Salary" styleClass="net-salary-label"/>
+                        <Label text="KES 84,720" styleClass="net-salary-value"/>
+                    </VBox>
+                    <Region VBox.vgrow="ALWAYS"/>
+                    <Button styleClass="generate-payslip-btn" text="Generate Payslip" maxWidth="Infinity">
+                        <padding>
+                            <Insets top="14" right="20" bottom="14" left="20"/>
+                        </padding>
+                    </Button>
+                </VBox>
+            </HBox>
+
+            <!-- Bottom Action Buttons -->
+            <HBox styleClass="bottom-actions-row" alignment="CENTER_LEFT">
+                <Button styleClass="back-btn" text="Back">
+                    <padding>
+                        <Insets top="12" right="24" bottom="12" left="24"/>
+                    </padding>
+                </Button>
+                <Region HBox.hgrow="ALWAYS"/>
+                <Button styleClass="save-payroll-btn" text="Save Payroll">
+                    <padding>
+                        <Insets top="12" right="24" bottom="12" left="24"/>
+                    </padding>
+                </Button>
+            </HBox>
+        </VBox>
+    </center>
+</BorderPane>

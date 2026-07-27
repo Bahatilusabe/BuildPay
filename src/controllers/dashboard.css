@@ -1,0 +1,574 @@
+/* ==========================================================================
+   BuildPay Dashboard — dashboard.css
+   Modern SaaS / Construction Technology theme
+   Fonts: Montserrat (headings / brand), Inter (body / data)
+   ========================================================================== */
+
+.dashboard-root {
+    -fx-background-color: #F4F7FC;
+}
+
+/* ================= SIDEBAR ================= */
+
+.sidebar {
+    -fx-background-color: #0B1730;
+    -fx-padding: 22 18 22 18;
+    -fx-spacing: 22;
+}
+
+.sidebar-brand {
+    -fx-padding: 0 0 10 4;
+}
+
+.brand-glow {
+    -fx-fill: radial-gradient(center 50% 50%, radius 60%,
+              rgba(62, 140, 255, 0.55), rgba(62, 140, 255, 0.0) 70%);
+}
+
+.brand-badge {
+    -fx-fill: linear-gradient(to bottom right, #2E6BFF, #1B3E9E);
+    -fx-stroke: rgba(255, 255, 255, 0.18);
+    -fx-stroke-width: 1;
+}
+
+.brand-text-small {
+    -fx-fill: #F4F8FF;
+    -fx-font-family: "Montserrat", "Segoe UI", sans-serif;
+    -fx-font-size: 14px;
+    -fx-font-weight: 700;
+}
+
+.sidebar-brand-label {
+    -fx-text-fill: #F4F8FF;
+    -fx-font-family: "Montserrat", "Segoe UI", sans-serif;
+    -fx-font-size: 17px;
+    -fx-font-weight: 700;
+}
+
+.nav-container {
+    -fx-padding: 6 0 6 0;
+}
+
+/* Strip default ToggleButton chrome entirely and rebuild flat */
+.nav-item {
+    -fx-background-color: transparent;
+    -fx-background-radius: 10;
+    -fx-border-width: 0;
+    -fx-text-fill: #9FB3D9;
+    -fx-font-family: "Inter", "Segoe UI", sans-serif;
+    -fx-font-size: 13px;
+    -fx-font-weight: 600;
+    -fx-alignment: CENTER_LEFT;
+    -fx-padding: 11 14 11 14;
+    -fx-cursor: hand;
+}
+
+.nav-item:hover {
+    -fx-background-color: rgba(255, 255, 255, 0.06);
+    -fx-text-fill: #E5ECFB;
+}
+
+.nav-item:selected {
+    -fx-background-color: linear-gradient(to right, #2E6BFF, #1B3E9E);
+    -fx-text-fill: #FFFFFF;
+    -fx-effect: dropshadow(gaussian, rgba(46, 107, 255, 0.4), 10, 0.25, 0, 2);
+}
+
+/* ---- theme switch ---- */
+
+.theme-switch-row {
+    -fx-padding: 10 4 10 4;
+}
+
+.theme-switch-label {
+    -fx-text-fill: #7E93BE;
+    -fx-font-family: "Inter", "Segoe UI", sans-serif;
+    -fx-font-size: 12px;
+    -fx-font-weight: 600;
+}
+
+.theme-toggle-track {
+    -fx-background-color: #24365F;
+    -fx-background-radius: 12;
+    -fx-pref-width: 38;
+    -fx-pref-height: 20;
+    -fx-min-width: 38;
+    -fx-min-height: 20;
+    -fx-max-width: 38;
+    -fx-max-height: 20;
+    -fx-padding: 0 0 0 3;
+    -fx-cursor: hand;
+}
+
+.theme-toggle-track-on {
+    -fx-background-color: linear-gradient(to right, #2E6BFF, #1B3E9E);
+}
+
+.theme-toggle-knob {
+    -fx-fill: #F4F8FF;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.35), 3, 0.2, 0, 1);
+}
+
+/* ---- user card ---- */
+
+.user-card {
+    -fx-background-color: rgba(255, 255, 255, 0.05);
+    -fx-background-radius: 14;
+    -fx-padding: 12;
+}
+
+.user-avatar-circle {
+    -fx-fill: linear-gradient(to bottom right, #2E6BFF, #1B3E9E);
+}
+
+.user-avatar-text {
+    -fx-fill: #FFFFFF;
+    -fx-font-family: "Inter", "Segoe UI", sans-serif;
+    -fx-font-size: 12px;
+    -fx-font-weight: 700;
+}
+
+.user-card-name {
+    -fx-text-fill: #F4F8FF;
+    -fx-font-family: "Inter", "Segoe UI", sans-serif;
+    -fx-font-size: 13px;
+    -fx-font-weight: 700;
+}
+
+.user-card-role {
+    -fx-text-fill: #7E93BE;
+    -fx-font-family: "Inter", "Segoe UI", sans-serif;
+    -fx-font-size: 11px;
+}
+
+/* ================= MAIN CONTENT ================= */
+
+.main-scroll {
+    -fx-background-color: transparent;
+    -fx-background: transparent;
+}
+
+.main-scroll .viewport {
+    -fx-background-color: transparent;
+}
+
+.main-scroll .scroll-bar:vertical {
+    -fx-background-color: transparent;
+    -fx-pref-width: 10;
+}
+
+.main-scroll .scroll-bar:vertical .thumb {
+    -fx-background-color: #CBD5EA;
+    -fx-background-radius: 6;
+}
+
+.main-scroll .scroll-bar:vertical .increment-button,
+.main-scroll .scroll-bar:vertical .decrement-button {
+    -fx-pref-height: 0;
+    -fx-opacity: 0;
+}
+
+.main-content {
+    -fx-padding: 28 32 28 32;
+}
+
+/* ---- header ---- */
+
+.header-bar {
+    -fx-padding: 4 0 4 0;
+}
+
+.header-title {
+    -fx-text-fill: #0B1730;
+    -fx-font-family: "Montserrat", "Segoe UI", sans-serif;
+    -fx-font-size: 24px;
+    -fx-font-weight: 800;
+}
+
+.header-subtitle {
+    -fx-text-fill: #6B7A99;
+    -fx-font-family: "Inter", "Segoe UI", sans-serif;
+    -fx-font-size: 13px;
+}
+
+.skyline-box {
+    -fx-padding: 0 20 0 20;
+}
+
+.skyline-bldg {
+    -fx-fill: #D3DEF2;
+}
+
+.skyline-bldg-accent {
+    -fx-fill: linear-gradient(to bottom, #2E6BFF, #1B3E9E);
+    -fx-opacity: 0.85;
+}
+
+.skyline-crane-mast, .skyline-crane-arm {
+    -fx-fill: #9FB3D9;
+}
+
+/* ---- month selector (ComboBox, fully re-skinned) ---- */
+
+.month-selector {
+    -fx-background-color: #FFFFFF;
+    -fx-background-radius: 10;
+    -fx-border-color: #DCE3F0;
+    -fx-border-radius: 10;
+    -fx-border-width: 1.5;
+    -fx-font-family: "Inter", "Segoe UI", sans-serif;
+    -fx-font-size: 12px;
+    -fx-text-fill: #33415C;
+    -fx-padding: 2;
+}
+
+.month-selector .list-cell {
+    -fx-text-fill: #33415C;
+    -fx-font-family: "Inter", "Segoe UI", sans-serif;
+    -fx-font-size: 12px;
+    -fx-padding: 6 8 6 10;
+}
+
+.month-selector .arrow-button {
+    -fx-background-color: transparent;
+}
+
+.month-selector .arrow {
+    -fx-background-color: #6B7A99;
+}
+
+.month-selector .list-view {
+    -fx-background-color: #FFFFFF;
+    -fx-background-radius: 10;
+    -fx-border-color: #DCE3F0;
+    -fx-border-radius: 10;
+}
+
+.month-selector .list-cell:filled:hover {
+    -fx-background-color: #EEF3FD;
+}
+
+.month-selector .list-cell:filled:selected {
+    -fx-background-color: #2E6BFF;
+    -fx-text-fill: #FFFFFF;
+}
+
+/* ---- header icon buttons ---- */
+
+.icon-button {
+    -fx-background-color: #FFFFFF;
+    -fx-background-radius: 12;
+    -fx-border-color: #E4E9F3;
+    -fx-border-radius: 12;
+    -fx-border-width: 1;
+    -fx-min-width: 42;
+    -fx-min-height: 42;
+    -fx-max-width: 42;
+    -fx-max-height: 42;
+    -fx-cursor: hand;
+}
+
+.icon-button-glyph {
+    -fx-font-size: 16px;
+}
+
+.notification-badge {
+    -fx-background-color: #E5484D;
+    -fx-background-radius: 8;
+    -fx-text-fill: #FFFFFF;
+    -fx-font-family: "Inter", "Segoe UI", sans-serif;
+    -fx-font-size: 9px;
+    -fx-font-weight: 700;
+    -fx-padding: 1 5 1 5;
+    -fx-translate-x: 4;
+    -fx-translate-y: -4;
+}
+
+.profile-widget {
+    -fx-background-color: #FFFFFF;
+    -fx-background-radius: 12;
+    -fx-border-color: #E4E9F3;
+    -fx-border-radius: 12;
+    -fx-border-width: 1;
+    -fx-padding: 6 12 6 6;
+    -fx-cursor: hand;
+}
+
+.profile-name {
+    -fx-text-fill: #33415C;
+    -fx-font-family: "Inter", "Segoe UI", sans-serif;
+    -fx-font-size: 12px;
+    -fx-font-weight: 600;
+}
+
+.profile-caret {
+    -fx-fill: #9AA6BF;
+    -fx-font-size: 10px;
+}
+
+/* ================= STAT CARDS ================= */
+
+.stats-row {
+    -fx-padding: 0;
+}
+
+.stat-card {
+    -fx-background-radius: 20;
+    -fx-padding: 22;
+    -fx-effect: dropshadow(gaussian, rgba(16, 32, 66, 0.18), 18, 0.15, 0, 8);
+}
+
+.stat-card-1 { -fx-background-color: linear-gradient(to bottom right, #2E6BFF, #1B3E9E); }
+.stat-card-2 { -fx-background-color: linear-gradient(to bottom right, #12B886, #0B7A59); }
+.stat-card-3 { -fx-background-color: linear-gradient(to bottom right, #F5A524, #C97C0A); }
+.stat-card-4 { -fx-background-color: linear-gradient(to bottom right, #7C5CFC, #4A31B0); }
+
+.stat-icon-badge {
+    -fx-background-color: rgba(255, 255, 255, 0.18);
+    -fx-background-radius: 14;
+    -fx-min-width: 52;
+    -fx-min-height: 52;
+    -fx-max-width: 52;
+    -fx-max-height: 52;
+}
+
+.stat-icon-shape {
+    -fx-fill: #FFFFFF;
+}
+
+.stat-icon-window {
+    -fx-fill: rgba(0, 0, 0, 0.22);
+}
+
+.stat-value {
+    -fx-text-fill: #FFFFFF;
+    -fx-font-family: "Montserrat", "Segoe UI", sans-serif;
+    -fx-font-size: 28px;
+    -fx-font-weight: 800;
+}
+
+.stat-label {
+    -fx-text-fill: rgba(255, 255, 255, 0.85);
+    -fx-font-family: "Inter", "Segoe UI", sans-serif;
+    -fx-font-size: 12px;
+    -fx-font-weight: 600;
+}
+
+.stat-trend-up, .stat-trend-down {
+    -fx-font-family: "Inter", "Segoe UI", sans-serif;
+    -fx-font-size: 11px;
+    -fx-font-weight: 600;
+    -fx-text-fill: rgba(255, 255, 255, 0.95);
+    -fx-background-color: rgba(255, 255, 255, 0.16);
+    -fx-background-radius: 8;
+    -fx-padding: 3 8 3 8;
+}
+
+/* ================= CHART CARDS ================= */
+
+.charts-row {
+    -fx-padding: 0;
+}
+
+.chart-card, .panel-card {
+    -fx-background-color: #FFFFFF;
+    -fx-background-radius: 20;
+    -fx-padding: 22;
+    -fx-effect: dropshadow(gaussian, rgba(16, 32, 66, 0.08), 16, 0.1, 0, 6);
+}
+
+.card-title {
+    -fx-text-fill: #0B1730;
+    -fx-font-family: "Montserrat", "Segoe UI", sans-serif;
+    -fx-font-size: 15px;
+    -fx-font-weight: 700;
+}
+
+.card-subtitle {
+    -fx-text-fill: #9AA6BF;
+    -fx-font-family: "Inter", "Segoe UI", sans-serif;
+    -fx-font-size: 11px;
+}
+
+.doughnut-center-value {
+    -fx-text-fill: #0B1730;
+    -fx-font-family: "Montserrat", "Segoe UI", sans-serif;
+    -fx-font-size: 22px;
+    -fx-font-weight: 800;
+}
+
+.doughnut-center-label {
+    -fx-text-fill: #9AA6BF;
+    -fx-font-family: "Inter", "Segoe UI", sans-serif;
+    -fx-font-size: 11px;
+}
+
+.legend-dot-present { -fx-fill: #2E6BFF; }
+.legend-dot-late    { -fx-fill: #F5A524; }
+.legend-dot-absent  { -fx-fill: #E5484D; }
+
+.legend-text {
+    -fx-text-fill: #56658A;
+    -fx-font-family: "Inter", "Segoe UI", sans-serif;
+    -fx-font-size: 12px;
+}
+
+.legend-value {
+    -fx-text-fill: #0B1730;
+    -fx-font-family: "Inter", "Segoe UI", sans-serif;
+    -fx-font-size: 12px;
+    -fx-font-weight: 700;
+}
+
+/* ================= BOTTOM ROW ================= */
+
+.bottom-row {
+    -fx-padding: 0;
+}
+
+/* ---- timeline ---- */
+
+.timeline-item {
+    -fx-padding: 0 0 18 0;
+}
+
+.timeline-rail {
+    -fx-pref-width: 10;
+    -fx-min-width: 10;
+}
+
+.timeline-dot {
+    -fx-fill: #2E6BFF;
+}
+
+.timeline-line {
+    -fx-background-color: #DCE3F0;
+    -fx-pref-width: 2;
+    -fx-min-width: 2;
+    -fx-max-width: 2;
+    -fx-padding: 4 0 0 0;
+}
+
+.timeline-title {
+    -fx-text-fill: #0B1730;
+    -fx-font-family: "Inter", "Segoe UI", sans-serif;
+    -fx-font-size: 13px;
+    -fx-font-weight: 600;
+}
+
+.timeline-meta {
+    -fx-text-fill: #9AA6BF;
+    -fx-font-family: "Inter", "Segoe UI", sans-serif;
+    -fx-font-size: 11px;
+}
+
+/* ---- project cost summary ---- */
+
+.cost-row-label {
+    -fx-text-fill: #33415C;
+    -fx-font-family: "Inter", "Segoe UI", sans-serif;
+    -fx-font-size: 12px;
+    -fx-font-weight: 600;
+}
+
+.cost-row-value {
+    -fx-text-fill: #0B1730;
+    -fx-font-family: "Inter", "Segoe UI", sans-serif;
+    -fx-font-size: 12px;
+    -fx-font-weight: 700;
+}
+
+.cost-track {
+    -fx-background-color: #EEF1F8;
+    -fx-background-radius: 6;
+    -fx-pref-width: 300;
+    -fx-pref-height: 8;
+    -fx-min-height: 8;
+    -fx-max-height: 8;
+}
+
+.cost-fill {
+    -fx-background-color: linear-gradient(to right, #2E6BFF, #59A6FF);
+    -fx-background-radius: 6;
+    -fx-pref-height: 8;
+    -fx-min-height: 8;
+    -fx-max-height: 8;
+}
+
+/* ---- quick actions ---- */
+
+.quick-action-btn {
+    -fx-background-color: #F4F7FC;
+    -fx-background-radius: 12;
+    -fx-border-color: #E4E9F3;
+    -fx-border-radius: 12;
+    -fx-border-width: 1;
+    -fx-text-fill: #33415C;
+    -fx-font-family: "Inter", "Segoe UI", sans-serif;
+    -fx-font-size: 12px;
+    -fx-font-weight: 700;
+    -fx-padding: 16 8 16 8;
+    -fx-cursor: hand;
+}
+
+.quick-action-btn:hover {
+    -fx-background-color: #E9F0FE;
+    -fx-border-color: #2E6BFF;
+    -fx-text-fill: #1B3E9E;
+}
+
+/* ================= DARK THEME OVERRIDES ================= */
+
+.dark-theme.dashboard-root {
+    -fx-background-color: #0B1730;
+}
+
+.dark-theme .main-content .header-title {
+    -fx-text-fill: #F4F8FF;
+}
+
+.dark-theme .header-subtitle {
+    -fx-text-fill: #9FB3D9;
+}
+
+.dark-theme .chart-card,
+.dark-theme .panel-card,
+.dark-theme .month-selector,
+.dark-theme .icon-button,
+.dark-theme .profile-widget {
+    -fx-background-color: #12203F;
+    -fx-border-color: #223561;
+}
+
+.dark-theme .card-title,
+.dark-theme .cost-row-value,
+.dark-theme .timeline-title,
+.dark-theme .doughnut-center-value,
+.dark-theme .legend-value,
+.dark-theme .profile-name {
+    -fx-text-fill: #F4F8FF;
+}
+
+.dark-theme .cost-row-label,
+.dark-theme .legend-text,
+.dark-theme .month-selector .list-cell {
+    -fx-text-fill: #B9C6E3;
+}
+
+.dark-theme .cost-track {
+    -fx-background-color: #1B2C52;
+}
+
+.dark-theme .timeline-line {
+    -fx-background-color: #223561;
+}
+
+.dark-theme .quick-action-btn {
+    -fx-background-color: #1B2C52;
+    -fx-border-color: #223561;
+    -fx-text-fill: #E5ECFB;
+}
+
+.dark-theme .skyline-bldg {
+    -fx-fill: #223561;
+}

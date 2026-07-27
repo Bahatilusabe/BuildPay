@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleButton?>
+<?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.layout.FlowPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.text.Text?>
+
+<VBox fx:id="rootPane"
+      xmlns="http://javafx.com/javafx/21"
+      xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="com.buildpay.controller.EmployeeController"
+      prefWidth="1280" prefHeight="800"
+      styleClass="employee-root"
+      stylesheets="@../css/employee.css"
+      spacing="20">
+
+    <padding>
+        <Insets top="28" right="32" bottom="24" left="32" />
+    </padding>
+
+    <!-- ================= TOOLBAR ================= -->
+    <HBox fx:id="toolbar" styleClass="toolbar" alignment="CENTER_LEFT" spacing="14">
+        <Button fx:id="backButton" text="&#8592;" styleClass="back-button" onAction="#handleBack" />
+        <VBox spacing="4">
+            <Label text="Employee Management" styleClass="page-title" />
+            <Label text="Manage your construction workforce" styleClass="page-subtitle" />
+        </VBox>
+        <Region HBox.hgrow="ALWAYS" />
+        <Button fx:id="exportButton" text="Export" styleClass="secondary-button" onAction="#handleExport" />
+        <Button fx:id="printButton" text="Print" styleClass="secondary-button" onAction="#handlePrint" />
+        <Button fx:id="addEmployeeButton" text="+ Add Employee" styleClass="primary-button" onAction="#handleAddEmployee" />
+    </HBox>
+
+    <!-- ================= SEARCH + FILTERS ================= -->
+    <HBox fx:id="filterBar" styleClass="filter-bar" alignment="CENTER_LEFT" spacing="12">
+        <StackPane styleClass="search-box" alignment="CENTER_LEFT" HBox.hgrow="ALWAYS">
+            <Text text="&#128269;" styleClass="search-icon" StackPane.alignment="CENTER_LEFT" />
+            <TextField fx:id="searchField" promptText="Search by name or employee ID..." styleClass="search-field" />
+        </StackPane>
+        <ComboBox fx:id="departmentFilter" styleClass="filter-combo" prefWidth="180" />
+        <ComboBox fx:id="statusFilter" styleClass="filter-combo" prefWidth="150" />
+
+        <HBox styleClass="view-toggle-group" spacing="0">
+            <fx:define>
+                <ToggleGroup fx:id="viewToggleGroup" />
+            </fx:define>
+            <ToggleButton fx:id="tableViewToggle" text="Table" toggleGroup="$viewToggleGroup"
+                          selected="true" styleClass="view-toggle-btn, view-toggle-left"
+                          onAction="#handleShowTableView" />
+            <ToggleButton fx:id="cardViewToggle" text="Cards" toggleGroup="$viewToggleGroup"
+                          styleClass="view-toggle-btn, view-toggle-right"
+                          onAction="#handleShowCardView" />
+        </HBox>
+    </HBox>
+
+    <!-- ================= STATISTICS ================= -->
+    <HBox fx:id="statsRow" styleClass="stats-row" spacing="16">
+        <VBox styleClass="emp-stat-card, emp-stat-card-1" spacing="8" HBox.hgrow="ALWAYS">
+            <Label fx:id="statTotalValue" text="0" styleClass="emp-stat-value" />
+            <Label text="Total Employees" styleClass="emp-stat-label" />
+        </VBox>
+        <VBox styleClass="emp-stat-card, emp-stat-card-2" spacing="8" HBox.hgrow="ALWAYS">
+            <Label fx:id="statActiveValue" text="0" styleClass="emp-stat-value" />
+            <Label text="Active" styleClass="emp-stat-label" />
+        </VBox>
+        <VBox styleClass="emp-stat-card, emp-stat-card-3" spacing="8" HBox.hgrow="ALWAYS">
+            <Label fx:id="statOnLeaveValue" text="0" styleClass="emp-stat-value" />
+            <Label text="On Leave" styleClass="emp-stat-label" />
+        </VBox>
+        <VBox styleClass="emp-stat-card, emp-stat-card-4" spacing="8" HBox.hgrow="ALWAYS">
+            <Label fx:id="statDepartmentsValue" text="0" styleClass="emp-stat-value" />
+            <Label text="Departments" styleClass="emp-stat-label" />
+        </VBox>
+    </HBox>
+
+    <!-- ================= CONTENT: TABLE / CARDS ================= -->
+    <StackPane fx:id="contentStack" VBox.vgrow="ALWAYS">
+
+        <VBox fx:id="tableWrapper" styleClass="module-card" spacing="0">
+            <TableView fx:id="employeeTable" styleClass="employee-table" VBox.vgrow="ALWAYS">
+                <columns>
+                    <TableColumn fx:id="idColumn" text="Employee ID" prefWidth="110" />
+                    <TableColumn fx:id="photoColumn" text="Photo" prefWidth="70" sortable="false" />
+                    <TableColumn fx:id="nameColumn" text="Name" prefWidth="170" />
+                    <TableColumn fx:id="departmentColumn" text="Department" prefWidth="150" />
+                    <TableColumn fx:id="positionColumn" text="Position" prefWidth="150" />
+                    <TableColumn fx:id="phoneColumn" text="Phone" prefWidth="130" />
+                    <TableColumn fx:id="salaryColumn" text="Salary" prefWidth="120" />
+                    <TableColumn fx:id="statusColumn" text="Status" prefWidth="110" sortable="false" />
+                    <TableColumn fx:id="actionsColumn" text="Actions" prefWidth="140" sortable="false" />
+                </columns>
+            </TableView>
+        </VBox>
+
+        <VBox fx:id="cardsWrapper" styleClass="module-card" spacing="14" visible="false" managed="false">
+            <ScrollPane fx:id="cardsScroll" styleClass="cards-scroll" fitToWidth="true" VBox.vgrow="ALWAYS">
+                <FlowPane fx:id="cardsFlowPane" styleClass="cards-flow" hgap="16" vgap="16" />
+            </ScrollPane>
+        </VBox>
+
+    </StackPane>
+
+    <!-- ================= PAGINATION ================= -->
+    <HBox fx:id="paginationBar" styleClass="pagination-bar" alignment="CENTER_LEFT" spacing="10">
+        <Label fx:id="paginationSummaryLabel" text="Showing 0 of 0" styleClass="pagination-summary" />
+        <Region HBox.hgrow="ALWAYS" />
+        <Button fx:id="prevPageButton" text="&#8592; Prev" styleClass="pagination-nav-btn" onAction="#handlePrevPage" />
+        <HBox fx:id="pageNumbersBox" spacing="6" alignment="CENTER" />
+        <Button fx:id="nextPageButton" text="Next &#8594;" styleClass="pagination-nav-btn" onAction="#handleNextPage" />
+    </HBox>
+
+</VBox>

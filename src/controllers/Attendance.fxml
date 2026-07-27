@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.canvas.Canvas?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Text?>
+
+<VBox fx:id="rootPane"
+      xmlns="http://javafx.com/javafx/21"
+      xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="com.buildpay.controller.AttendanceController"
+      prefWidth="1280" prefHeight="800"
+      styleClass="attendance-root"
+      stylesheets="@../css/attendance.css"
+      spacing="20">
+
+    <padding>
+        <Insets top="28" right="32" bottom="24" left="32" />
+    </padding>
+
+    <!-- ================= TOOLBAR ================= -->
+    <HBox fx:id="toolbar" styleClass="toolbar" alignment="CENTER_LEFT" spacing="14">
+        <Button fx:id="backButton" text="&#8592;" styleClass="back-button" onAction="#handleBack" />
+        <VBox spacing="4">
+            <Label text="Attendance" styleClass="page-title" />
+            <Label fx:id="pageSubtitleLabel" text="Track daily attendance across all sites" styleClass="page-subtitle" />
+        </VBox>
+        <Region HBox.hgrow="ALWAYS" />
+        <Button fx:id="bulkAttendanceButton" text="Bulk Attendance" styleClass="secondary-button"
+                onAction="#handleBulkAttendance" />
+        <Button fx:id="markAttendanceButton" text="+ Mark Attendance" styleClass="primary-button"
+                onAction="#handleMarkAttendance" />
+    </HBox>
+
+    <!-- ================= SEARCH + FILTERS ================= -->
+    <HBox fx:id="filterBar" styleClass="filter-bar" alignment="CENTER_LEFT" spacing="12">
+        <StackPane styleClass="search-box" alignment="CENTER_LEFT" HBox.hgrow="ALWAYS">
+            <Text text="&#128269;" styleClass="search-icon" StackPane.alignment="CENTER_LEFT" />
+            <TextField fx:id="searchField" promptText="Search by name or employee ID..." styleClass="search-field" />
+        </StackPane>
+        <ComboBox fx:id="departmentFilter" styleClass="filter-combo" prefWidth="180" />
+        <ComboBox fx:id="statusFilter" styleClass="filter-combo" prefWidth="150" />
+    </HBox>
+
+    <!-- ================= STATUS STATISTICS ================= -->
+    <HBox fx:id="statsRow" styleClass="stats-row" spacing="14">
+        <VBox styleClass="chip-stat-card, chip-stat-present" spacing="6" HBox.hgrow="ALWAYS">
+            <Label fx:id="statPresentValue" text="0" styleClass="chip-stat-value" />
+            <Label text="Present" styleClass="chip-stat-label" />
+        </VBox>
+        <VBox styleClass="chip-stat-card, chip-stat-absent" spacing="6" HBox.hgrow="ALWAYS">
+            <Label fx:id="statAbsentValue" text="0" styleClass="chip-stat-value" />
+            <Label text="Absent" styleClass="chip-stat-label" />
+        </VBox>
+        <VBox styleClass="chip-stat-card, chip-stat-leave" spacing="6" HBox.hgrow="ALWAYS">
+            <Label fx:id="statLeaveValue" text="0" styleClass="chip-stat-value" />
+            <Label text="Leave" styleClass="chip-stat-label" />
+        </VBox>
+        <VBox styleClass="chip-stat-card, chip-stat-late" spacing="6" HBox.hgrow="ALWAYS">
+            <Label fx:id="statLateValue" text="0" styleClass="chip-stat-value" />
+            <Label text="Late" styleClass="chip-stat-label" />
+        </VBox>
+        <VBox styleClass="chip-stat-card, chip-stat-overtime" spacing="6" HBox.hgrow="ALWAYS">
+            <Label fx:id="statOvertimeValue" text="0" styleClass="chip-stat-value" />
+            <Label text="Overtime" styleClass="chip-stat-label" />
+        </VBox>
+    </HBox>
+
+    <!-- ================= MAIN SPLIT: CALENDAR/CHART | TABLE ================= -->
+    <HBox fx:id="mainSplit" spacing="20" VBox.vgrow="ALWAYS">
+
+        <!-- ---- LEFT COLUMN: CALENDAR + CHART ---- -->
+        <VBox spacing="20" prefWidth="340" minWidth="340" maxWidth="340">
+
+            <VBox fx:id="calendarCard" styleClass="module-card" spacing="14">
+                <HBox alignment="CENTER_LEFT" spacing="8">
+                    <Button fx:id="prevMonthButton" text="&#8249;" styleClass="calendar-nav-btn" onAction="#handlePrevMonth" />
+                    <Label fx:id="monthYearLabel" text="Month Year" styleClass="calendar-month-label" HBox.hgrow="ALWAYS" />
+                    <Button fx:id="nextMonthButton" text="&#8250;" styleClass="calendar-nav-btn" onAction="#handleNextMonth" />
+                </HBox>
+
+                <GridPane fx:id="weekdayHeaderGrid" hgap="2" vgap="2">
+                    <Label text="Mo" styleClass="calendar-weekday-label" GridPane.columnIndex="0" />
+                    <Label text="Tu" styleClass="calendar-weekday-label" GridPane.columnIndex="1" />
+                    <Label text="We" styleClass="calendar-weekday-label" GridPane.columnIndex="2" />
+                    <Label text="Th" styleClass="calendar-weekday-label" GridPane.columnIndex="3" />
+                    <Label text="Fr" styleClass="calendar-weekday-label" GridPane.columnIndex="4" />
+                    <Label text="Sa" styleClass="calendar-weekday-label" GridPane.columnIndex="5" />
+                    <Label text="Su" styleClass="calendar-weekday-label" GridPane.columnIndex="6" />
+                    <columnConstraints>
+                        <ColumnConstraints percentWidth="14.28" />
+                        <ColumnConstraints percentWidth="14.28" />
+                        <ColumnConstraints percentWidth="14.28" />
+                        <ColumnConstraints percentWidth="14.28" />
+                        <ColumnConstraints percentWidth="14.28" />
+                        <ColumnConstraints percentWidth="14.28" />
+                        <ColumnConstraints percentWidth="14.28" />
+                    </columnConstraints>
+                </GridPane>
+
+                <GridPane fx:id="calendarGrid" hgap="2" vgap="2" />
+
+                <Button fx:id="todayButton" text="Jump to Today" styleClass="today-link-btn" onAction="#handleJumpToToday" />
+            </VBox>
+
+            <VBox fx:id="chartCard" styleClass="module-card" spacing="14" VBox.vgrow="ALWAYS">
+                <Label text="Attendance Breakdown" styleClass="card-title" />
+                <Label fx:id="chartDateLabel" text="Selected day" styleClass="card-subtitle" />
+                <Canvas fx:id="attendanceBarCanvas" width="300" height="200" />
+                <VBox fx:id="chartLegend" spacing="8" />
+            </VBox>
+
+        </VBox>
+
+        <!-- ---- RIGHT COLUMN: TABLE ---- -->
+        <VBox styleClass="module-card" spacing="0" HBox.hgrow="ALWAYS">
+            <HBox alignment="CENTER_LEFT" styleClass="table-card-header">
+                <Label fx:id="tableHeaderLabel" text="Attendance for Today" styleClass="card-title" />
+                <Region HBox.hgrow="ALWAYS" />
+                <Label fx:id="recordCountLabel" text="0 records" styleClass="card-subtitle" />
+            </HBox>
+
+            <TableView fx:id="attendanceTable" styleClass="attendance-table" VBox.vgrow="ALWAYS">
+                <columns>
+                    <TableColumn fx:id="idColumn" text="Employee ID" prefWidth="100" />
+                    <TableColumn fx:id="photoColumn" text="Photo" prefWidth="60" sortable="false" />
+                    <TableColumn fx:id="nameColumn" text="Name" prefWidth="160" />
+                    <TableColumn fx:id="departmentColumn" text="Department" prefWidth="140" />
+                    <TableColumn fx:id="checkInColumn" text="Check In" prefWidth="90" />
+                    <TableColumn fx:id="checkOutColumn" text="Check Out" prefWidth="90" />
+                    <TableColumn fx:id="hoursColumn" text="Hours" prefWidth="80" />
+                    <TableColumn fx:id="statusColumn" text="Status" prefWidth="110" sortable="false" />
+                    <TableColumn fx:id="actionsColumn" text="Actions" prefWidth="90" sortable="false" />
+                </columns>
+            </TableView>
+
+            <HBox fx:id="paginationBar" styleClass="pagination-bar" alignment="CENTER_LEFT" spacing="10">
+                <Label fx:id="paginationSummaryLabel" text="Showing 0 of 0" styleClass="pagination-summary" />
+                <Region HBox.hgrow="ALWAYS" />
+                <Button fx:id="prevPageButton" text="&#8592; Prev" styleClass="pagination-nav-btn" onAction="#handlePrevPage" />
+                <HBox fx:id="pageNumbersBox" spacing="6" alignment="CENTER" />
+                <Button fx:id="nextPageButton" text="Next &#8594;" styleClass="pagination-nav-btn" onAction="#handleNextPage" />
+            </HBox>
+        </VBox>
+
+    </HBox>
+
+</VBox>

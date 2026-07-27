@@ -1,0 +1,267 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.VBox?>
+<BorderPane xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.buildpay.controller.ReportController" stylesheets="@reports.css">
+    <center>
+        <VBox alignment="CENTER" spacing="12">
+            <Label text="Reports" styleClass="page-title" />
+            <Label text="Placeholder reports page." />
+        </VBox>
+    </center>
+</BorderPane>
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.chart.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.text.*?>
+
+<BorderPane xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.buildpay.controller.ReportController"
+            prefWidth="1400" prefHeight="900" stylesheets="@dashboard.css">
+
+    <!-- Left Sidebar (Same as Dashboard/Employees/Attendance/Payroll/Payslip) -->
+    <left>
+        <VBox styleClass="sidebar" prefWidth="240" minWidth="240" maxWidth="240">
+            <!-- Logo Section -->
+            <VBox styleClass="logo-section" alignment="CENTER_LEFT" spacing="4">
+                <padding>
+                    <Insets top="24" right="20" bottom="24" left="20"/>
+                </padding>
+                <HBox spacing="10" alignment="CENTER_LEFT">
+                    <StackPane styleClass="logo-icon-container">
+                        <com.buildpay.ui.icons.LucideIcon iconName="LayoutDashboard" />
+                    </StackPane>
+                    <VBox spacing="2">
+                        <Label text="BuildPay" styleClass="logo-title"/>
+                        <Label text="CONSTRUCTION PAYROLL SYSTEM" styleClass="logo-subtitle"/>
+                    </VBox>
+                </HBox>
+            </VBox>
+
+            <!-- Navigation Menu -->
+            <VBox styleClass="nav-menu" spacing="4" VBox.vgrow="ALWAYS">
+                <padding>
+                    <Insets top="8" right="12" bottom="8" left="12"/>
+                </padding>
+
+                <Button text="Dashboard" styleClass="nav-button" onAction="#handleDashboardClick">
+                    <graphic>
+                        <com.buildpay.ui.icons.LucideIcon iconName="LayoutDashboard" />
+                    </graphic>
+                </Button>
+
+                <Button text="Employees" styleClass="nav-button" onAction="#handleEmployeesClick">
+                    <graphic>
+                        <com.buildpay.ui.icons.LucideIcon iconName="Users" />
+                    </graphic>
+                </Button>
+
+                <Button text="Attendance" styleClass="nav-button" onAction="#handleAttendanceClick">
+                    <graphic>
+                        <com.buildpay.ui.icons.LucideIcon iconName="CalendarCheck" />
+                    </graphic>
+                </Button>
+
+                <Button text="Payroll" styleClass="nav-button" onAction="#handlePayrollClick">
+                    <graphic>
+                        <com.buildpay.ui.icons.LucideIcon iconName="Wallet" />
+                    </graphic>
+                </Button>
+
+                <Button text="Payslips" styleClass="nav-button" onAction="#handlePayslipsClick">
+                    <graphic>
+                        <com.buildpay.ui.icons.LucideIcon iconName="FileText" />
+                    </graphic>
+                </Button>
+
+                <Button text="Reports" styleClass="nav-button, nav-button-active">
+                    <graphic>
+                        <com.buildpay.ui.icons.LucideIcon iconName="BarChart3" />
+                    </graphic>
+                </Button>
+
+                <Button text="Projects" styleClass="nav-button" onAction="#handleProjectsClick">
+                    <graphic>
+                        <com.buildpay.ui.icons.LucideIcon iconName="Building2" />
+                    </graphic>
+                </Button>
+
+                <Button text="Settings" styleClass="nav-button" onAction="#handleSettingsClick">
+                    <graphic>
+                        <com.buildpay.ui.icons.LucideIcon iconName="Settings" />
+                    </graphic>
+                </Button>
+            </VBox>
+
+            <!-- User Profile Section -->
+            <VBox styleClass="user-section" spacing="12">
+                <padding>
+                    <Insets top="16" right="16" bottom="16" left="16"/>
+                </padding>
+                <HBox spacing="10" alignment="CENTER_LEFT">
+                    <StackPane styleClass="avatar-container">
+                        <Circle radius="20" styleClass="avatar-bg"/>
+                        <Label text="JK" styleClass="avatar-text"/>
+                        <Circle radius="4" styleClass="avatar-status" StackPane.alignment="BOTTOM_RIGHT">
+                            <StackPane.margin>
+                                <Insets right="2" bottom="2"/>
+                            </StackPane.margin>
+                        </Circle>
+                    </StackPane>
+                    <VBox spacing="2" HBox.hgrow="ALWAYS">
+                        <Label text="John Kamau" styleClass="user-name"/>
+                        <Label text="Payroll Officer" styleClass="user-role"/>
+                    </VBox>
+                    <Button styleClass="user-dropdown-btn">
+                        <graphic>
+                            <Region styleClass="icon-chevron-down"/>
+                        </graphic>
+                    </Button>
+                </HBox>
+            </VBox>
+        </VBox>
+    </left>
+
+    <!-- Main Content Area -->
+    <center>
+        <VBox styleClass="main-content">
+            <padding>
+                <Insets top="24" right="32" bottom="24" left="32"/>
+            </padding>
+            <spacing>24</spacing>
+
+            <!-- Page Header -->
+            <VBox spacing="8">
+                <Label text="Reports" styleClass="page-title"/>
+                <HBox spacing="4" alignment="CENTER_LEFT">
+                    <Label text="Dashboard" styleClass="breadcrumb-link"/>
+                    <Label text=" / " styleClass="breadcrumb-separator"/>
+                    <Label text="Reports" styleClass="breadcrumb-current"/>
+                </HBox>
+            </VBox>
+
+            <!-- Filters Row -->
+            <HBox styleClass="filters-row" spacing="12" alignment="CENTER_LEFT">
+                <VBox spacing="6">
+                    <Label text="Report Type" styleClass="filter-label"/>
+                    <HBox styleClass="filter-dropdown" spacing="8" alignment="CENTER">
+                        <padding>
+                            <Insets top="10" right="16" bottom="10" left="16"/>
+                        </padding>
+                        <Label text="Monthly Payroll Report" styleClass="filter-text"/>
+                        <Region styleClass="icon-chevron-down-small"/>
+                    </HBox>
+                </VBox>
+                <VBox spacing="6">
+                    <Label text="Month" styleClass="filter-label"/>
+                    <HBox styleClass="filter-dropdown" spacing="8" alignment="CENTER">
+                        <padding>
+                            <Insets top="10" right="16" bottom="10" left="16"/>
+                        </padding>
+                        <Label text="May 2025" styleClass="filter-text"/>
+                        <Region styleClass="icon-chevron-down-small"/>
+                    </HBox>
+                </VBox>
+                <Region HBox.hgrow="ALWAYS"/>
+                <Button styleClass="generate-report-btn" text="Generate Report">
+                    <padding>
+                        <Insets top="10" right="20" bottom="10" left="20"/>
+                    </padding>
+                </Button>
+            </HBox>
+
+            <!-- Summary Stats Row -->
+            <HBox styleClass="stats-row" spacing="16">
+                <VBox styleClass="stat-card" HBox.hgrow="ALWAYS">
+                    <padding>
+                        <Insets top="16" right="20" bottom="16" left="20"/>
+                    </padding>
+                    <Label text="Total Employees" styleClass="stat-label"/>
+                    <Label text="128" styleClass="stat-value"/>
+                </VBox>
+                <VBox styleClass="stat-card" HBox.hgrow="ALWAYS">
+                    <padding>
+                        <Insets top="16" right="20" bottom="16" left="20"/>
+                    </padding>
+                    <Label text="Total Earnings" styleClass="stat-label"/>
+                    <Label text="KES 2,450,000" styleClass="stat-value"/>
+                </VBox>
+                <VBox styleClass="stat-card" HBox.hgrow="ALWAYS">
+                    <padding>
+                        <Insets top="16" right="20" bottom="16" left="20"/>
+                    </padding>
+                    <Label text="Total Deductions" styleClass="stat-label"/>
+                    <Label text="KES 367,200" styleClass="stat-value"/>
+                </VBox>
+                <VBox styleClass="stat-card" HBox.hgrow="ALWAYS">
+                    <padding>
+                        <Insets top="16" right="20" bottom="16" left="20"/>
+                    </padding>
+                    <Label text="Net Payroll" styleClass="stat-label"/>
+                    <Label text="KES 2,082,800" styleClass="stat-value"/>
+                </VBox>
+            </HBox>
+
+            <!-- Charts Row -->
+            <HBox styleClass="charts-row" spacing="20" VBox.vgrow="ALWAYS">
+                <!-- Payroll Summary Bar Chart -->
+                <VBox styleClass="chart-card" HBox.hgrow="ALWAYS">
+                    <padding>
+                        <Insets top="20" right="20" bottom="20" left="20"/>
+                    </padding>
+                    <Label text="Payroll Summary" styleClass="chart-title"/>
+                    <BarChart fx:id="payrollBarChart" styleClass="payroll-bar-chart" VBox.vgrow="ALWAYS" legendVisible="false" animated="false" categoryGap="10" barGap="4">
+                        <xAxis>
+                            <CategoryAxis styleClass="chart-axis" tickLabelGap="10"/>
+                        </xAxis>
+                        <yAxis>
+                            <NumberAxis styleClass="chart-axis" tickUnit="1000000" lowerBound="0" upperBound="4000000" forceZeroInRange="true"/>
+                        </yAxis>
+                        <!-- Bar chart data populated in controller -->
+                    </BarChart>
+                </VBox>
+
+                <!-- Department Breakdown Donut Chart -->
+                <VBox styleClass="chart-card" prefWidth="420" minWidth="420" maxWidth="420">
+                    <padding>
+                        <Insets top="20" right="20" bottom="20" left="20"/>
+                    </padding>
+                    <Label text="Department Breakdown" styleClass="chart-title"/>
+                    <HBox VBox.vgrow="ALWAYS" alignment="CENTER">
+                        <StackPane styleClass="donut-chart-container">
+                            <PieChart fx:id="deptChart" styleClass="dept-chart" legendVisible="false" labelsVisible="false" animated="false" startAngle="90">
+                                <!-- Pie chart data populated in controller -->
+                            </PieChart>
+                        </StackPane>
+                        <VBox styleClass="dept-legend" spacing="14">
+                            <HBox spacing="10" alignment="CENTER_LEFT">
+                                <Circle radius="6" styleClass="legend-dot-construction"/>
+                                <Label text="Construction" styleClass="legend-label"/>
+                                <Label text="40%" styleClass="legend-value"/>
+                            </HBox>
+                            <HBox spacing="10" alignment="CENTER_LEFT">
+                                <Circle radius="6" styleClass="legend-dot-engineering"/>
+                                <Label text="Engineering" styleClass="legend-label"/>
+                                <Label text="25%" styleClass="legend-value"/>
+                            </HBox>
+                            <HBox spacing="10" alignment="CENTER_LEFT">
+                                <Circle radius="6" styleClass="legend-dot-management"/>
+                                <Label text="Management" styleClass="legend-label"/>
+                                <Label text="15%" styleClass="legend-value"/>
+                            </HBox>
+                            <HBox spacing="10" alignment="CENTER_LEFT">
+                                <Circle radius="6" styleClass="legend-dot-other"/>
+                                <Label text="Other" styleClass="legend-label"/>
+                                <Label text="10%" styleClass="legend-value"/>
+                            </HBox>
+                        </VBox>
+                    </HBox>
+                </VBox>
+            </HBox>
+        </VBox>
+    </center>
+</BorderPane>

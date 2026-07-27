@@ -1,0 +1,235 @@
+/* ==========================================================================
+   BuildPay Login Screen — login.css
+   Modern SaaS / Construction Technology theme
+   Fonts: Montserrat (headings / brand), Inter (body / form)
+   ========================================================================== */
+
+.login-root {
+    -fx-background-color: #0B1730;
+}
+
+.login-card {
+    -fx-background-color: transparent;
+    -fx-background-radius: 28;
+}
+
+/* ================= LEFT PANEL ================= */
+
+.left-panel {
+    -fx-background-color: linear-gradient(to bottom right, #07152F, #16305E);
+}
+
+/* Placeholder for a real construction-site photograph.
+   Drop an asset at /com/buildpay/images/construction-site.jpg and this
+   layer will show it; until then the gradient above remains visible. */
+.left-bg-image {
+    -fx-background-image: url("../images/construction-site.jpg");
+    -fx-background-size: cover;
+    -fx-background-position: center center;
+}
+
+.left-overlay {
+    -fx-background-color: linear-gradient(to bottom,
+                           rgba(7, 21, 47, 0.88),
+                           rgba(7, 21, 47, 0.72) 45%,
+                           rgba(7, 21, 47, 0.93));
+}
+
+.left-content {
+    -fx-padding: 0 56 0 56;
+}
+
+.brand-glow {
+    -fx-fill: radial-gradient(center 50% 50%, radius 60%,
+              rgba(62, 140, 255, 0.55), rgba(62, 140, 255, 0.0) 70%);
+}
+
+.brand-badge {
+    -fx-fill: linear-gradient(to bottom right, #2E6BFF, #1B3E9E);
+    -fx-stroke: rgba(255, 255, 255, 0.18);
+    -fx-stroke-width: 1;
+}
+
+.brand-text {
+    -fx-fill: #F4F8FF;
+    -fx-font-family: "Montserrat Semibold", "Montserrat", "Segoe UI", sans-serif;
+    -fx-font-size: 22px;
+    -fx-font-weight: 700;
+}
+
+.left-title {
+    -fx-text-fill: #F5F8FF;
+    -fx-font-family: "Montserrat", "Segoe UI", sans-serif;
+    -fx-font-size: 30px;
+    -fx-font-weight: 800;
+    -fx-letter-spacing: 1px;
+}
+
+.left-subtitle {
+    -fx-text-fill: #9FB3D9;
+    -fx-font-family: "Inter", "Segoe UI", sans-serif;
+    -fx-font-size: 14px;
+    -fx-max-width: 300px;
+}
+
+.feature-list {
+    -fx-padding: 8 0 0 0;
+}
+
+.feature-dot {
+    -fx-fill: #59A6FF;
+    -fx-effect: dropshadow(gaussian, rgba(89, 166, 255, 0.7), 6, 0.4, 0, 0);
+}
+
+.feature-text {
+    -fx-text-fill: #C7D5EE;
+    -fx-font-family: "Inter", "Segoe UI", sans-serif;
+    -fx-font-size: 13px;
+}
+
+/* ================= RIGHT PANEL ================= */
+
+.right-panel {
+    -fx-background-color: #F7F9FC;
+}
+
+.form-box {
+    -fx-padding: 40 0 40 0;
+}
+
+.welcome-title {
+    -fx-text-fill: #0B1730;
+    -fx-font-family: "Montserrat", "Segoe UI", sans-serif;
+    -fx-font-size: 26px;
+    -fx-font-weight: 800;
+}
+
+.welcome-subtitle {
+    -fx-text-fill: #6B7A99;
+    -fx-font-family: "Inter", "Segoe UI", sans-serif;
+    -fx-font-size: 13px;
+}
+
+.field-label {
+    -fx-text-fill: #33415C;
+    -fx-font-family: "Inter", "Segoe UI", sans-serif;
+    -fx-font-size: 12px;
+    -fx-font-weight: 600;
+}
+
+/* Strip default Modena chrome and rebuild a flat, modern field */
+.text-field {
+    -fx-background-color: #FFFFFF;
+    -fx-border-color: #DCE3F0;
+    -fx-border-width: 1.5;
+    -fx-border-radius: 10;
+    -fx-background-radius: 10;
+    -fx-padding: 11 14 11 14;
+    -fx-font-family: "Inter", "Segoe UI", sans-serif;
+    -fx-font-size: 13px;
+    -fx-text-fill: #0B1730;
+    -fx-prompt-text-fill: #9AA6BF;
+}
+
+.text-field:focused {
+    -fx-border-color: #2E6BFF;
+    -fx-effect: dropshadow(gaussian, rgba(46, 107, 255, 0.25), 8, 0.3, 0, 0);
+}
+
+.text-field.field-error {
+    -fx-border-color: #E5484D;
+    -fx-effect: dropshadow(gaussian, rgba(229, 72, 77, 0.22), 8, 0.3, 0, 0);
+}
+
+.error-label {
+    -fx-text-fill: #E5484D;
+    -fx-font-family: "Inter", "Segoe UI", sans-serif;
+    -fx-font-size: 11px;
+}
+
+.options-row {
+    -fx-padding: 2 0 2 0;
+}
+
+.remember-check {
+    -fx-text-fill: #56658A;
+    -fx-font-family: "Inter", "Segoe UI", sans-serif;
+    -fx-font-size: 12px;
+}
+
+.remember-check .box {
+    -fx-background-color: #FFFFFF;
+    -fx-border-color: #DCE3F0;
+    -fx-border-radius: 4;
+    -fx-background-radius: 4;
+}
+
+.remember-check:selected .box {
+    -fx-background-color: #2E6BFF;
+    -fx-border-color: #2E6BFF;
+}
+
+.remember-check:selected .mark {
+    -fx-background-color: #FFFFFF;
+}
+
+.forgot-link {
+    -fx-text-fill: #2E6BFF;
+    -fx-font-family: "Inter", "Segoe UI", sans-serif;
+    -fx-font-size: 12px;
+    -fx-border-width: 0;
+    -fx-underline: false;
+}
+
+.forgot-link:hover {
+    -fx-text-fill: #1B3E9E;
+    -fx-underline: true;
+}
+
+/* Primary action */
+.sign-in-button {
+    -fx-background-color: linear-gradient(to right, #2E6BFF, #1B3E9E);
+    -fx-background-radius: 10;
+    -fx-text-fill: #FFFFFF;
+    -fx-font-family: "Inter", "Segoe UI", sans-serif;
+    -fx-font-size: 14px;
+    -fx-font-weight: 700;
+    -fx-padding: 12 0 12 0;
+    -fx-cursor: hand;
+    -fx-effect: dropshadow(gaussian, rgba(46, 107, 255, 0.35), 10, 0.25, 0, 3);
+}
+
+.sign-in-button:hover {
+    -fx-background-color: linear-gradient(to right, #3E79FF, #234AB8);
+}
+
+.sign-in-button:pressed {
+    -fx-background-color: linear-gradient(to right, #2359E0, #16307D);
+}
+
+/* Secondary action */
+.admin-login-button {
+    -fx-background-color: transparent;
+    -fx-background-radius: 10;
+    -fx-border-color: #DCE3F0;
+    -fx-border-radius: 10;
+    -fx-border-width: 1.5;
+    -fx-text-fill: #33415C;
+    -fx-font-family: "Inter", "Segoe UI", sans-serif;
+    -fx-font-size: 13px;
+    -fx-font-weight: 600;
+    -fx-padding: 10 0 10 0;
+    -fx-cursor: hand;
+}
+
+.admin-login-button:hover {
+    -fx-background-color: #F0F4FC;
+    -fx-border-color: #C3D2EE;
+}
+
+.footer-label {
+    -fx-text-fill: #9AA6BF;
+    -fx-font-family: "Inter", "Segoe UI", sans-serif;
+    -fx-font-size: 10px;
+    -fx-padding: 6 0 0 0;
+}

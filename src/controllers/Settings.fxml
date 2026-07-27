@@ -1,0 +1,318 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleButton?>
+<?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Circle?>
+
+<VBox fx:id="rootPane"
+      xmlns="http://javafx.com/javafx/21"
+      xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="com.buildpay.controller.SettingsController"
+      prefWidth="1320" prefHeight="860"
+      styleClass="settings-root"
+      stylesheets="@../css/settings.css"
+      spacing="20">
+
+    <padding>
+        <Insets top="28" right="32" bottom="24" left="32" />
+    </padding>
+
+    <!-- ================= TOOLBAR ================= -->
+    <HBox fx:id="toolbar" styleClass="toolbar" alignment="CENTER_LEFT" spacing="14">
+        <Button fx:id="backButton" text="&#8592;" styleClass="back-button" onAction="#handleBack" />
+        <VBox spacing="4">
+            <Label text="Settings" styleClass="page-title" />
+            <Label text="Configure BuildPay for your organization" styleClass="page-subtitle" />
+        </VBox>
+    </HBox>
+
+    <HBox spacing="20" VBox.vgrow="ALWAYS">
+
+        <!-- ================= SECTION NAV ================= -->
+        <VBox styleClass="nav-card" spacing="4" prefWidth="230" minWidth="230" maxWidth="230">
+            <fx:define>
+                <ToggleGroup fx:id="sectionGroup" />
+            </fx:define>
+            <ToggleButton fx:id="navCompany" text="Company Information" toggleGroup="$sectionGroup"
+                          selected="true" styleClass="nav-item" maxWidth="Infinity" onAction="#handleShowCompany" />
+            <ToggleButton fx:id="navPayroll" text="Payroll Settings" toggleGroup="$sectionGroup"
+                          styleClass="nav-item" maxWidth="Infinity" onAction="#handleShowPayroll" />
+            <ToggleButton fx:id="navTax" text="Tax Settings" toggleGroup="$sectionGroup"
+                          styleClass="nav-item" maxWidth="Infinity" onAction="#handleShowTax" />
+            <ToggleButton fx:id="navTheme" text="Theme" toggleGroup="$sectionGroup"
+                          styleClass="nav-item" maxWidth="Infinity" onAction="#handleShowTheme" />
+            <ToggleButton fx:id="navNotifications" text="Notifications" toggleGroup="$sectionGroup"
+                          styleClass="nav-item" maxWidth="Infinity" onAction="#handleShowNotifications" />
+            <ToggleButton fx:id="navBackup" text="Backup" toggleGroup="$sectionGroup"
+                          styleClass="nav-item" maxWidth="Infinity" onAction="#handleShowBackup" />
+            <ToggleButton fx:id="navRestore" text="Restore" toggleGroup="$sectionGroup"
+                          styleClass="nav-item" maxWidth="Infinity" onAction="#handleShowRestore" />
+            <ToggleButton fx:id="navDatabase" text="Database" toggleGroup="$sectionGroup"
+                          styleClass="nav-item" maxWidth="Infinity" onAction="#handleShowDatabase" />
+            <ToggleButton fx:id="navUsers" text="Users" toggleGroup="$sectionGroup"
+                          styleClass="nav-item" maxWidth="Infinity" onAction="#handleShowUsers" />
+            <ToggleButton fx:id="navPermissions" text="Permissions" toggleGroup="$sectionGroup"
+                          styleClass="nav-item" maxWidth="Infinity" onAction="#handleShowPermissions" />
+        </VBox>
+
+        <!-- ================= CONTENT ================= -->
+        <ScrollPane fx:id="contentScroll" styleClass="content-scroll" fitToWidth="true" HBox.hgrow="ALWAYS">
+            <StackPane fx:id="contentStack">
+
+                <!-- ========== COMPANY INFORMATION ========== -->
+                <VBox fx:id="companyPanel" styleClass="settings-card" spacing="18">
+                    <VBox spacing="2">
+                        <Label text="Company Information" styleClass="section-title" />
+                        <Label text="Your organization's core details, used across payslips and reports" styleClass="section-subtitle" />
+                    </VBox>
+                    <Separator />
+                    <HBox spacing="16">
+                        <VBox spacing="6" HBox.hgrow="ALWAYS">
+                            <Label text="Company Name" styleClass="field-label" />
+                            <TextField fx:id="companyNameField" text="BuildPay Construction Ltd" styleClass="field" />
+                        </VBox>
+                        <VBox spacing="6" HBox.hgrow="ALWAYS">
+                            <Label text="KRA PIN" styleClass="field-label" />
+                            <TextField fx:id="companyPinField" text="P051234567X" styleClass="field" />
+                        </VBox>
+                    </HBox>
+                    <VBox spacing="6">
+                        <Label text="Address" styleClass="field-label" />
+                        <TextField fx:id="companyAddressField" text="P.O. Box 12345-00100, Nairobi, Kenya" styleClass="field" />
+                    </VBox>
+                    <HBox spacing="16">
+                        <VBox spacing="6" HBox.hgrow="ALWAYS">
+                            <Label text="Phone" styleClass="field-label" />
+                            <TextField fx:id="companyPhoneField" text="+254 700 123 456" styleClass="field" />
+                        </VBox>
+                        <VBox spacing="6" HBox.hgrow="ALWAYS">
+                            <Label text="Email" styleClass="field-label" />
+                            <TextField fx:id="companyEmailField" text="info@buildpay.co.ke" styleClass="field" />
+                        </VBox>
+                    </HBox>
+                    <Button fx:id="saveCompanyButton" text="Save Changes" styleClass="save-btn" onAction="#handleSaveCompany" />
+                </VBox>
+
+                <!-- ========== PAYROLL SETTINGS ========== -->
+                <VBox fx:id="payrollPanel" styleClass="settings-card" spacing="18" visible="false" managed="false">
+                    <VBox spacing="2">
+                        <Label text="Payroll Settings" styleClass="section-title" />
+                        <Label text="Defaults used when generating payroll" styleClass="section-subtitle" />
+                    </VBox>
+                    <Separator />
+                    <HBox spacing="16">
+                        <VBox spacing="6" HBox.hgrow="ALWAYS">
+                            <Label text="Pay Day (day of month)" styleClass="field-label" />
+                            <TextField fx:id="payDayField" text="28" styleClass="field" />
+                        </VBox>
+                        <VBox spacing="6" HBox.hgrow="ALWAYS">
+                            <Label text="Overtime Rate Multiplier" styleClass="field-label" />
+                            <TextField fx:id="overtimeMultiplierField" text="1.5" styleClass="field" />
+                        </VBox>
+                    </HBox>
+                    <HBox spacing="16">
+                        <VBox spacing="6" HBox.hgrow="ALWAYS">
+                            <Label text="Default Housing Allowance (KES)" styleClass="field-label" />
+                            <TextField fx:id="defaultHousingField" text="12000" styleClass="field" />
+                        </VBox>
+                        <VBox spacing="6" HBox.hgrow="ALWAYS">
+                            <Label text="Default Transport Allowance (KES)" styleClass="field-label" />
+                            <TextField fx:id="defaultTransportField" text="5000" styleClass="field" />
+                        </VBox>
+                    </HBox>
+                    <Button fx:id="savePayrollButton" text="Save Changes" styleClass="save-btn" onAction="#handleSavePayroll" />
+                </VBox>
+
+                <!-- ========== TAX SETTINGS ========== -->
+                <VBox fx:id="taxPanel" styleClass="settings-card" spacing="18" visible="false" managed="false">
+                    <VBox spacing="2">
+                        <Label text="Tax Settings" styleClass="section-title" />
+                        <Label text="Statutory rates used by the Payroll and Payslip modules" styleClass="section-subtitle" />
+                    </VBox>
+                    <Separator />
+                    <Label text="NSSF" styleClass="subsection-title" />
+                    <HBox spacing="16">
+                        <VBox spacing="6" HBox.hgrow="ALWAYS">
+                            <Label text="Tier I Limit (KES)" styleClass="field-label" />
+                            <TextField fx:id="nssfTier1Field" text="9000" styleClass="field" />
+                        </VBox>
+                        <VBox spacing="6" HBox.hgrow="ALWAYS">
+                            <Label text="Upper Earnings Limit (KES)" styleClass="field-label" />
+                            <TextField fx:id="nssfUelField" text="108000" styleClass="field" />
+                        </VBox>
+                        <VBox spacing="6" HBox.hgrow="ALWAYS">
+                            <Label text="Contribution Rate (%)" styleClass="field-label" />
+                            <TextField fx:id="nssfRateField" text="6" styleClass="field" />
+                        </VBox>
+                    </HBox>
+                    <Separator />
+                    <Label text="PAYE" styleClass="subsection-title" />
+                    <HBox spacing="16">
+                        <VBox spacing="6" HBox.hgrow="ALWAYS">
+                            <Label text="Personal Relief (KES/month)" styleClass="field-label" />
+                            <TextField fx:id="payeReliefField" text="2400" styleClass="field" />
+                        </VBox>
+                    </HBox>
+                    <VBox styleClass="reference-box" spacing="6">
+                        <Label text="Current PAYE bands (reference)" styleClass="reference-title" />
+                        <Label text="10% up to KES 24,000  \u00B7  25% next KES 8,333  \u00B7  30% next KES 467,667  \u00B7  32.5% next KES 300,000  \u00B7  35% above KES 800,000"
+                               styleClass="reference-text" wrapText="true" />
+                    </VBox>
+                    <Button fx:id="saveTaxButton" text="Save Changes" styleClass="save-btn" onAction="#handleSaveTax" />
+                </VBox>
+
+                <!-- ========== THEME ========== -->
+                <VBox fx:id="themePanel" styleClass="settings-card" spacing="18" visible="false" managed="false">
+                    <VBox spacing="2">
+                        <Label text="Theme" styleClass="section-title" />
+                        <Label text="Appearance preferences for this screen" styleClass="section-subtitle" />
+                    </VBox>
+                    <Separator />
+                    <HBox alignment="CENTER_LEFT" styleClass="toggle-row">
+                        <VBox spacing="2">
+                            <Label text="Dark Mode" styleClass="toggle-label" />
+                            <Label text="Switch this screen to a dark background" styleClass="toggle-desc" />
+                        </VBox>
+                        <Region HBox.hgrow="ALWAYS" />
+                        <StackPane fx:id="darkModeTrack" styleClass="toggle-track" alignment="CENTER_LEFT"
+                                   onMouseClicked="#handleThemeToggle">
+                            <Circle fx:id="darkModeKnob" radius="9" styleClass="toggle-knob" translateX="3" />
+                        </StackPane>
+                    </HBox>
+                    <Separator />
+                    <Label text="Accent Color" styleClass="subsection-title" />
+                    <HBox fx:id="accentSwatchRow" spacing="12" />
+                </VBox>
+
+                <!-- ========== NOTIFICATIONS ========== -->
+                <VBox fx:id="notificationsPanel" styleClass="settings-card" spacing="18" visible="false" managed="false">
+                    <VBox spacing="2">
+                        <Label text="Notifications" styleClass="section-title" />
+                        <Label text="Choose what BuildPay should notify you about" styleClass="section-subtitle" />
+                    </VBox>
+                    <Separator />
+                    <VBox fx:id="notificationsList" spacing="16" />
+                </VBox>
+
+                <!-- ========== BACKUP ========== -->
+                <VBox fx:id="backupPanel" styleClass="settings-card" spacing="18" visible="false" managed="false">
+                    <VBox spacing="2">
+                        <Label text="Backup" styleClass="section-title" />
+                        <Label text="Save a snapshot of BuildPay's current data" styleClass="section-subtitle" />
+                    </VBox>
+                    <Separator />
+                    <HBox alignment="CENTER_LEFT" styleClass="info-row">
+                        <Label text="Last Backup" styleClass="info-label" />
+                        <Region HBox.hgrow="ALWAYS" />
+                        <Label fx:id="lastBackupLabel" text="Never" styleClass="info-value" />
+                    </HBox>
+                    <VBox spacing="6">
+                        <Label text="Auto-Backup Frequency" styleClass="field-label" />
+                        <ComboBox fx:id="backupFrequencyCombo" styleClass="combo" maxWidth="260" />
+                    </VBox>
+                    <Button fx:id="backupNowButton" text="Backup Now" styleClass="save-btn" onAction="#handleBackupNow" />
+                </VBox>
+
+                <!-- ========== RESTORE ========== -->
+                <VBox fx:id="restorePanel" styleClass="settings-card" spacing="18" visible="false" managed="false">
+                    <VBox spacing="2">
+                        <Label text="Restore" styleClass="section-title" />
+                        <Label text="Restore BuildPay data from a previously saved backup file" styleClass="section-subtitle" />
+                    </VBox>
+                    <Separator />
+                    <HBox alignment="CENTER_LEFT" styleClass="info-row">
+                        <Label text="Selected File" styleClass="info-label" />
+                        <Region HBox.hgrow="ALWAYS" />
+                        <Label fx:id="restoreFileLabel" text="No file selected" styleClass="info-value" />
+                    </HBox>
+                    <HBox spacing="12">
+                        <Button fx:id="chooseBackupFileButton" text="Choose Backup File" styleClass="secondary-btn"
+                                onAction="#handleChooseBackupFile" />
+                        <Button fx:id="restoreButton" text="Restore" styleClass="danger-btn" onAction="#handleRestore" />
+                    </HBox>
+                </VBox>
+
+                <!-- ========== DATABASE ========== -->
+                <VBox fx:id="databasePanel" styleClass="settings-card" spacing="18" visible="false" managed="false">
+                    <VBox spacing="2">
+                        <Label text="Database" styleClass="section-title" />
+                        <Label text="Connection details for BuildPay's data store" styleClass="section-subtitle" />
+                    </VBox>
+                    <Separator />
+                    <HBox spacing="16">
+                        <VBox spacing="6" HBox.hgrow="ALWAYS">
+                            <Label text="Host" styleClass="field-label" />
+                            <TextField fx:id="dbHostField" text="localhost" styleClass="field" />
+                        </VBox>
+                        <VBox spacing="6" HBox.hgrow="ALWAYS">
+                            <Label text="Port" styleClass="field-label" />
+                            <TextField fx:id="dbPortField" text="5432" styleClass="field" />
+                        </VBox>
+                        <VBox spacing="6" HBox.hgrow="ALWAYS">
+                            <Label text="Database Name" styleClass="field-label" />
+                            <TextField fx:id="dbNameField" text="buildpay_db" styleClass="field" />
+                        </VBox>
+                    </HBox>
+                    <HBox alignment="CENTER_LEFT" styleClass="info-row">
+                        <Label text="Connection Status" styleClass="info-label" />
+                        <Region HBox.hgrow="ALWAYS" />
+                        <Label fx:id="dbStatusChip" text="Unknown" styleClass="status-chip, status-unknown" />
+                    </HBox>
+                    <Button fx:id="testConnectionButton" text="Test Connection" styleClass="secondary-btn"
+                            onAction="#handleTestConnection" />
+                </VBox>
+
+                <!-- ========== USERS ========== -->
+                <VBox fx:id="usersPanel" styleClass="settings-card" spacing="16" visible="false" managed="false">
+                    <HBox alignment="CENTER_LEFT">
+                        <VBox spacing="2">
+                            <Label text="Users" styleClass="section-title" />
+                            <Label fx:id="usersCountLabel" text="0 users" styleClass="section-subtitle" />
+                        </VBox>
+                        <Region HBox.hgrow="ALWAYS" />
+                        <Button fx:id="addUserButton" text="+ Add User" styleClass="save-btn" onAction="#handleAddUser" />
+                    </HBox>
+                    <Separator />
+                    <TableView fx:id="usersTable" styleClass="users-table">
+                        <columns>
+                            <TableColumn fx:id="userNameColumn" text="Name" prefWidth="180" />
+                            <TableColumn fx:id="userEmailColumn" text="Email" prefWidth="220" />
+                            <TableColumn fx:id="userRoleColumn" text="Role" prefWidth="150" />
+                            <TableColumn fx:id="userStatusColumn" text="Status" prefWidth="110" sortable="false" />
+                            <TableColumn fx:id="userActionsColumn" text="Actions" prefWidth="150" sortable="false" />
+                        </columns>
+                    </TableView>
+                </VBox>
+
+                <!-- ========== PERMISSIONS ========== -->
+                <VBox fx:id="permissionsPanel" styleClass="settings-card" spacing="16" visible="false" managed="false">
+                    <VBox spacing="2">
+                        <Label text="Permissions" styleClass="section-title" />
+                        <Label text="Control which roles can access each area of BuildPay" styleClass="section-subtitle" />
+                    </VBox>
+                    <Separator />
+                    <GridPane fx:id="permissionsGrid" hgap="16" vgap="14" />
+                    <Button fx:id="savePermissionsButton" text="Save Permissions" styleClass="save-btn"
+                            onAction="#handleSavePermissions" />
+                </VBox>
+
+            </StackPane>
+        </ScrollPane>
+
+    </HBox>
+
+</VBox>

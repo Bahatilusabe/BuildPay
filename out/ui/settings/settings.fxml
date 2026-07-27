@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.VBox?>
+<BorderPane xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.buildpay.controller.SettingsController" stylesheets="@settings.css">
+    <center>
+        <VBox alignment="CENTER" spacing="12">
+            <Label text="Settings" styleClass="page-title" />
+            <Label text="Placeholder settings page." />
+        </VBox>
+    </center>
+</BorderPane>

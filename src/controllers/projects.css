@@ -1,0 +1,354 @@
+/* ==========================================================================
+   BuildPay Projects Management — projects.css
+   Modern SaaS / Construction Technology theme
+   Fonts: Montserrat (headings), Inter (body / data)
+   ========================================================================== */
+
+.projects-root {
+    -fx-background-color: #F4F7FC;
+}
+
+/* ================= TOOLBAR ================= */
+
+.back-button {
+    -fx-background-color: #FFFFFF;
+    -fx-border-color: #E4E9F3;
+    -fx-border-width: 1;
+    -fx-background-radius: 10;
+    -fx-border-radius: 10;
+    -fx-text-fill: #33415C;
+    -fx-font-size: 14px;
+    -fx-min-width: 38;
+    -fx-min-height: 38;
+    -fx-cursor: hand;
+}
+
+.back-button:hover { -fx-background-color: #EEF3FD; }
+
+.page-title {
+    -fx-text-fill: #0B1730;
+    -fx-font-family: "Montserrat", "Segoe UI", sans-serif;
+    -fx-font-size: 22px;
+    -fx-font-weight: 800;
+}
+
+.page-subtitle {
+    -fx-text-fill: #6B7A99;
+    -fx-font-family: "Inter", "Segoe UI", sans-serif;
+    -fx-font-size: 12px;
+}
+
+.search-box {
+    -fx-background-color: #FFFFFF;
+    -fx-border-color: #DCE3F0;
+    -fx-border-width: 1.5;
+    -fx-background-radius: 10;
+    -fx-border-radius: 10;
+    -fx-padding: 0 12 0 12;
+}
+
+.search-icon { -fx-font-size: 13px; -fx-opacity: 0.55; }
+
+.search-field {
+    -fx-background-color: transparent;
+    -fx-border-width: 0;
+    -fx-padding: 9 8 9 30;
+    -fx-font-family: "Inter", "Segoe UI", sans-serif;
+    -fx-font-size: 12px;
+    -fx-text-fill: #0B1730;
+    -fx-prompt-text-fill: #9AA6BF;
+}
+
+.filter-combo {
+    -fx-background-color: #FFFFFF;
+    -fx-border-color: #DCE3F0;
+    -fx-border-width: 1.5;
+    -fx-background-radius: 10;
+    -fx-border-radius: 10;
+    -fx-font-family: "Inter", "Segoe UI", sans-serif;
+    -fx-font-size: 12px;
+    -fx-text-fill: #33415C;
+}
+
+.filter-combo .list-cell {
+    -fx-text-fill: #33415C;
+    -fx-font-family: "Inter", "Segoe UI", sans-serif;
+    -fx-font-size: 12px;
+    -fx-padding: 6 8 6 10;
+}
+
+.filter-combo .list-cell:filled:hover { -fx-background-color: #EEF3FD; }
+.filter-combo .list-cell:filled:selected { -fx-background-color: #2E6BFF; -fx-text-fill: #FFFFFF; }
+
+/* ================= CARD GRID ================= */
+
+.cards-scroll { -fx-background-color: transparent; }
+.cards-scroll .viewport { -fx-background-color: transparent; }
+
+.cards-scroll .scroll-bar:vertical {
+    -fx-background-color: transparent;
+    -fx-pref-width: 10;
+}
+
+.cards-scroll .scroll-bar:vertical .thumb {
+    -fx-background-color: #CBD5EA;
+    -fx-background-radius: 6;
+}
+
+.cards-flow {
+    -fx-background-color: transparent;
+    -fx-padding: 4;
+}
+
+.project-card {
+    -fx-background-color: #FFFFFF;
+    -fx-background-radius: 18;
+    -fx-padding: 20;
+    -fx-pref-width: 380;
+    -fx-effect: dropshadow(gaussian, rgba(16, 32, 66, 0.09), 16, 0.1, 0, 6);
+}
+
+.project-name {
+    -fx-text-fill: #0B1730;
+    -fx-font-family: "Montserrat", "Segoe UI", sans-serif;
+    -fx-font-size: 15px;
+    -fx-font-weight: 800;
+}
+
+.project-location {
+    -fx-text-fill: #9AA6BF;
+    -fx-font-family: "Inter", "Segoe UI", sans-serif;
+    -fx-font-size: 11px;
+}
+
+/* ---- status chips (shared by card + details dialog) ---- */
+
+.status-chip {
+    -fx-font-family: "Inter", "Segoe UI", sans-serif;
+    -fx-font-size: 10px;
+    -fx-font-weight: 700;
+    -fx-background-radius: 8;
+    -fx-padding: 4 10 4 10;
+}
+
+.status-ongoing   { -fx-background-color: rgba(46, 107, 255, 0.14); -fx-text-fill: #1B3E9E; }
+.status-completed { -fx-background-color: rgba(18, 184, 134, 0.14); -fx-text-fill: #0B7A59; }
+.status-on-hold   { -fx-background-color: rgba(245, 165, 36, 0.16); -fx-text-fill: #C97C0A; }
+.status-delayed   { -fx-background-color: rgba(229, 72, 77, 0.14); -fx-text-fill: #C22429; }
+
+/* ---- progress bar ---- */
+
+.progress-title {
+    -fx-text-fill: #6B7A99;
+    -fx-font-family: "Inter", "Segoe UI", sans-serif;
+    -fx-font-size: 11px;
+    -fx-font-weight: 600;
+}
+
+.progress-pct {
+    -fx-text-fill: #0B1730;
+    -fx-font-family: "Inter", "Segoe UI", sans-serif;
+    -fx-font-size: 11px;
+    -fx-font-weight: 800;
+}
+
+.progress-track {
+    -fx-background-color: #EEF1F8;
+    -fx-background-radius: 6;
+    -fx-min-height: 8;
+    -fx-pref-height: 8;
+    -fx-max-height: 8;
+    -fx-alignment: CENTER_LEFT;
+}
+
+.progress-fill-ongoing {
+    -fx-background-color: linear-gradient(to right, #2E6BFF, #59A6FF);
+    -fx-background-radius: 6;
+    -fx-min-height: 8;
+    -fx-pref-height: 8;
+    -fx-max-height: 8;
+}
+
+.progress-fill-completed {
+    -fx-background-color: linear-gradient(to right, #12B886, #3FD8A6);
+    -fx-background-radius: 6;
+    -fx-min-height: 8;
+    -fx-pref-height: 8;
+    -fx-max-height: 8;
+}
+
+.progress-fill-hold {
+    -fx-background-color: linear-gradient(to right, #F5A524, #FBC168);
+    -fx-background-radius: 6;
+    -fx-min-height: 8;
+    -fx-pref-height: 8;
+    -fx-max-height: 8;
+}
+
+.progress-fill-delayed {
+    -fx-background-color: linear-gradient(to right, #E5484D, #F0787C);
+    -fx-background-radius: 6;
+    -fx-min-height: 8;
+    -fx-pref-height: 8;
+    -fx-max-height: 8;
+}
+
+/* ---- meta row (workers / budget / labour cost) ---- */
+
+.meta-label {
+    -fx-text-fill: #9AA6BF;
+    -fx-font-family: "Inter", "Segoe UI", sans-serif;
+    -fx-font-size: 10px;
+    -fx-font-weight: 600;
+}
+
+.meta-value {
+    -fx-text-fill: #33415C;
+    -fx-font-family: "Inter", "Segoe UI", sans-serif;
+    -fx-font-size: 12px;
+    -fx-font-weight: 700;
+}
+
+/* ---- timeline row ---- */
+
+.timeline-dates {
+    -fx-text-fill: #33415C;
+    -fx-font-family: "Inter", "Segoe UI", sans-serif;
+    -fx-font-size: 11px;
+    -fx-font-weight: 600;
+}
+
+.timeline-note-ok {
+    -fx-text-fill: #0B7A59;
+    -fx-font-family: "Inter", "Segoe UI", sans-serif;
+    -fx-font-size: 10px;
+}
+
+.timeline-note-overdue {
+    -fx-text-fill: #C22429;
+    -fx-font-family: "Inter", "Segoe UI", sans-serif;
+    -fx-font-size: 10px;
+    -fx-font-weight: 700;
+}
+
+.details-btn {
+    -fx-background-color: #F4F7FC;
+    -fx-background-radius: 8;
+    -fx-border-color: #DCE3F0;
+    -fx-border-width: 1.5;
+    -fx-border-radius: 8;
+    -fx-text-fill: #1B3E9E;
+    -fx-font-family: "Inter", "Segoe UI", sans-serif;
+    -fx-font-size: 11px;
+    -fx-font-weight: 700;
+    -fx-padding: 6 12 6 12;
+    -fx-cursor: hand;
+}
+
+.details-btn:hover {
+    -fx-background-color: #E9F0FE;
+    -fx-border-color: #2E6BFF;
+}
+
+/* ================= PAGINATION ================= */
+
+.pagination-bar { -fx-padding: 4 4 0 4; }
+
+.pagination-summary {
+    -fx-text-fill: #9AA6BF;
+    -fx-font-family: "Inter", "Segoe UI", sans-serif;
+    -fx-font-size: 12px;
+}
+
+.pagination-nav-btn {
+    -fx-background-color: #FFFFFF;
+    -fx-border-color: #DCE3F0;
+    -fx-border-width: 1.5;
+    -fx-background-radius: 8;
+    -fx-border-radius: 8;
+    -fx-text-fill: #33415C;
+    -fx-font-family: "Inter", "Segoe UI", sans-serif;
+    -fx-font-size: 12px;
+    -fx-font-weight: 600;
+    -fx-padding: 7 12 7 12;
+    -fx-cursor: hand;
+}
+
+.pagination-nav-btn:hover { -fx-background-color: #F0F4FC; }
+.pagination-nav-btn:disabled { -fx-opacity: 0.4; }
+
+.pagination-page-btn {
+    -fx-background-color: transparent;
+    -fx-background-radius: 8;
+    -fx-text-fill: #6B7A99;
+    -fx-font-family: "Inter", "Segoe UI", sans-serif;
+    -fx-font-size: 12px;
+    -fx-font-weight: 600;
+    -fx-min-width: 30;
+    -fx-min-height: 30;
+    -fx-cursor: hand;
+}
+
+.pagination-page-btn:hover { -fx-background-color: #F0F4FC; }
+
+.pagination-page-btn-active {
+    -fx-background-color: linear-gradient(to right, #2E6BFF, #1B3E9E);
+    -fx-text-fill: #FFFFFF;
+}
+
+/* ================= PROJECT DETAILS DIALOG ================= */
+
+.form-root {
+    -fx-background-color: rgba(11, 23, 48, 0.45);
+}
+
+.details-card {
+    -fx-background-color: #FFFFFF;
+    -fx-background-radius: 22;
+    -fx-padding: 28;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.35), 30, 0.2, 0, 12);
+}
+
+.details-title {
+    -fx-text-fill: #0B1730;
+    -fx-font-family: "Montserrat", "Segoe UI", sans-serif;
+    -fx-font-size: 19px;
+    -fx-font-weight: 800;
+}
+
+.details-location {
+    -fx-text-fill: #9AA6BF;
+    -fx-font-family: "Inter", "Segoe UI", sans-serif;
+    -fx-font-size: 12px;
+}
+
+.section-header {
+    -fx-text-fill: #9AA6BF;
+    -fx-font-family: "Inter", "Segoe UI", sans-serif;
+    -fx-font-size: 10px;
+    -fx-font-weight: 800;
+    -fx-letter-spacing: 1px;
+}
+
+.detail-stat-value {
+    -fx-text-fill: #0B1730;
+    -fx-font-family: "Inter", "Segoe UI", sans-serif;
+    -fx-font-size: 13px;
+    -fx-font-weight: 700;
+}
+
+.form-cancel-btn {
+    -fx-background-color: transparent;
+    -fx-border-color: #DCE3F0;
+    -fx-border-width: 1.5;
+    -fx-background-radius: 10;
+    -fx-border-radius: 10;
+    -fx-text-fill: #33415C;
+    -fx-font-family: "Inter", "Segoe UI", sans-serif;
+    -fx-font-size: 12px;
+    -fx-font-weight: 600;
+    -fx-padding: 9 18 9 18;
+    -fx-cursor: hand;
+}
+
+.form-cancel-btn:hover { -fx-background-color: #F0F4FC; }

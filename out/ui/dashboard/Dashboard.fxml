@@ -1,0 +1,479 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.chart.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.Group?>
+<?import javafx.scene.Group?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.paint.*?>
+
+<BorderPane xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.buildpay.controller.DashboardController"
+            fx:id="rootPane"
+            prefWidth="1400" prefHeight="900" stylesheets="@dashboard.css">
+
+    <!-- Left Sidebar -->
+    <left>
+    <VBox styleClass="sidebar" prefWidth="260" minWidth="260" maxWidth="260">
+            <!-- Logo Section -->
+            <VBox styleClass="logo-section" alignment="CENTER_LEFT" spacing="4">
+                <padding>
+                    <Insets top="24" right="20" bottom="24" left="20"/>
+                </padding>
+                <HBox spacing="10" alignment="CENTER_LEFT">
+                    <StackPane styleClass="logo-icon-container">
+                        <ImageView fitWidth="56" fitHeight="56" preserveRatio="true" styleClass="logo-image">
+                            <image>
+                                <Image url="@../login/images/logo.png" />
+                            </image>
+                        </ImageView>
+                    </StackPane>
+                    <VBox spacing="2">
+                        <Label text="BuildPay" styleClass="logo-title"/>
+                        <Label text="CONSTRUCTION PAYROLL SYSTEM" styleClass="logo-subtitle"/>
+                    </VBox>
+                </HBox>
+            </VBox>
+
+            <!-- Navigation Menu -->
+            <VBox styleClass="nav-menu" spacing="4" VBox.vgrow="ALWAYS">
+                <padding>
+                    <Insets top="8" right="12" bottom="8" left="12"/>
+                </padding>
+
+                <Button text="Dashboard" styleClass="nav-button, nav-button-active">
+                    <graphic>
+                        <com.buildpay.ui.icons.LucideIcon iconName="LayoutDashboard" />
+                    </graphic>
+                </Button>
+
+                <Button text="Employees" styleClass="nav-button" onAction="#handleEmployeesClick">
+                    <graphic>
+                        <com.buildpay.ui.icons.LucideIcon iconName="Users" />
+                    </graphic>
+                </Button>
+
+                <Button text="Attendance" styleClass="nav-button" onAction="#handleAttendanceClick">
+                    <graphic>
+                        <com.buildpay.ui.icons.LucideIcon iconName="CalendarCheck" />
+                    </graphic>
+                </Button>
+
+                <Button text="Payroll" styleClass="nav-button" onAction="#handlePayrollClick">
+                    <graphic>
+                        <com.buildpay.ui.icons.LucideIcon iconName="Wallet" />
+                    </graphic>
+                </Button>
+
+                <Button text="Payslips" styleClass="nav-button" onAction="#handlePayslipsClick">
+                    <graphic>
+                        <com.buildpay.ui.icons.LucideIcon iconName="FileText" />
+                    </graphic>
+                </Button>
+
+                <Button text="Reports" styleClass="nav-button" onAction="#handleReportsClick">
+                    <graphic>
+                        <com.buildpay.ui.icons.LucideIcon iconName="BarChart3" />
+                    </graphic>
+                </Button>
+
+                <Button text="Projects" styleClass="nav-button" onAction="#handleProjectsClick">
+                    <graphic>
+                        <com.buildpay.ui.icons.LucideIcon iconName="Building2" />
+                    </graphic>
+                </Button>
+
+                <Button text="Settings" styleClass="nav-button" onAction="#handleSettingsClick">
+                    <graphic>
+                        <com.buildpay.ui.icons.LucideIcon iconName="Settings" />
+                    </graphic>
+                </Button>
+            </VBox>
+
+            <!-- User Profile Section -->
+            <VBox styleClass="user-section" spacing="12">
+                <padding>
+                    <Insets top="16" right="16" bottom="16" left="16"/>
+                </padding>
+
+                <HBox spacing="10" alignment="CENTER_LEFT">
+                    <StackPane styleClass="avatar-container">
+                        <Circle radius="20" styleClass="avatar-bg"/>
+                        <Label text="JK" styleClass="avatar-text"/>
+                        <Circle radius="4" styleClass="avatar-status" StackPane.alignment="BOTTOM_RIGHT">
+                            <StackPane.margin>
+                                <Insets right="2" bottom="2"/>
+                            </StackPane.margin>
+                        </Circle>
+                    </StackPane>
+                    <VBox spacing="2" HBox.hgrow="ALWAYS">
+                        <Label text="John Kamau" styleClass="user-name"/>
+                        <Label text="Payroll Officer" styleClass="user-role"/>
+                    </VBox>
+                    <Button styleClass="user-dropdown-btn">
+                        <graphic>
+                            <Region styleClass="icon-chevron-down"/>
+                        </graphic>
+                    </Button>
+                </HBox>
+
+                <HBox styleClass="theme-toggle" spacing="8" alignment="CENTER">
+                    <padding>
+                        <Insets top="8" right="12" bottom="8" left="12"/>
+                    </padding>
+                    <Label text="Theme" styleClass="theme-label"/>
+                    <Region HBox.hgrow="ALWAYS"/>
+                    <Button styleClass="theme-btn">
+                        <graphic>
+                            <Region styleClass="icon-moon"/>
+                        </graphic>
+                    </Button>
+                    <Button styleClass="theme-btn, theme-btn-active">
+                        <graphic>
+                            <Region styleClass="icon-sun"/>
+                        </graphic>
+                    </Button>
+                </HBox>
+            </VBox>
+        </VBox>
+    </left>
+
+    <!-- Main Content Area -->
+    <center>
+        <VBox styleClass="main-content">
+            <padding>
+                <Insets top="24" right="32" bottom="24" left="32"/>
+            </padding>
+            <spacing>24</spacing>
+
+            <!-- Header Section (premium) -->
+            <HBox styleClass="header-section" alignment="CENTER_LEFT">
+                <HBox spacing="16" alignment="CENTER_LEFT" HBox.hgrow="ALWAYS">
+                    <Button styleClass="menu-toggle">
+                        <graphic>
+                            <Region styleClass="icon-menu"/>
+                        </graphic>
+                    </Button>
+                    <VBox spacing="4">
+                        <Label text="Dashboard — Modernized UI" styleClass="page-title"/>
+                        <Label text="Welcome back, Administrator" styleClass="welcome-text"/>
+                    </VBox>
+                </HBox>
+
+                <!-- Right header tools: search, notifications, profile -->
+                <HBox spacing="16" alignment="CENTER_RIGHT">
+                    <StackPane>
+                        <TextField promptText="Search employees, payroll, reports..." styleClass="search-box" />
+                    </StackPane>
+
+                    <Button styleClass="notification-btn">
+                        <graphic>
+                            <StackPane>
+                                <Region styleClass="icon-bell" />
+                                <Label text="3" styleClass="notification-badge" StackPane.alignment="TOP_RIGHT">
+                                    <StackPane.margin>
+                                        <Insets top="-6" right="-6"/>
+                                    </StackPane.margin>
+                                </Label>
+                            </StackPane>
+                        </graphic>
+                    </Button>
+
+                    <HBox spacing="10" alignment="CENTER_LEFT" styleClass="profile-block">
+                        <ImageView fitWidth="48" fitHeight="48" preserveRatio="true" styleClass="profile-avatar">
+                            <image>
+                                <Image url="@../login/images/logo.png" />
+                            </image>
+                        </ImageView>
+                        <VBox spacing="2">
+                            <Label text="Admin User" styleClass="profile-name" />
+                            <Label text="System Administrator" styleClass="profile-role" />
+                        </VBox>
+                    </HBox>
+                </HBox>
+            </HBox>
+
+            <!-- KPI Cards Row -->
+            <HBox styleClass="kpi-row" spacing="24">
+                <!-- Total Employees -->
+                <VBox fx:id="kpiTotalEmployees" styleClass="kpi-card kpi-blue" HBox.hgrow="ALWAYS" prefHeight="160">
+                    <padding>
+                        <Insets top="20" right="20" bottom="20" left="20"/>
+                    </padding>
+                    <HBox alignment="CENTER_LEFT">
+                        <VBox spacing="8" HBox.hgrow="ALWAYS">
+                            <Label text="Total Employees" styleClass="kpi-label"/>
+                            <Label fx:id="totalEmployeesLabel" text="128" styleClass="kpi-value"/>
+                            <Label text="+12%" styleClass="kpi-trend kpi-trend-green" />
+                        </VBox>
+                        <StackPane styleClass="kpi-icon-container kpi-icon-blue">
+                            <Region styleClass="icon-users" />
+                        </StackPane>
+                    </HBox>
+                </VBox>
+
+                <!-- Monthly Payroll -->
+                <VBox fx:id="kpiMonthlyPayroll" styleClass="kpi-card kpi-green" HBox.hgrow="ALWAYS" prefHeight="160">
+                    <padding>
+                        <Insets top="20" right="20" bottom="20" left="20"/>
+                    </padding>
+                    <HBox alignment="CENTER_LEFT">
+                        <VBox spacing="8" HBox.hgrow="ALWAYS">
+                            <Label text="Monthly Payroll" styleClass="kpi-label"/>
+                            <Label fx:id="monthlyPayrollLabel" text="KES 2.45M" styleClass="kpi-value"/>
+                            <Label text="+8.2%" styleClass="kpi-trend kpi-trend-green" />
+                        </VBox>
+                        <StackPane styleClass="kpi-icon-container kpi-icon-green">
+                            <Region styleClass="icon-wallet" />
+                        </StackPane>
+                    </HBox>
+                </VBox>
+
+                <!-- Active Projects -->
+                <VBox fx:id="kpiActiveProjects" styleClass="kpi-card kpi-orange" HBox.hgrow="ALWAYS" prefHeight="160">
+                    <padding>
+                        <Insets top="20" right="20" bottom="20" left="20"/>
+                    </padding>
+                    <HBox alignment="CENTER_LEFT">
+                        <VBox spacing="8" HBox.hgrow="ALWAYS">
+                            <Label text="Active Projects" styleClass="kpi-label"/>
+                            <Label fx:id="activeProjectsLabel" text="8" styleClass="kpi-value"/>
+                            <Label text="+2%" styleClass="kpi-trend kpi-trend-amber" />
+                        </VBox>
+                        <StackPane styleClass="kpi-icon-container kpi-icon-orange">
+                            <Region styleClass="icon-building" />
+                        </StackPane>
+                    </HBox>
+                </VBox>
+
+                <!-- Attendance Rate -->
+                <VBox fx:id="kpiAttendanceRate" styleClass="kpi-card kpi-purple" HBox.hgrow="ALWAYS" prefHeight="160">
+                    <padding>
+                        <Insets top="20" right="20" bottom="20" left="20"/>
+                    </padding>
+                    <HBox alignment="CENTER_LEFT">
+                        <VBox spacing="8" HBox.hgrow="ALWAYS">
+                            <Label text="Attendance Rate" styleClass="kpi-label"/>
+                            <Label fx:id="attendanceRateLabel" text="96%" styleClass="kpi-value"/>
+                            <Label text="+3%" styleClass="kpi-trend kpi-trend-purple" />
+                        </VBox>
+                        <StackPane styleClass="kpi-icon-container kpi-icon-purple">
+                            <Region styleClass="icon-calendar-check" />
+                        </StackPane>
+                    </HBox>
+                </VBox>
+            </HBox>
+
+            <!-- Charts Row -->
+            <HBox styleClass="charts-row" spacing="20" VBox.vgrow="ALWAYS">
+                <!-- Payroll Summary Chart -->
+                <VBox styleClass="chart-card" HBox.hgrow="ALWAYS">
+                    <padding>
+                        <Insets top="20" right="20" bottom="20" left="20"/>
+                    </padding>
+                    <HBox alignment="CENTER_LEFT">
+                        <Label text="Payroll Summary" styleClass="chart-title">
+                            <graphic>
+                                <Label text=" (This Year)" styleClass="chart-subtitle"/>
+                            </graphic>
+                        </Label>
+                        <Region HBox.hgrow="ALWAYS"/>
+                        <HBox styleClass="chart-filter" spacing="8" alignment="CENTER">
+                            <padding>
+                                <Insets top="6" right="12" bottom="6" left="12"/>
+                            </padding>
+                            <Label text="This Year" styleClass="filter-text"/>
+                            <Region styleClass="icon-chevron-down-small"/>
+                        </HBox>
+                    </HBox>
+                    <AreaChart fx:id="payrollChart" styleClass="payroll-chart" VBox.vgrow="ALWAYS" legendVisible="false" animated="false">
+                        <xAxis>
+                            <CategoryAxis fx:id="payrollXAxis" styleClass="chart-axis" tickLabelGap="10"/>
+                        </xAxis>
+                        <yAxis>
+                            <NumberAxis fx:id="payrollYAxis" styleClass="chart-axis" tickUnit="1000000" lowerBound="0" upperBound="4000000"
+                                       forceZeroInRange="true"/>
+                        </yAxis>
+                    </AreaChart>
+                </VBox>
+
+                <!-- Attendance Summary Chart -->
+                <VBox styleClass="chart-card" prefWidth="380" minWidth="380" maxWidth="380">
+                    <padding>
+                        <Insets top="20" right="20" bottom="20" left="20"/>
+                    </padding>
+                    <Label text="Attendance Summary (May 2025)" styleClass="chart-title"/>
+                    <HBox VBox.vgrow="ALWAYS" alignment="CENTER">
+                        <StackPane styleClass="donut-chart-container">
+                            <PieChart fx:id="deptChart" styleClass="attendance-chart" legendVisible="true" labelsVisible="true" animated="false"/>
+                        </StackPane>
+                        <VBox styleClass="attendance-legend" spacing="16">
+                            <HBox spacing="10" alignment="CENTER_LEFT">
+                                <Circle radius="5" styleClass="legend-dot-present"/>
+                                <Label text="Present" styleClass="legend-label"/>
+                                <Label text="114 (89%)" styleClass="legend-value"/>
+                            </HBox>
+                            <HBox spacing="10" alignment="CENTER_LEFT">
+                                <Circle radius="5" styleClass="legend-dot-absent"/>
+                                <Label text="Absent" styleClass="legend-label"/>
+                                <Label text="10 (8%)" styleClass="legend-value"/>
+                            </HBox>
+                            <HBox spacing="10" alignment="CENTER_LEFT">
+                                <Circle radius="5" styleClass="legend-dot-leave"/>
+                                <Label text="Leave" styleClass="legend-label"/>
+                                <Label text="4 (3%)" styleClass="legend-value"/>
+                            </HBox>
+                        </VBox>
+                    </HBox>
+                </VBox>
+            </HBox>
+
+            <!-- Illustration Card (below KPI cards, above activities) -->
+            <HBox fx:id="insightsCard" styleClass="illustration-card" spacing="16" prefHeight="220" HBox.hgrow="ALWAYS">
+                <padding>
+                    <Insets top="16" right="20" bottom="16" left="20"/>
+                </padding>
+
+                <!-- Left content -->
+                <VBox spacing="8" alignment="CENTER_LEFT" HBox.hgrow="ALWAYS">
+                    <Label text="Construction Workforce Insights" styleClass="insights-title" />
+                    <Label text="Monitor payroll, attendance, and workforce productivity in real time." styleClass="insights-subtitle" wrapText="true" />
+                    <Region fx:id="insightsSpacer" VBox.vgrow="ALWAYS" />
+                    <Button text="View Reports" styleClass="insights-btn" />
+                </VBox>
+
+                <!-- Right illustration using shapes -->
+                <StackPane HBox.hgrow="ALWAYS" alignment="CENTER_RIGHT">
+                    <Group styleClass="illustration-group">
+                        <!-- Buildings -->
+                        <Rectangle x="0" y="40" width="140" height="120" style="-fx-fill: rgba(255,255,255,0.18); -fx-arc-width:12; -fx-arc-height:12;" />
+                        <Rectangle x="28" y="10" width="80" height="150" style="-fx-fill: rgba(255,255,255,0.22); -fx-arc-width:10; -fx-arc-height:10;" />
+                        <Rectangle x="110" y="70" width="60" height="90" style="-fx-fill: rgba(255,255,255,0.14); -fx-arc-width:8; -fx-arc-height:8;" />
+
+                        <!-- Worker icons (circles + hardhat) -->
+                        <Circle centerX="40" centerY="140" radius="10" style="-fx-fill: white;" />
+                        <Rectangle x="33" y="150" width="14" height="18" style="-fx-fill: white; -fx-arc-width:4; -fx-arc-height:4;" />
+                        <Rectangle x="30" y="132" width="20" height="6" style="-fx-fill: #F59E0B; -fx-arc-width:4; -fx-arc-height:4;" />
+
+                        <Circle centerX="98" centerY="120" radius="8" style="-fx-fill: white;" />
+                        <Rectangle x="92" y="128" width="12" height="14" style="-fx-fill: white; -fx-arc-width:3; -fx-arc-height:3;" />
+                        <Rectangle x="90" y="116" width="16" height="5" style="-fx-fill: #2563EB; -fx-arc-width:4; -fx-arc-height:4;" />
+
+                        <!-- Small chart analytics lines (use Line nodes to avoid points parsing issues) -->
+                        <Line startX="170" startY="120" endX="200" endY="100" style="-fx-stroke: white; -fx-stroke-width:3; -fx-stroke-line-cap: round; -fx-opacity:0.95;" />
+                        <Line startX="200" startY="100" endX="230" endY="110" style="-fx-stroke: white; -fx-stroke-width:3; -fx-stroke-line-cap: round; -fx-opacity:0.95;" />
+                        <Line startX="230" startY="110" endX="260" endY="90" style="-fx-stroke: white; -fx-stroke-width:3; -fx-stroke-line-cap: round; -fx-opacity:0.95;" />
+                        <Rectangle x="170" y="136" width="6" height="20" style="-fx-fill: white; -fx-opacity:0.9;" />
+                        <Rectangle x="186" y="126" width="6" height="30" style="-fx-fill: white; -fx-opacity:0.9;" />
+                        <Rectangle x="202" y="146" width="6" height="10" style="-fx-fill: white; -fx-opacity:0.9;" />
+                    </Group>
+                </StackPane>
+            </HBox>
+
+            <!-- Bottom Row -->
+            <HBox styleClass="bottom-row" spacing="20" VBox.vgrow="ALWAYS">
+                <!-- Recent Activities -->
+                <VBox styleClass="panel-card" HBox.hgrow="ALWAYS">
+                    <padding>
+                        <Insets top="20" right="20" bottom="20" left="20"/>
+                    </padding>
+                    <Label text="Recent Activities" styleClass="panel-title"/>
+                    <TableView fx:id="activitiesTable" styleClass="activities-table" VBox.vgrow="ALWAYS">
+                        <columns>
+                            <TableColumn fx:id="colEmployee" text="Employee" prefWidth="240" />
+                            <TableColumn fx:id="colAction" text="Action" prefWidth="360" />
+                            <TableColumn fx:id="colDate" text="Date" prefWidth="160" />
+                            <TableColumn fx:id="colStatus" text="Status" prefWidth="140" />
+                        </columns>
+                    </TableView>
+                </VBox>
+
+                <!-- Top Projects -->
+                <VBox styleClass="panel-card" prefWidth="380" minWidth="380" maxWidth="380">
+                    <padding>
+                        <Insets top="20" right="20" bottom="20" left="20"/>
+                    </padding>
+                    <Label text="Top Projects by Labor Cost (May 2025)" styleClass="panel-title"/>
+                    <VBox styleClass="projects-list" spacing="16" VBox.vgrow="ALWAYS">
+                        <VBox spacing="6">
+                            <HBox alignment="CENTER_LEFT">
+                                <Label text="Skyline Apartments" styleClass="project-name" HBox.hgrow="ALWAYS"/>
+                                <Label text="KES 850,000" styleClass="project-cost"/>
+                            </HBox>
+                            <ProgressBar progress="1.0" styleClass="project-bar"/>
+                        </VBox>
+
+                        <VBox spacing="6">
+                            <HBox alignment="CENTER_LEFT">
+                                <Label text="Greenfield Mall" styleClass="project-name" HBox.hgrow="ALWAYS"/>
+                                <Label text="KES 620,000" styleClass="project-cost"/>
+                            </HBox>
+                            <ProgressBar progress="0.73" styleClass="project-bar"/>
+                        </VBox>
+
+                        <VBox spacing="6">
+                            <HBox alignment="CENTER_LEFT">
+                                <Label text="Riverside Towers" styleClass="project-name" HBox.hgrow="ALWAYS"/>
+                                <Label text="KES 450,000" styleClass="project-cost"/>
+                            </HBox>
+                            <ProgressBar progress="0.53" styleClass="project-bar"/>
+                        </VBox>
+
+                        <VBox spacing="6">
+                            <HBox alignment="CENTER_LEFT">
+                                <Label text="Sunset Villas" styleClass="project-name" HBox.hgrow="ALWAYS"/>
+                                <Label text="KES 280,000" styleClass="project-cost"/>
+                            </HBox>
+                            <ProgressBar progress="0.33" styleClass="project-bar"/>
+                        </VBox>
+                    </VBox>
+                </VBox>
+
+                <!-- Quick Actions -->
+                <VBox styleClass="quick-actions-card" prefWidth="240" minWidth="240" maxWidth="240">
+                    <padding>
+                        <Insets top="20" right="16" bottom="20" left="16"/>
+                    </padding>
+                    <Label text="Quick Actions" styleClass="panel-title"/>
+                    <VBox styleClass="quick-actions-list" spacing="10" VBox.vgrow="ALWAYS">
+                        <Button styleClass="quick-action-btn" text="Add Employee">
+                            <graphic>
+                                <StackPane styleClass="quick-action-icon, quick-action-icon-purple">
+                                    <Region styleClass="icon-user-add-small"/>
+                                </StackPane>
+                            </graphic>
+                        </Button>
+
+                        <Button styleClass="quick-action-btn" text="Mark Attendance">
+                            <graphic>
+                                <StackPane styleClass="quick-action-icon, quick-action-icon-orange">
+                                    <Region styleClass="icon-calendar-small"/>
+                                </StackPane>
+                            </graphic>
+                        </Button>
+
+                        <Button styleClass="quick-action-btn" text="Process Payroll">
+                            <graphic>
+                                <StackPane styleClass="quick-action-icon, quick-action-icon-green">
+                                    <Region styleClass="icon-document-small"/>
+                                </StackPane>
+                            </graphic>
+                        </Button>
+
+                        <Button styleClass="quick-action-btn" text="Generate Report">
+                            <graphic>
+                                <StackPane styleClass="quick-action-icon, quick-action-icon-purple">
+                                    <Region styleClass="icon-report-small"/>
+                                </StackPane>
+                            </graphic>
+                        </Button>
+                    </VBox>
+                </VBox>
+            </HBox>
+        </VBox>
+    </center>
+</BorderPane>

@@ -1,0 +1,21 @@
+/target/
+*.class
+*.log
+*.db
+*.sqlite
+.idea/
+.vscode/
+.DS_Store
+
+# Maven
+target/
+**/target/
+
+# macOS
+.DS_Store
+
+# Build artifacts
+/*.jar
+
+# env
+.env
