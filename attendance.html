@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Attendance - BuildPay</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="dashboard-body">
+  <div class="dashboard-shell">
+    <!-- Header -->
+    <header class="dash-header">
+      <button class="menu-toggle" id="sidebarToggle" title="Toggle sidebar">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <line x1="3" y1="6" x2="21" y2="6"></line>
+          <line x1="3" y1="12" x2="21" y2="12"></line>
+          <line x1="3" y1="18" x2="21" y2="18"></line>
+        </svg>
+      </button>
+
+      <div class="header-page-title">
+        <h1>Attendance</h1>
+        <p>Track daily attendance, schedules and workforce availability.</p>
+      </div>
+
+      <div class="logo-stack">
+        <div class="logo-mark"><img src="name_logo.png" data-company-logo alt="BuildPay logo" /></div>
+        <div class="logo-text">
+          <div class="logo-name" data-company-field="companyName">BuildPay</div>
+          <div class="logo-tag">CONSTRUCTION PAYROLL SYSTEM</div>
+        </div>
+      </div>
+
+      <div class="header-center">
+        <div class="search-box">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="11" cy="11" r="8"></circle>
+            <path d="m21 21-4.35-4.35"></path>
+          </svg>
+          <input type="text" id="attendanceSearch" placeholder="Search employees..." aria-label="Search attendance records">
+        </div>
+      </div>
+
+      <div class="header-skyline" aria-hidden="true">
+        <img src="skyline.png" alt="">
+      </div>
+
+      <div class="header-right">
+        <button class="icon-btn" title="Settings">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="3"></circle>
+            <path d="M12 1v6m0 6v6M4.22 4.22l4.24 4.24m4.24 4.24l4.24 4.24M1 12h6m6 0h6M4.22 19.78l4.24-4.24m4.24-4.24l4.24-4.24"></path>
+          </svg>
+        </button>
+        <button class="user-btn">
+          <div class="avatar">JK</div>
+          <span>John Kamau</span>
+        </button>
+      </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="dash-main">
+      <!-- Content Area -->
+      <div class="content-area">
+        <!-- Attendance Controls -->
+        <div class="attendance-controls">
+          <div class="date-picker">
+          <label for="monthPicker">Attendance week</label>
+          <input type="date" id="monthPicker" class="month-input" aria-label="Select attendance week" title="Select attendance week">
+        </div>
+          
+        <div class="attendance-filters">
+          <select class="filter-select" id="departmentFilter" aria-label="Filter by department" title="Filter by department">
+              <option>All Departments</option>
+              <option>Engineering</option>
+              <option>Construction</option>
+              <option>Management</option>
+              <option>Safety</option>
+            </select>
+          </div>
+
+          <button class="btn-primary" id="markAttendanceBtn" type="button">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M12 5v14M5 12h14"></path>
+            </svg>
+            Save Weekly Attendance
+          </button>
+        </div>
+        <p class="attendance-save-warning" role="note">Review attendance and overtime carefully. Once a daily record is saved, it cannot be changed and will be used in payroll.</p>
+
+        <section class="attendance-entry-panel" id="attendanceEntryPanel" aria-label="Attendance entry">
+          <div>
+            <span class="attendance-entry-eyebrow">Selected entry</span>
+            <h2 id="attendanceEntryTitle">Choose an employee and day</h2>
+            <p id="attendanceEntryDescription">Select a weekly attendance cell to record its status and overtime.</p>
+          </div>
+          <div class="attendance-entry-fields">
+            <label>Employee<select id="attendanceEmployeeInput" aria-label="Select employee for attendance entry"></select></label>
+            <label>Day<select id="attendanceDayInput" aria-label="Select day for attendance entry"></select></label>
+            <label>Status<select id="attendanceStatusInput"><option value="PRESENT">Present</option><option value="ABSENT">Absent</option><option value="LEAVE">Leave</option><option value="LATE">Late</option><option value="WEEKEND">Weekend Off</option></select></label>
+            <label>Overtime hours<input id="attendanceOvertimeInput" type="number" min="0" max="24" step="0.5" value="0" placeholder="0"></label>
+            <button class="btn-primary" id="applyAttendanceEntry" type="button">Apply Entry</button>
+          </div>
+        </section>
+
+        <!-- Attendance Table -->
+        <div class="table-container attendance-table-container">
+          <div class="attendance-table-scroll">
+            <table class="attendance-table">
+              <thead>
+                <tr>
+                  <th class="sticky-col id-col">ID</th>
+                  <th class="sticky-col employee-col">Employee</th>
+                  <th class="day-col">Mon</th>
+                  <th class="day-col">Tue</th>
+                  <th class="day-col">Wed</th>
+                  <th class="day-col">Thu</th>
+                  <th class="day-col">Fri</th>
+                  <th class="day-col">Sat</th>
+                  <th class="day-col">Sun</th>
+                  <th class="stat-col">Present</th>
+                  <th class="stat-col">Absent</th>
+                  <th class="stat-col">Leave</th>
+                  <th class="stat-col">Overtime</th>
+                </tr>
+              </thead>
+              <tbody>
+                <!-- Employee 1 -->
+                <tr class="attendance-row">
+                  <td class="sticky-col id-col">EMP001</td>
+                  <td class="sticky-col employee-col">James Mwangi</td>
+                  <td class="day-col status-present" title="Present">P</td>
+                  <td class="day-col status-present" title="Present">P</td>
+                  <td class="day-col status-absent" title="Absent">A</td>
+                  <td class="day-col status-present" title="Present">P</td>
+                  <td class="day-col status-absent" title="Absent">A</td>
+                  <td class="day-col status-present" title="Present">P</td>
+                  <td class="day-col status-present" title="Present">P</td>
+                  <td class="day-col status-present" title="Present">P</td>
+                  <td class="day-col status-present" title="Present">P</td>
+                  <td class="day-col status-present" title="Present">P</td>
+                  <td class="day-col status-present" title="Present">P</td>
+                  <td class="day-col status-present" title="Present">P</td>
+                  <td class="day-col status-leave" title="Leave">L</td>
+                  <td class="day-col status-present" title="Present">P</td>
+                  <td class="day-col status-present" title="Present">P</td>
+                  <td class="day-col status-present" title="Present">P</td>
+                  <td class="day-col status-present" title="Present">P</td>
+                  <td class="day-col status-present" title="Present">P</td>
+                  <td class="day-col status-present" title="Present">P</td>
+                  <td class="day-col status-present" title="Present">P</td>
+                  <td class="day-col status-present" title="Present">P</td>
+                  <td class="day-col status-present" title="Present">P</td>
+                  <td class="day-col status-present" title="Present">P</td>
+                  <td class="day-col status-absent" title="Absent">A</td>
+                  <td class="day-col status-present" title="Present">P</td>
+                  <td class="day-col status-present" title="Present">P</td>
+                  <td class="day-col status-present" title="Present">P</td>
+                  <td class="day-col status-overtime" title="Overtime">O</td>
+                  <td class="day-col status-present" title="Present">P</td>
+                  <td class="day-col status-weekend" title="Weekend Off">W</td>
+                  <td class="day-col status-present" title="Present">P</td>
+                  <td class="stat-col stat-present">30</td>
+                  <td class="stat-col stat-absent">2</td>
+                  <td class="stat-col stat-leave">1</td>
+                  <td class="stat-col stat-overtime">1</td>
+                </tr>
+
+                <!-- Employee 2 -->
+                <tr class="attendance-row">
+                  <td class="sticky-col id-col">EMP002</td>
+                  <td class="sticky-col employee-col">Peter Ochieng</td>
+                  <td class="day-col status-present" title="Present">P</td>
+                  <td class="day-col status-present" title="Present">P</td>
+                  <td class="day-col status-present" title="Present">P</td>
+                  <td class="day-col status-absent" title="Absent">A</td>
+                  <td class="day-col status-present" title="Present">P</td>
+                  <td class="day-col status-present" title="Present">P</td>
+                  <td class="day-col status-present" title="Present">P</td>
+                  <td class="day-col status-present" title="Present">P</td>
+                  <td class="day-col status-present" title="Present">P</td>
+                  <td class="day-col status-absent" title="Absent">A</td>
+                  <td class="day-col status-present" title="Present">P</td>
+                  <td class="day-col status-present" title="Present">P</td>
+                  <td class="day-col status-present" title="Present">P</td>
+                  <td class="day-col status-absent" title="Absent">A</td>
+                  <td class="day-col status-present" title="Present">P</td>
+                  <td class="day-col status-present" title="Present">P</td>
+                  <td class="day-col status-leave" title="Leave">L</td>
+                  <td class="day-col status-leave" title="Leave">L</td>
+                  <td class="day-col status-present" title="Present">P</td>
+                  <td class="day-col status-present" title="Present">P</td>
+                  <td class="day-col status-present" title="Present">P</td>
+                  <td class="day-col status-present" title="Present">P</td>
+                  <td class="day-col status-present" title="Present">P</td>
+                  <td class="day-col status-present" title="Present">P</td>
+                  <td class="day-col status-absent" title="Absent">A</td>
+                  <td class="day-col status-present" title="Present">P</td>
+                  <td class="day-col status-present" title="Present">P</td>
+                  <td class="day-col status-present" title="Present">P</td>
+                  <td class="day-col status-present" title="Present">P</td>
+                  <td class="day-col status-weekend" title="Weekend Off">W</td>
+                  <td class="day-col status-present" title="Present">P</td>
+                  <td class="stat-col stat-present">24</td>
+                  <td class="stat-col stat-absent">4</td>
+                  <td class="stat-col stat-leave">2</td>
+                  <td class="stat-col stat-overtime">0</td>
+                </tr>
+
+                <!-- Employee 3 -->
+                <tr class="attendance-row">
+                  <td class="sticky-col id-col">EMP003</td>
+                  <td class="sticky-col employee-col">Daniel Omondi</td>
+                  <td class="day-col status-present" title="Present">P</td>
+                  <td class="day-col status-present" title="Present">P</td>
+                  <td class="day-col status-present" title="Present">P</td>
+                  <td class="day-col status-present" title="Present">P</td>
+                  <td class="day-col status-present" title="Present">P</td>
+                  <td class="day-col status-leave" title="Leave">L</td>
+                  <td class="day-col status-present" title="Present">P</td>
+                  <td class="day-col status-present" title="Present">P</td>
+                  <td class="day-col status-present" title="Present">P</td>
+                  <td class="day-col status-present" title="Present">P</td>
+                  <td class="day-col status-present" title="Present">P</td>
+                  <td class="day-col status-present" title="Present">P</td>
+                  <td class="day-col status-present" title="Present">P</td>
+                  <td class="day-col status-present" title="Present">P</td>
+                  <td class="day-col status-present" title="Present">P</td>
+                  <td class="day-col status-absent" title="Absent">A</td>
+                  <td class="day-col status-present" title="Present">P</td>
+                  <td class="day-col status-present" title="Present">P</td>
+                  <td class="day-col status-present" title="Present">P</td>
+                  <td class="day-col status-present" title="Present">P</td>
+                  <td class="day-col status-present" title="Present">P</td>
+                  <td class="day-col status-present" title="Present">P</td>
+                  <td class="day-col status-present" title="Present">P</td>
+                  <td class="day-col status-present" title="Present">P</td>
+                  <td class="day-col status-present" title="Present">P</td>
+                  <td class="day-col status-present" title="Present">P</td>
+                  <td class="day-col status-present" title="Present">P</td>
+                  <td class="day-col status-absent" title="Absent">A</td>
+                  <td class="day-col status-present" title="Present">P</td>
+                  <td class="day-col status-weekend" title="Weekend Off">W</td>
+                  <td class="day-col status-present" title="Present">P</td>
+                  <td class="stat-col stat-present">28</td>
+                  <td class="stat-col stat-absent">3</td>
+                  <td class="stat-col stat-leave">1</td>
+                  <td class="stat-col stat-overtime">0</td>
+                </tr>
+
+                <!-- Employee 4 -->
+                <tr class="attendance-row">
+                  <td class="sticky-col id-col">EMP004</td>
+                  <td class="sticky-col employee-col">Samuel Kariuki</td>
+                  <td class="day-col status-present" title="Present">P</td>
+                  <td class="day-col status-present" title="Present">P</td>
+                  <td class="day-col status-present" title="Present">P</td>
+                  <td class="day-col status-present" title="Present">P</td>
+                  <td class="day-col status-present" title="Present">P</td>
+                  <td class="day-col status-present" title="Present">P</td>
+                  <td class="day-col status-present" title="Present">P</td>
+                  <td class="day-col status-present" title="Present">P</td>
+                  <td class="day-col status-present" title="Present">P</td>
+                  <td class="day-col status-present" title="Present">P</td>
+                  <td class="day-col status-present" title="Present">P</td>
+                  <td class="day-col status-present" title="Present">P</td>
+                  <td class="day-col status-overtime" title="Overtime">O</td>
+                  <td class="day-col status-present" title="Present">P</td>
+                  <td class="day-col status-present" title="Present">P</td>
+                  <td class="day-col status-present" title="Present">P</td>
+                  <td class="day-col status-present" title="Present">P</td>
+                  <td class="day-col status-absent" title="Absent">A</td>
+                  <td class="day-col status-present" title="Present">P</td>
+                  <td class="day-col status-present" title="Present">P</td>
+                  <td class="day-col status-present" title="Present">P</td>
+                  <td class="day-col status-present" title="Present">P</td>
+                  <td class="day-col status-present" title="Present">P</td>
+                  <td class="day-col status-present" title="Present">P</td>
+                  <td class="day-col status-present" title="Present">P</td>
+                  <td class="day-col status-present" title="Present">P</td>
+                  <td class="day-col status-present" title="Present">P</td>
+                  <td class="day-col status-present" title="Present">P</td>
+                  <td class="day-col status-absent" title="Absent">A</td>
+                  <td class="day-col status-weekend" title="Weekend Off">W</td>
+                  <td class="day-col status-present" title="Present">P</td>
+                  <td class="stat-col stat-present">27</td>
+                  <td class="stat-col stat-absent">2</td>
+                  <td class="stat-col stat-leave">1</td>
+                  <td class="stat-col stat-overtime">1</td>
+                </tr>
+
+                <!-- Employee 5 -->
+                <tr class="attendance-row">
+                  <td class="sticky-col id-col">EMP005</td>
+                  <td class="sticky-col employee-col">John Maina</td>
+                  <td class="day-col status-present" title="Present">P</td>
+                  <td class="day-col status-present" title="Present">P</td>
+                  <td class="day-col status-present" title="Present">P</td>
+                  <td class="day-col status-present" title="Present">P</td>
+                  <td class="day-col status-present" title="Present">P</td>
+                  <td class="day-col status-present" title="Present">P</td>
+                  <td class="day-col status-present" title="Present">P</td>
+                  <td class="day-col status-present" title="Present">P</td>
+                  <td class="day-col status-present" title="Present">P</td>
+                  <td class="day-col status-leave" title="Leave">L</td>
+                  <td class="day-col status-present" title="Present">P</td>
+                  <td class="day-col status-present" title="Present">P</td>
+                  <td class="day-col status-present" title="Present">P</td>
+                  <td class="day-col status-present" title="Present">P</td>
+                  <td class="day-col status-present" title="Present">P</td>
+                  <td class="day-col status-present" title="Present">P</td>
+                  <td class="day-col status-present" title="Present">P</td>
+                  <td class="day-col status-present" title="Present">P</td>
+                  <td class="day-col status-present" title="Present">P</td>
+                  <td class="day-col status-present" title="Present">P</td>
+                  <td class="day-col status-present" title="Present">P</td>
+                  <td class="day-col status-present" title="Present">P</td>
+                  <td class="day-col status-present" title="Present">P</td>
+                  <td class="day-col status-present" title="Present">P</td>
+                  <td class="day-col status-present" title="Present">P</td>
+                  <td class="day-col status-present" title="Present">P</td>
+                  <td class="day-col status-present" title="Present">P</td>
+                  <td class="day-col status-absent" title="Absent">A</td>
+                  <td class="day-col status-present" title="Present">P</td>
+                  <td class="day-col status-weekend" title="Weekend Off">W</td>
+                  <td class="day-col status-present" title="Present">P</td>
+                  <td class="stat-col stat-present">26</td>
+                  <td class="stat-col stat-absent">3</td>
+                  <td class="stat-col stat-leave">1</td>
+                  <td class="stat-col stat-overtime">1</td>
+                </tr>
+
+                <tr class="attendance-row">
+                  <td class="sticky-col id-col">EMP006</td><td class="sticky-col employee-col">Amina Mohamed</td>
+                  <td class="day-col status-present" title="Present">P</td><td class="day-col status-present" title="Present">P</td><td class="day-col status-present" title="Present">P</td><td class="day-col status-absent" title="Absent">A</td><td class="day-col status-present" title="Present">P</td><td class="day-col status-present" title="Present">P</td><td class="day-col status-leave" title="Leave">L</td><td class="day-col status-present" title="Present">P</td><td class="day-col status-present" title="Present">P</td><td class="day-col status-present" title="Present">P</td><td class="day-col status-present" title="Present">P</td><td class="day-col status-present" title="Present">P</td><td class="day-col status-present" title="Present">P</td><td class="day-col status-overtime" title="Overtime">O</td><td class="day-col status-present" title="Present">P</td><td class="day-col status-present" title="Present">P</td><td class="day-col status-present" title="Present">P</td><td class="day-col status-present" title="Present">P</td><td class="day-col status-present" title="Present">P</td><td class="day-col status-absent" title="Absent">A</td><td class="day-col status-present" title="Present">P</td><td class="day-col status-present" title="Present">P</td><td class="day-col status-present" title="Present">P</td><td class="day-col status-present" title="Present">P</td><td class="day-col status-present" title="Present">P</td><td class="day-col status-present" title="Present">P</td><td class="day-col status-present" title="Present">P</td><td class="day-col status-present" title="Present">P</td><td class="day-col status-present" title="Present">P</td><td class="day-col status-weekend" title="Weekend Off">W</td><td class="day-col status-present" title="Present">P</td>
+                  <td class="stat-col stat-present">27</td><td class="stat-col stat-absent">2</td><td class="stat-col stat-leave">1</td><td class="stat-col stat-overtime">1</td>
+                </tr>
+                <tr class="attendance-row">
+                  <td class="sticky-col id-col">EMP007</td><td class="sticky-col employee-col">Kevin Johnson</td>
+                  <td class="day-col status-present" title="Present">P</td><td class="day-col status-absent" title="Absent">A</td><td class="day-col status-present" title="Present">P</td><td class="day-col status-present" title="Present">P</td><td class="day-col status-present" title="Present">P</td><td class="day-col status-present" title="Present">P</td><td class="day-col status-present" title="Present">P</td><td class="day-col status-present" title="Present">P</td><td class="day-col status-leave" title="Leave">L</td><td class="day-col status-present" title="Present">P</td><td class="day-col status-present" title="Present">P</td><td class="day-col status-present" title="Present">P</td><td class="day-col status-present" title="Present">P</td><td class="day-col status-present" title="Present">P</td><td class="day-col status-present" title="Present">P</td><td class="day-col status-present" title="Present">P</td><td class="day-col status-present" title="Present">P</td><td class="day-col status-present" title="Present">P</td><td class="day-col status-overtime" title="Overtime">O</td><td class="day-col status-present" title="Present">P</td><td class="day-col status-present" title="Present">P</td><td class="day-col status-present" title="Present">P</td><td class="day-col status-absent" title="Absent">A</td><td class="day-col status-present" title="Present">P</td><td class="day-col status-present" title="Present">P</td><td class="day-col status-present" title="Present">P</td><td class="day-col status-present" title="Present">P</td><td class="day-col status-present" title="Present">P</td><td class="day-col status-present" title="Present">P</td><td class="day-col status-weekend" title="Weekend Off">W</td><td class="day-col status-present" title="Present">P</td>
+                  <td class="stat-col stat-present">26</td><td class="stat-col stat-absent">2</td><td class="stat-col stat-leave">1</td><td class="stat-col stat-overtime">1</td>
+                </tr>
+                <tr class="attendance-row">
+                  <td class="sticky-col id-col">EMP008</td><td class="sticky-col employee-col">Lucy Wanjiru</td>
+                  <td class="day-col status-present" title="Present">P</td><td class="day-col status-present" title="Present">P</td><td class="day-col status-leave" title="Leave">L</td><td class="day-col status-present" title="Present">P</td><td class="day-col status-present" title="Present">P</td><td class="day-col status-absent" title="Absent">A</td><td class="day-col status-present" title="Present">P</td><td class="day-col status-present" title="Present">P</td><td class="day-col status-present" title="Present">P</td><td class="day-col status-present" title="Present">P</td><td class="day-col status-present" title="Present">P</td><td class="day-col status-present" title="Present">P</td><td class="day-col status-overtime" title="Overtime">O</td><td class="day-col status-present" title="Present">P</td><td class="day-col status-present" title="Present">P</td><td class="day-col status-present" title="Present">P</td><td class="day-col status-present" title="Present">P</td><td class="day-col status-present" title="Present">P</td><td class="day-col status-present" title="Present">P</td><td class="day-col status-present" title="Present">P</td><td class="day-col status-present" title="Present">P</td><td class="day-col status-present" title="Present">P</td><td class="day-col status-present" title="Present">P</td><td class="day-col status-absent" title="Absent">A</td><td class="day-col status-present" title="Present">P</td><td class="day-col status-present" title="Present">P</td><td class="day-col status-present" title="Present">P</td><td class="day-col status-present" title="Present">P</td><td class="day-col status-present" title="Present">P</td><td class="day-col status-weekend" title="Weekend Off">W</td><td class="day-col status-present" title="Present">P</td>
+                  <td class="stat-col stat-present">25</td><td class="stat-col stat-absent">2</td><td class="stat-col stat-leave">2</td><td class="stat-col stat-overtime">1</td>
+                </tr>
+                <tr class="attendance-row">
+                  <td class="sticky-col id-col">EMP009</td><td class="sticky-col employee-col">Charles Kiplagat</td>
+                  <td class="day-col status-present" title="Present">P</td><td class="day-col status-present" title="Present">P</td><td class="day-col status-present" title="Present">P</td><td class="day-col status-present" title="Present">P</td><td class="day-col status-absent" title="Absent">A</td><td class="day-col status-present" title="Present">P</td><td class="day-col status-present" title="Present">P</td><td class="day-col status-present" title="Present">P</td><td class="day-col status-present" title="Present">P</td><td class="day-col status-present" title="Present">P</td><td class="day-col status-present" title="Present">P</td><td class="day-col status-leave" title="Leave">L</td><td class="day-col status-present" title="Present">P</td><td class="day-col status-present" title="Present">P</td><td class="day-col status-present" title="Present">P</td><td class="day-col status-present" title="Present">P</td><td class="day-col status-overtime" title="Overtime">O</td><td class="day-col status-present" title="Present">P</td><td class="day-col status-present" title="Present">P</td><td class="day-col status-present" title="Present">P</td><td class="day-col status-present" title="Present">P</td><td class="day-col status-present" title="Present">P</td><td class="day-col status-present" title="Present">P</td><td class="day-col status-present" title="Present">P</td><td class="day-col status-absent" title="Absent">A</td><td class="day-col status-present" title="Present">P</td><td class="day-col status-present" title="Present">P</td><td class="day-col status-present" title="Present">P</td><td class="day-col status-present" title="Present">P</td><td class="day-col status-weekend" title="Weekend Off">W</td><td class="day-col status-present" title="Present">P</td>
+                  <td class="stat-col stat-present">27</td><td class="stat-col stat-absent">2</td><td class="stat-col stat-leave">1</td><td class="stat-col stat-overtime">1</td>
+                </tr>
+                <tr class="attendance-row">
+                  <td class="sticky-col id-col">EMP010</td><td class="sticky-col employee-col">Rose Lemboi</td>
+                  <td class="day-col status-present" title="Present">P</td><td class="day-col status-present" title="Present">P</td><td class="day-col status-present" title="Present">P</td><td class="day-col status-leave" title="Leave">L</td><td class="day-col status-present" title="Present">P</td><td class="day-col status-present" title="Present">P</td><td class="day-col status-present" title="Present">P</td><td class="day-col status-absent" title="Absent">A</td><td class="day-col status-present" title="Present">P</td><td class="day-col status-present" title="Present">P</td><td class="day-col status-present" title="Present">P</td><td class="day-col status-present" title="Present">P</td><td class="day-col status-present" title="Present">P</td><td class="day-col status-present" title="Present">P</td><td class="day-col status-overtime" title="Overtime">O</td><td class="day-col status-present" title="Present">P</td><td class="day-col status-present" title="Present">P</td><td class="day-col status-present" title="Present">P</td><td class="day-col status-present" title="Present">P</td><td class="day-col status-present" title="Present">P</td><td class="day-col status-present" title="Present">P</td><td class="day-col status-present" title="Present">P</td><td class="day-col status-absent" title="Absent">A</td><td class="day-col status-present" title="Present">P</td><td class="day-col status-present" title="Present">P</td><td class="day-col status-present" title="Present">P</td><td class="day-col status-present" title="Present">P</td><td class="day-col status-present" title="Present">P</td><td class="day-col status-present" title="Present">P</td><td class="day-col status-weekend" title="Weekend Off">W</td><td class="day-col status-present" title="Present">P</td>
+                  <td class="stat-col stat-present">26</td><td class="stat-col stat-absent">2</td><td class="stat-col stat-leave">1</td><td class="stat-col stat-overtime">1</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="pagination-section attendance-pagination">
+          <div class="pagination-info" id="attendancePaginationInfo">Showing 1-17 of 19 employees</div>
+          <div class="pagination-controls">
+            <button class="pagination-btn" id="attendancePrevBtn" type="button">← Prev</button>
+            <button class="pagination-btn active" id="attendancePageNumber" type="button">1</button>
+            <button class="pagination-btn" id="attendanceNextBtn" type="button">Next →</button>
+          </div>
+        </div>
+
+      </div>
+    </main>
+  </div>
+
+  <script src="sidebar-manager.js"></script>
+  <script src="attendance.js"></script>
+</body>
+</html>

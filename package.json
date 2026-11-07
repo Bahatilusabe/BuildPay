@@ -1,0 +1,52 @@
+{
+  "name": "builder",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "start": "env -u ELECTRON_RUN_AS_NODE electron . --disable-gpu --disable-software-rasterizer",
+    "dist": "electron-builder",
+    "dist:mac": "electron-builder --mac dmg",
+    "dist:mac:x64": "electron-builder --mac dmg --x64",
+    "dist:mac:arm64": "electron-builder --mac dmg --arm64",
+    "dist:win": "electron-builder --win nsis",
+    "dist:linux": "electron-builder --linux AppImage",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "Offline construction app splash screen prototype",
+  "build": {
+    "appId": "com.buildpay.desktop",
+    "productName": "BuildPay",
+    "directories": {
+      "output": "dist"
+    },
+    "artifactName": "${productName}-${version}-${os}-${arch}.${ext}",
+    "asarUnpack": [
+      "node_modules/better-sqlite3/**"
+    ],
+    "mac": {
+      "category": "public.app-category.business",
+      "target": "dmg"
+    },
+    "win": {
+      "target": "nsis"
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true
+    },
+    "linux": {
+      "category": "Office",
+      "target": "AppImage"
+    }
+  },
+  "devDependencies": {
+    "electron": "^41.7.1",
+    "electron-builder": "^26.18.0"
+  },
+  "dependencies": {
+    "better-sqlite3": "^13.0.3"
+  }
+}

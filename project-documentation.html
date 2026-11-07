@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Project Documentation - BuildPay</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="dashboard-body project-resource-body">
+  <div class="dashboard-shell">
+    <header class="dash-header">
+      <button class="menu-toggle" id="sidebarToggle" type="button" title="Toggle sidebar">&#9776;</button>
+      <div class="header-page-title"><h1 id="projectDocumentationTitle">Project Documentation</h1><p id="projectDocumentationSubtitle">Project records and files</p></div>
+      <div class="header-right"><a class="secondary-button small" href="projects.html">Back to Projects</a></div>
+    </header>
+    <main class="dash-main"><section class="content-area project-resource-content">
+      <div class="project-resource-summary" id="projectDocumentationSummary">Loading project...</div>
+      <div class="project-resource-toolbar"><div><h1>Project document library</h1><p>Store and retrieve contracts, reports, spreadsheets, specifications and other project files.</p></div><label class="project-resource-upload">＋ Add documents<input id="documentationUpload" type="file" accept="*/*" multiple></label></div>
+      <section class="project-resource-panel"><div class="project-resource-panel-heading"><h2>All project documents</h2><span id="documentationCount">0 files</span></div><div id="documentationList" class="project-resource-list"><p class="project-resource-empty">Loading project documents...</p></div></section>
+    </section></main>
+  </div>
+  <script src="sidebar-manager.js"></script>
+  <script src="project-documentation.js"></script>
+</body>
+</html>

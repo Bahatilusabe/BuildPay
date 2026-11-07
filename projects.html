@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>BuildPay | Projects</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body class="dashboard-body projects-reference projects-template">
+    <div class="dashboard-shell">
+      <header class="dash-header projects-template-header">
+        <button class="menu-toggle" id="sidebarToggle" title="Toggle sidebar" aria-label="Toggle sidebar">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M4 6h16M4 12h16M4 18h16" /></svg>
+        </button>
+        <div class="projects-template-heading">
+          <h1>Projects</h1>
+          <p>Manage construction projects, budgets, workforce and labor costs.</p>
+        </div>
+        <div class="projects-template-art" aria-hidden="true"><img src="skyline.png" alt="" /></div>
+        <div class="projects-template-actions">
+          <button class="projects-icon-button" type="button" title="Notifications" aria-label="Notifications"><span>3</span>♧</button>
+          <button class="projects-user-button" type="button" aria-label="User menu"><b>JK</b><span><strong>John Kamau</strong><small>Admin</small></span><em>⌄</em></button>
+        </div>
+      </header>
+
+      <main class="dash-main projects-template-main">
+        <section class="projects-template-content" aria-label="Projects overview">
+          <div class="projects-template-toolbar">
+            <div><h2>Projects</h2></div>
+            <div class="projects-template-actions-row">
+              <label class="projects-top-search"><span>⌕</span><input type="search" placeholder="Search Projects..." aria-label="Search projects" /></label>
+              <button type="button">⚱ Filter</button><button type="button">⇩ Export</button><button class="new-project-button" type="button">＋ New Project</button>
+            </div>
+          </div>
+
+          <div class="projects-template-filter-card">
+            <label class="projects-template-search"><span>⌕</span><input id="projectSearchInput" type="search" placeholder="Search projects by name, location or project ID..." aria-label="Search projects by name, location or project ID" /></label>
+            <select id="projectStatusFilter" title="Project status"><option value="all">All Status</option><option value="active">Active</option><option value="planning">Planning</option><option value="on-hold">On Hold</option><option value="completed">Completed</option></select>
+            <select title="Project manager"><option>All Managers</option><option>James Mwangi</option><option>Sarah Otieno</option><option>David Kimani</option></select>
+            <select title="Project sort order"><option>Sort by: Newest</option><option>Budget</option><option>Progress</option><option>Workers</option></select>
+            <button type="button">⚱ Filter</button>
+          </div>
+
+          <div class="projects-template-grid" id="projectGrid"></div>
+        </section>
+      </main>
+    </div>
+
+    <div class="project-view-modal" id="projectViewModal" hidden>
+      <div class="project-view-backdrop" data-close-project-view></div>
+      <section class="project-view-dialog" role="dialog" aria-modal="true" aria-labelledby="projectViewTitle">
+        <div class="project-view-header"><div><span class="project-create-eyebrow">Project overview</span><h2 id="projectViewTitle">Project Details</h2><p id="projectViewSubtitle"></p></div><div class="project-view-header-actions"><button class="project-view-edit-button" type="button" id="projectViewEditButton">Edit Project</button><button class="project-create-close" type="button" aria-label="Close project details" data-close-project-view>×</button></div></div>
+        <div class="project-view-hero" id="projectViewHero"></div>
+        <div class="project-view-layout">
+          <div class="project-view-details" id="projectViewDetails"></div>
+          <div class="project-view-documents">
+            <article><div class="project-view-section-title"><h3>Blueprint</h3><span>Concept plan</span></div><div class="blueprint-preview" id="projectBlueprintPreview"><svg viewBox="0 0 240 140" aria-label="Blueprint preview"><path d="M18 18h204v104H18zM18 60h204M82 18v104M155 18v104M82 60h73M45 60v42h25V60M172 78h28v24h-28z"/><path d="M30 12v116M12 30h216" class="blueprint-dim"/></svg></div></article>
+            <article><div class="project-view-section-title"><h3>Project Plan</h3><span>Delivery roadmap</span></div><div class="project-plan-list"><span><i class="plan-done"></i>Site preparation <b>Complete</b></span><span><i class="plan-current"></i>Structural works <b>In progress</b></span><span><i class="plan-next"></i>Finishing and handover <b>Upcoming</b></span></div><div class="project-view-shortcuts"><button type="button" id="projectPlansShortcut">Open Project Plans</button><button type="button" id="projectDocsShortcut">Open Documentation</button></div></article>
+          </div>
+        </div>
+        <form class="project-view-edit-panel" id="projectViewEditPanel" hidden><h3>Edit project details</h3><div class="project-view-edit-grid"><label>Manager<input id="projectEditManager" type="text" /></label><label>Progress (%)<input id="projectEditProgress" type="number" min="0" max="100" /></label><label>Completion Date<input id="projectEditCompletion" type="date" /></label><label>Blueprint<input id="projectEditBlueprint" type="file" accept="image/*" /></label></div><div class="project-view-edit-actions"><button type="button" id="projectViewCancelEdit">Cancel</button><button class="project-view-save-edit" type="submit">Save Project</button></div></form>
+      </section>
+    </div>
+
+    <div class="project-create-modal" id="projectCreateModal" hidden>
+      <div class="project-create-backdrop" data-close-project-modal></div>
+      <section class="project-create-dialog" role="dialog" aria-modal="true" aria-labelledby="projectCreateTitle">
+        <div class="project-create-header">
+          <div><span class="project-create-eyebrow">Project workspace</span><h2 id="projectCreateTitle">New Project</h2><p>Add a construction project to your portfolio.</p></div>
+          <button class="project-create-close" type="button" aria-label="Close new project window" data-close-project-modal>×</button>
+        </div>
+        <form id="newProjectForm" class="project-create-form">
+          <label>Project Name<input name="name" type="text" placeholder="e.g. Riverside Offices" required /></label>
+          <label>Project Image<input name="image" type="file" accept="image/*" /></label>
+          <div class="project-create-two-col"><label>Location<input name="location" type="text" placeholder="City, Kenya" required /></label><label>Project ID<input name="id" type="text" placeholder="PRJ-007" required /></label></div>
+          <div class="project-create-two-col"><label>Manager<input name="manager" type="text" placeholder="Project manager" required /></label><label>Status<select name="status"><option value="active">Active</option><option value="planning">Planning</option><option value="on-hold">On Hold</option><option value="completed">Completed</option></select></label></div>
+          <div class="project-create-two-col"><label>Progress (%)<input name="progress" type="number" min="0" max="100" value="0" required /></label><label>Workers<input name="workers" type="number" min="0" value="0" required /></label></div>
+          <div class="project-create-two-col"><label>Budget (KES)<input name="budget" type="number" min="0" value="0" required /></label><label>Labor Cost (KES)<input name="labor" type="number" min="0" value="0" required /></label></div>
+          <div class="project-create-two-col"><label>Starting Date<input name="startDate" type="date" required /></label><label>Completion Date<input name="completionDate" type="date" required /></label></div>
+          <div class="project-create-actions"><button class="project-create-cancel" type="button" data-close-project-modal>Cancel</button><button class="project-create-submit" type="submit">Create Project</button></div>
+        </form>
+      </section>
+    </div>
+
+    <script src="sidebar-manager.js"></script>
+    <script src="projects.js"></script>
+  </body>
+</html>

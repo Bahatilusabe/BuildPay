@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>BuildPay | Dashboard</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body class="dashboard-body dashboard-template">
+    <div class="dashboard-shell">
+      <header class="dash-header template-header">
+        <button class="menu-toggle" id="sidebarToggle" title="Toggle sidebar" aria-label="Toggle sidebar">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M4 6h16M4 12h16M4 18h16" /></svg>
+        </button>
+        <div class="template-heading">
+          <h1>Dashboard</h1>
+          <p>Welcome back! Here's what's happening with your construction business.</p>
+        </div>
+        <div class="template-header-art" aria-hidden="true"><img src="skyline.png" alt="" /></div>
+        <div class="template-header-actions">
+          <button class="template-icon-button" type="button" title="Notifications" aria-label="Notifications"><span class="notification-dot">3</span>♧</button>
+          <button class="template-user-button" type="button" aria-label="User menu"><span class="template-avatar">JK</span><span><strong>John Kamau</strong><small>Admin</small></span><span>⌄</span></button>
+        </div>
+      </header>
+
+      <main class="dash-main template-main">
+        <section class="template-content" aria-label="Dashboard overview">
+          <div class="template-kpi-grid">
+            <article class="template-kpi kpi-violet">
+              <span class="template-kpi-icon">♙</span><div><small>Total Employees</small><strong>-</strong><em>Database</em></div>
+            </article>
+            <article class="template-kpi kpi-blue">
+              <span class="template-kpi-icon">▣</span><div><small>Total Payroll</small><strong>-</strong><em>Database</em></div>
+            </article>
+            <article class="template-kpi kpi-orange">
+              <span class="template-kpi-icon">▣</span><div><small>Attendance Rate</small><strong>-</strong><em>Database</em></div>
+            </article>
+            <article class="template-kpi kpi-green">
+              <span class="template-kpi-icon">▥</span><div><small>Active Projects</small><strong>-</strong><em>Database</em></div>
+            </article>
+          </div>
+
+          <div class="template-top-grid">
+            <section class="template-card template-payroll-overview">
+              <div class="template-card-heading"><h2><span class="heading-icon">▥</span>Payroll Overview</h2><button type="button">Database</button></div>
+              <div class="template-legend"><span class="legend-payroll">■ Gross Pay</span><span class="legend-deductions">■ Deductions</span><span class="legend-net">■ Net Pay</span></div>
+              <div class="template-line-chart" aria-label="Payroll overview chart">
+                <div class="chart-y-labels"><span>3M</span><span>2.5M</span><span>2M</span><span>1.5M</span><span>1M</span><span>500K</span><span>0</span></div>
+                <div class="line-chart-area"><div class="chart-grid-lines"></div><svg viewBox="0 0 600 190" preserveAspectRatio="none" aria-hidden="true"><path d="M0 138 C100 118 145 108 225 98 S370 94 450 70 S540 48 600 24" class="line-gross" /><path d="M0 168 C100 150 160 142 235 142 S380 140 460 128 S550 116 600 104" class="line-deductions" /><path d="M0 156 C100 143 160 132 235 124 S380 122 460 103 S550 92 600 70" class="line-net" /></svg><div class="chart-x-labels"><span>Jan</span><span>Feb</span><span>Mar</span><span>Apr</span><span>May</span></div></div>
+              </div>
+            </section>
+
+            <section class="template-card template-attendance-overview">
+              <div class="template-card-heading"><h2><span class="heading-icon">▣</span>Attendance Summary</h2><button type="button">Database</button></div>
+              <div class="template-donut-layout"><div class="template-donut"><div><strong>-</strong><span>Present</span></div></div><div class="template-attendance-list"><span><i class="dot-green"></i>Present <b>-</b></span><span><i class="dot-red"></i>Absent <b>-</b></span><span><i class="dot-orange"></i>Leave <b>-</b></span><span><i class="dot-violet"></i>Late <b>-</b></span></div></div>
+            </section>
+          </div>
+
+          <div class="template-middle-grid">
+            <section class="template-card template-projects project-card">
+              <div class="template-card-heading"><h2><span class="heading-icon">▥</span>Project Progress</h2><a href="projects.html">View All</a></div>
+              <div class="template-project-list">
+                <div class="template-project-row"><div class="project-thumb thumb-one">▥</div><div class="project-row-body"><div><strong>-</strong><small>-</small></div><span class="template-status status-active">-</span><div class="project-progress"><span><i class="progress-fill"></i></span><b>-</b></div></div></div>
+                <div class="template-project-row"><div class="project-thumb thumb-two">▥</div><div class="project-row-body"><div><strong>-</strong><small>-</small></div><span class="template-status status-planning">-</span><div class="project-progress"><span><i class="progress-fill"></i></span><b>-</b></div></div></div>
+                <div class="template-project-row"><div class="project-thumb thumb-three">▥</div><div class="project-row-body"><div><strong>-</strong><small>-</small></div><span class="template-status status-hold">-</span><div class="project-progress"><span><i class="progress-fill"></i></span><b>-</b></div></div></div>
+                <div class="template-project-row"><div class="project-thumb thumb-four">▥</div><div class="project-row-body"><div><strong>-</strong><small>-</small></div><span class="template-status status-complete">-</span><div class="project-progress"><span><i class="progress-fill"></i></span><b>-</b></div></div></div>
+              </div>
+            </section>
+
+            <section class="template-card template-payroll-card">
+              <div class="template-card-heading"><h2><span class="heading-icon">▣</span>Payroll &amp; Attendance</h2><button type="button">Monthly⌄</button></div>
+              <div class="template-mini-stats"><div><span class="mini-stat-icon">▣</span><b>-</b><small>Total Payroll <em>Database</em></small></div><div><span class="mini-stat-icon">♙</span><b>-</b><small>Attendance <em>Database</em></small></div></div>
+              <div class="template-bar-legend"><span class="legend-payroll">■ Payroll (KES)</span><span class="legend-net">■ Employees</span></div>
+                <div class="template-bar-chart"></div>
+            </section>
+
+            <section class="template-card template-quick-stats">
+              <div class="template-card-heading"><h2><span class="heading-icon">◔</span>Quick Stats</h2></div>
+              <div class="template-quick-list"><span><i>♙</i> Total Projects <b>-</b><em>Database</em></span><span><i>♙</i> Active Employees <b>-</b><em>Database</em></span><span><i>▣</i> Total Payroll <b>-</b><em>Database</em></span><span><i>▣</i> Attendance Rate <b>-</b><em>Database</em></span><span><i>▤</i> Pending Payslips <b>-</b><em>Database</em></span><span><i>◷</i> Overtime Hours <b>-</b><em>Database</em></span></div>
+            </section>
+          </div>
+
+          <div class="template-bottom-grid">
+            <section class="template-card template-activity"><div class="template-card-heading"><h2><span class="heading-icon">◷</span>Recent Activity</h2><a href="#">View All</a></div><div class="template-activity-list"><span><i>◆</i><b>Loading activity...</b><small>Database</small></span></div></section>
+            <section class="template-card template-cost"><div class="template-card-heading"><h2><span class="heading-icon">▥</span>Monthly Cost Breakdown</h2><button type="button">Database</button></div><div class="template-cost-layout"><div class="template-cost-donut"><strong>-</strong><small>Database total</small></div><div class="template-cost-list"><span><i class="dot-blue"></i>Labor Cost - <b>-</b></span><span><i class="dot-violet"></i>Payroll Cost - <b>-</b></span><span><i class="dot-orange"></i>Budget Remaining - <b>-</b></span></div></div></section>
+          </div>
+        </section>
+      </main>
+    </div>
+    <script src="sidebar-manager.js"></script>
+    <script src="dashboard.js"></script>
+  </body>
+</html>

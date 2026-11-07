@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BuildPay - Payslip</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="dashboard-body">
+  <div class="dashboard-shell">
+    <header class="dash-header">
+      <button class="menu-toggle" id="sidebarToggle" title="Toggle sidebar">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <line x1="3" y1="6" x2="21" y2="6"></line>
+          <line x1="3" y1="12" x2="21" y2="12"></line>
+          <line x1="3" y1="18" x2="21" y2="18"></line>
+        </svg>
+      </button>
+
+      <div class="header-page-title">
+        <h1>Payslip</h1>
+        <p>View and manage generated employee payslips.</p>
+      </div>
+
+      <div class="logo-stack">
+        <div class="logo-mark"><img src="name_logo.png" data-company-logo alt="BuildPay logo" /></div>
+        <div class="logo-text">
+          <div class="logo-name" data-company-field="companyName">BuildPay</div>
+          <div class="logo-tag">CONSTRUCTION PAYROLL SYSTEM</div>
+        </div>
+      </div>
+
+      <div class="header-center">
+        <div class="search-box">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="11" cy="11" r="8"></circle>
+            <path d="m21 21-4.35-4.35"></path>
+          </svg>
+          <input type="text" placeholder="Search projects, employees...">
+        </div>
+      </div>
+
+      <div class="header-skyline" aria-hidden="true">
+        <img src="skyline.png" alt="">
+      </div>
+
+      <div class="header-right">
+        <button class="icon-btn" title="Settings">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="3"></circle>
+            <path d="M12 1v6m0 6v6M4.22 4.22l4.24 4.24m4.24 4.24l4.24 4.24M1 12h6m6 0h6M4.22 19.78l4.24-4.24m4.24-4.24l4.24-4.24"></path>
+          </svg>
+        </button>
+        <button class="user-btn">
+          <div class="avatar">JK</div>
+          <span>John Kamau</span>
+        </button>
+      </div>
+    </header>
+
+    <main class="dash-main">
+      <div class="content-area payslip-content">
+        <div class="payslip-shell">
+          <div class="payslip-topbar">
+            <div class="payslip-actions">
+              <button class="payslip-action-btn primary" id="downloadPdfBtn">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M12 3v12"></path>
+                  <path d="M7 20l5 5 5-5"></path>
+                  <path d="M4 21h16"></path>
+                </svg>
+                Download PDF
+              </button>
+              <button class="payslip-action-btn" id="printBtn">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M6 9V3h12v6"></path>
+                  <rect x="3" y="12" width="18" height="9" rx="2"></rect>
+                  <path d="M7 18h10"></path>
+                </svg>
+                Print
+              </button>
+              <button class="payslip-action-btn" id="payrollReportBtn" type="button">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M4 19V5"></path>
+                  <path d="M4 19h16"></path>
+                  <path d="m7 15 3-3 3 2 5-6"></path>
+                </svg>
+                Payroll report
+              </button>
+            </div>
+          </div>
+
+          <div class="payslip-card">
+            <div class="payslip-header-row">
+              <div class="company-brand-block">
+                <div class="company-mark"><img src="name_logo.png" data-company-logo alt="BuildPay logo" /></div>
+                <div class="company-copy">
+                  <h2 data-company-field="companyName">BuildPay Construction Ltd</h2>
+                  <p data-company-field="businessAddress">P.O. Box 12345, Nairobi, Kenya</p>
+                  <p>Email: <span data-company-field="email">info@buildpay.co.ke</span> | Tel: <span data-company-field="phone">+254 712 345 678</span></p>
+                </div>
+              </div>
+
+              <div class="pay-period-block">
+                <h3>PAYSLIP</h3>
+                <p data-payslip-field="payPeriod">May 2025</p>
+              </div>
+            </div>
+
+            <div class="employee-meta-grid">
+              <div class="meta-column">
+                <div class="meta-row"><span>Employee ID</span><strong data-payslip-field="employeeId">EMP001</strong></div>
+                <div class="meta-row"><span>Employee Name</span><strong data-payslip-field="employeeName">James Mwangi</strong></div>
+                <div class="meta-row"><span>Position</span><strong data-payslip-field="position">Site Engineer</strong></div>
+                <div class="meta-row"><span>Department</span><strong data-payslip-field="department">Engineering</strong></div>
+              </div>
+
+              <div class="meta-column right">
+                <div class="meta-row"><span>Pay Period</span><strong data-payslip-field="payPeriod">May 2025</strong></div>
+                <div class="meta-row"><span>Days Worked</span><strong data-payslip-field="daysWorked">26</strong></div>
+                <div class="meta-row"><span>Overtime (hrs)</span><strong data-payslip-field="overtimeHours">12</strong></div>
+              </div>
+            </div>
+
+            <div class="payslip-breakdown">
+              <div class="detail-column">
+                <h4>Earnings</h4>
+                <div class="detail-row"><span>Basic Salary</span><strong data-payslip-field="basicSalary">85,000</strong></div>
+                <div class="detail-row"><span data-payslip-label="overtime">Overtime (12 hrs)</span><strong data-payslip-field="overtimePay">6,000</strong></div>
+                <div class="detail-row"><span>Transport Allowance</span><strong data-payslip-field="transportAllowance">5,000</strong></div>
+                <div class="detail-row"><span>Housing Allowance</span><strong data-payslip-field="housingAllowance">4,000</strong></div>
+                <div class="detail-row total"><span>Total Earnings</span><strong data-payslip-field="totalEarnings">100,000</strong></div>
+              </div>
+
+              <div class="detail-column">
+                <h4>Deductions</h4>
+                <div class="detail-row"><span>NSSF</span><strong data-payslip-field="nssf">1,080</strong></div>
+                <div class="detail-row"><span>Health Insurance</span><strong data-payslip-field="healthInsurance">0</strong></div>
+                <div class="detail-row"><span>PAYE</span><strong data-payslip-field="paye">9,000</strong></div>
+                <div class="detail-row"><span>Advance Salary</span><strong data-payslip-field="advanceSalary">5,000</strong></div>
+                <div class="detail-row"><span>Other Deductions</span><strong data-payslip-field="otherDeductions">0</strong></div>
+                <div class="detail-row total"><span>Total Deductions</span><strong data-payslip-field="totalDeductions">15,080</strong></div>
+              </div>
+
+              <div class="net-panel">
+                <div class="net-header">
+                  <span>NET SALARY</span>
+                  <span class="spark-icon">✦</span>
+                </div>
+                <div class="net-amount" data-payslip-field="netSalary">KES 84,920</div>
+              </div>
+            </div>
+
+            <div class="payslip-footer">
+              <div class="footer-note">
+                <p>Thank you for your hard work!</p>
+                <p>This is a computer generated payslip.</p>
+              </div>
+
+              <div class="signature-block">Authorized Signature</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <script src="sidebar-manager.js"></script>
+  <script src="payslip.js"></script>
+</body>
+</html>

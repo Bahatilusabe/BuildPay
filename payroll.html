@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Payroll - BuildPay</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="dashboard-body">
+  <div class="dashboard-shell">
+    <header class="dash-header">
+      <button class="menu-toggle" id="sidebarToggle" title="Toggle sidebar">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <line x1="3" y1="6" x2="21" y2="6"></line>
+          <line x1="3" y1="12" x2="21" y2="12"></line>
+          <line x1="3" y1="18" x2="21" y2="18"></line>
+        </svg>
+      </button>
+
+      <div class="header-page-title">
+        <h1>Payroll</h1>
+        <p>Calculate and manage employee salary payments.</p>
+      </div>
+
+      <div class="logo-stack">
+        <div class="logo-mark"><img src="name_logo.png" data-company-logo alt="BuildPay logo" /></div>
+        <div class="logo-text">
+          <div class="logo-name" data-company-field="companyName">BuildPay</div>
+          <div class="logo-tag">CONSTRUCTION PAYROLL SYSTEM</div>
+        </div>
+      </div>
+
+      <div class="header-center">
+        <div class="search-box">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="11" cy="11" r="8"></circle>
+            <path d="m21 21-4.35-4.35"></path>
+          </svg>
+          <input type="text" placeholder="Search projects, employees...">
+        </div>
+      </div>
+
+      <div class="header-skyline" aria-hidden="true">
+        <img src="skyline.png" alt="">
+      </div>
+
+      <div class="header-right">
+        <button class="icon-btn" title="Settings">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="3"></circle>
+            <path d="M12 1v6m0 6v6M4.22 4.22l4.24 4.24m4.24 4.24l4.24 4.24M1 12h6m6 0h6M4.22 19.78l4.24-4.24m4.24-4.24l4.24-4.24"></path>
+          </svg>
+        </button>
+        <button class="user-btn">
+          <div class="avatar">JK</div>
+          <span>John Kamau</span>
+        </button>
+      </div>
+    </header>
+
+    <main class="dash-main">
+      <div class="content-area payroll-content">
+        <div class="payroll-page-shell">
+          <div class="payroll-card">
+            <div class="employee-summary">
+              <div class="employee-thumb-wrap">
+                <div class="employee-thumb">👨‍🔧</div>
+              </div>
+
+              <div class="employee-detail-wrap">
+                <label class="payroll-employee-picker" for="payrollEmployeeSelect">Employee
+                  <select id="payrollEmployeeSelect" aria-label="Select employee for payroll">
+                    <option value="EMP001">James Mwangi (EMP001)</option>
+                  </select>
+                </label>
+                <div class="employee-name">James Mwangi</div>
+                <div class="employee-meta">Site Engineer</div>
+                <div class="employee-meta dept">Engineering Department</div>
+                <div class="employee-id">EMP001</div>
+              </div>
+            </div>
+
+            <div class="payroll-stat-grid">
+              <div class="payroll-stat-box">
+                <span>Payment frequency</span>
+                <select id="payrollFrequencySelect" class="payroll-input" aria-label="Payment frequency">
+                  <option value="Monthly">Monthly</option>
+                  <option value="Weekly">Weekly</option>
+                </select>
+              </div>
+              <div class="payroll-stat-box" id="payrollMonthBox">
+                <span>Pay month</span>
+                <input id="payrollMonthInput" class="payroll-input" type="month" value="2025-05" aria-label="Pay month">
+              </div>
+              <div class="payroll-stat-box" id="payrollWeekBox" hidden>
+                <span>Week starting</span>
+                <input id="payrollWeekInput" class="payroll-input" type="date" value="2025-05-05" aria-label="Week starting date">
+              </div>
+              <div class="payroll-stat-box">
+                <span>Basic Salary</span>
+                <input class="payroll-input payroll-currency-input" data-payroll-field="basicSalary" type="number" min="0" step="100" value="85000" aria-label="Basic salary">
+              </div>
+              <div class="payroll-stat-box">
+                <span>Days Worked</span>
+                <input class="payroll-input" data-payroll-field="daysWorked" type="number" min="0" max="31" step="1" value="26" aria-label="Days worked">
+              </div>
+              <div class="payroll-stat-box">
+                <span>Overtime (hrs)</span>
+                <input class="payroll-input" data-payroll-field="overtimeHours" type="number" min="0" step="1" value="12" aria-label="Overtime hours">
+              </div>
+              <div class="payroll-stat-box">
+                <span>Pay Period</span>
+                  <strong data-payroll-period>Monthly</strong>
+              </div>
+            </div>
+
+            <div class="payroll-breakdown">
+              <div class="breakdown-column">
+                <div class="breakdown-title">Earnings</div>
+
+                <div class="breakdown-row">
+                  <span>Basic Salary</span>
+                  <strong data-payroll-output="basicSalary">KES 85,000</strong>
+                </div>
+                <div class="breakdown-row">
+                  <span data-payroll-label="overtime">Overtime (12 hrs)</span>
+                  <strong data-payroll-output="overtimePay">KES 6,000</strong>
+                </div>
+                <div class="breakdown-row">
+                  <span>Transport Allowance</span>
+                  <input class="payroll-input payroll-currency-input" data-payroll-field="transportAllowance" type="number" min="0" step="100" value="5000" aria-label="Transport allowance">
+                </div>
+                <div class="breakdown-row">
+                  <span>Housing Allowance</span>
+                  <input class="payroll-input payroll-currency-input" data-payroll-field="housingAllowance" type="number" min="0" step="100" value="4000" aria-label="Housing allowance">
+                </div>
+                <div class="breakdown-row total-row">
+                  <span>Total Earnings</span>
+                  <strong data-payroll-output="totalEarnings">KES 100,000</strong>
+                </div>
+              </div>
+
+              <div class="breakdown-column">
+                <div class="breakdown-title">Deductions</div>
+
+                <div class="breakdown-row">
+                  <span>NSSF</span>
+                  <input class="payroll-input payroll-currency-input" data-payroll-field="nssf" type="number" min="0" step="100" value="0" aria-label="Pension deduction" readonly>
+                </div>
+                <div class="breakdown-row">
+                  <span>PAYE</span>
+                  <input class="payroll-input payroll-currency-input" data-payroll-field="paye" type="number" min="0" step="100" value="0" aria-label="PAYE deduction" readonly>
+                </div>
+                <div class="breakdown-row">
+                  <span>Advance Salary</span>
+                  <input class="payroll-input payroll-currency-input" data-payroll-field="advanceSalary" type="number" min="0" step="100" value="5000" aria-label="Advance salary deduction">
+                </div>
+                <div class="breakdown-row">
+                  <span>Other Deductions</span>
+                  <input class="payroll-input payroll-currency-input" data-payroll-field="otherDeductions" type="number" min="0" step="100" value="0" aria-label="Other deductions">
+                </div>
+                <div class="breakdown-row total-row">
+                  <span>Total Deductions</span>
+                  <strong data-payroll-output="totalDeductions">KES 15,080</strong>
+                </div>
+              </div>
+
+              <div class="net-salary-panel">
+                <div class="net-salary-head">
+                  <span>Net Salary</span>
+                  <div class="spark-icon">✦</div>
+                </div>
+                <div class="net-salary-value" data-payroll-output="netSalary">KES 84,920</div>
+                <button class="generate-btn">Generate Payslip</button>
+                <button class="generate-all-btn" type="button">Generate All Payslips</button>
+              </div>
+            </div>
+
+            <div class="payroll-footer-actions">
+              <button class="btn-back" type="button">Back</button>
+              <div class="payroll-action-group">
+                <button class="btn-reset" type="button">Reset values</button>
+                <button class="btn-save" type="button">Save Payroll</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <script src="sidebar-manager.js"></script>
+  <script src="payroll.js"></script>
+</body>
+</html>

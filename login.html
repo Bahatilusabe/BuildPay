@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Builder | Secure Access</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body class="auth-body">
+    <div class="auth-shell" id="authShell">
+      <div class="bg-orb orb-one"></div>
+      <div class="bg-orb orb-two"></div>
+
+      <main class="auth-panel auth-panel--form">
+        <div class="switcher" role="tablist" aria-label="Authentication switcher">
+          <button class="switch-btn active" type="button" data-mode="login" role="tab" aria-selected="true" aria-controls="loginForm">Login</button>
+          <button class="switch-btn" type="button" data-mode="signup" role="tab" aria-selected="false" aria-controls="signupForm">Sign Up</button>
+        </div>
+
+        <div class="form-stage">
+          <form class="auth-form is-active" id="loginForm" novalidate>
+            <div class="form-header">
+              <p class="eyebrow">Welcome back</p>
+              <h2>Sign in</h2>
+            </div>
+
+            <label class="field-group">
+              <span>Username </span>
+              <input type="username" placeholder="name@builder.com" />
+            </label>
+
+            <label class="field-group">
+              <span>Password</span>
+              <input type="password" placeholder="Enter your password" />
+            </label>
+
+            <div class="form-meta">
+              <label class="check-wrap">
+                <input type="checkbox" checked />
+                <span>Remember me</span>
+              </label>
+              <a href="#">Forgot password?</a>
+            </div>
+
+            <button class="primary-btn" type="submit">Login</button>
+          </form>
+
+          <form class="auth-form" id="signupForm" novalidate>
+            <div class="form-header">
+              <p class="eyebrow">Start today</p>
+              <h2>Create account</h2>
+            </div>
+
+            <div class="split-fields">
+              <label class="field-group">
+                <span>First name</span>
+                <input type="text" placeholder="Alex" />
+              </label>
+
+              <label class="field-group">
+                <span>Last name</span>
+                <input type="text" placeholder="Stone" />
+              </label>
+            </div>
+
+            <label class="field-group">
+              <span>Work email</span>
+              <input type="email" placeholder="alex@builder.com" />
+            </label>
+
+            <label class="field-group">
+              <span>Password</span>
+              <input type="password" placeholder="Create a secure password" />
+            </label>
+
+            <label class="field-group">
+              <span>Company</span>
+              <input type="text" placeholder="Builder Co." />
+            </label>
+
+            <button class="primary-btn" type="submit">Create account</button>
+          </form>
+        </div>
+      </main>
+
+    </div>
+
+    <script>
+      const shell = document.getElementById('authShell');
+      const toggles = document.querySelectorAll('.switch-btn');
+      const forms = document.querySelectorAll('.auth-form');
+
+      const setMode = (mode) => {
+        const isSignup = mode === 'signup';
+        shell.classList.toggle('is-signup', isSignup);
+
+        toggles.forEach((button) => {
+          button.classList.toggle('active', button.dataset.mode === mode);
+        });
+
+        forms.forEach((form) => {
+          form.classList.toggle('is-active', form.id === `${mode}Form`);
+        });
+      };
+
+      toggles.forEach((button) => {
+        button.addEventListener('click', () => {
+          const mode = button.dataset.mode;
+          button.setAttribute('aria-selected', 'true');
+          toggles.forEach((other) => {
+            const isActive = other === button;
+            other.setAttribute('aria-selected', String(isActive));
+            other.classList.toggle('active', isActive);
+          });
+          setMode(mode);
+        });
+      });
+
+      // Handle form submission and navigation to the default app page
+      forms.forEach((form) => {
+        form.addEventListener('submit', (e) => {
+          e.preventDefault();
+          setTimeout(() => {
+            window.location.href = 'dashboard.html';
+          }, 300);
+        });
+      });
+    </script>
+  </body>
+</html>

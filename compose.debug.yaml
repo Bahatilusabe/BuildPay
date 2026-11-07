@@ -1,6 +1,0 @@
-services:
-  buildpay:
-    image: buildpay
-    build:
-      context: .
-      dockerfile: ./Dockerfile

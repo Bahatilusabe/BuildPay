@@ -16,6 +16,8 @@ target/
 
 # Build artifacts
 /*.jar
+/dist/
+/node_modules/
 
 # env
 .env

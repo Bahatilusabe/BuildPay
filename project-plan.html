@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Project Plan - BuildPay</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="dashboard-body project-resource-body">
+  <div class="dashboard-shell">
+    <header class="dash-header">
+      <button class="menu-toggle" id="sidebarToggle" type="button" title="Toggle sidebar">&#9776;</button>
+      <div class="header-page-title"><h1 id="projectPlanTitle">Project Plan</h1><p id="projectPlanSubtitle">Plans and progress imagery</p></div>
+      <div class="header-right"><a class="secondary-button small" href="projects.html">Back to Projects</a></div>
+    </header>
+    <main class="dash-main"><section class="content-area project-resource-content">
+      <div class="project-resource-summary" id="projectPlanSummary">Loading project...</div>
+      <div class="project-resource-toolbar"><div><h1>Project graphics and progress</h1><p>Store blueprints, site plans, progress photos and other visual records.</p></div><label class="project-resource-upload">＋ Add images<input id="planUpload" type="file" accept="image/*" multiple></label></div>
+      <section class="project-resource-panel"><div class="project-resource-panel-heading"><h2>Visual project records</h2><span id="planCount">0 images</span></div><div id="planGallery" class="project-plan-gallery"><p class="project-resource-empty">Loading project images...</p></div></section>
+    </section></main>
+  </div>
+  <script src="sidebar-manager.js"></script>
+  <script src="project-plan.js"></script>
+</body>
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Project Workspace - BuildPay</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="dashboard-body project-workspace-body">
+  <div class="dashboard-shell">
+    <header class="dash-header">
+      <button class="menu-toggle" id="sidebarToggle" type="button" title="Toggle sidebar">&#9776;</button>
+      <div class="header-page-title"><h1 id="workspaceTitle">Project Workspace</h1><p id="workspaceSubtitle">Project documents, plans and progress photos.</p></div>
+      <div class="header-right"><a class="secondary-button small" href="projects.html">Back to Projects</a></div>
+    </header>
+    <main class="dash-main"><section class="content-area project-workspace-content">
+      <div class="workspace-summary" id="workspaceSummary">Loading project...</div>
+      <div class="workspace-toolbar">
+        <label class="workspace-upload"><span>Upload documents</span><input id="documentUpload" type="file" accept="application/pdf,image/png,image/jpeg" multiple></label>
+        <label class="workspace-upload"><span>Add progress photos</span><input id="photoUpload" type="file" accept="image/png,image/jpeg,image/webp" multiple></label>
+      </div>
+      <div class="workspace-grid">
+        <section class="workspace-panel"><div class="workspace-panel-heading"><h2>Project plans and documents</h2><span id="documentCount">0 files</span></div><div id="documentList" class="workspace-file-list"><p>Loading documents...</p></div></section>
+        <section class="workspace-panel"><div class="workspace-panel-heading"><h2>Progress photos</h2><span id="photoCount">0 photos</span></div><div id="photoGrid" class="workspace-photo-grid"><p>Loading photos...</p></div></section>
+      </div>
+    </section></main>
+  </div>
+  <script src="sidebar-manager.js"></script>
+  <script src="project-workspace.js"></script>
+</body>
+</html>
