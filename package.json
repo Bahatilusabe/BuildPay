@@ -4,12 +4,12 @@
   "main": "index.js",
   "scripts": {
     "start": "env -u ELECTRON_RUN_AS_NODE electron . --disable-gpu --disable-software-rasterizer",
-    "dist": "electron-builder",
-    "dist:mac": "electron-builder --mac dmg",
-    "dist:mac:x64": "electron-builder --mac dmg --x64",
-    "dist:mac:arm64": "electron-builder --mac dmg --arm64",
-    "dist:win": "electron-builder --win nsis",
-    "dist:linux": "electron-builder --linux AppImage",
+    "dist": "electron-builder --publish never",
+    "dist:mac": "electron-builder --mac dmg --publish never",
+    "dist:mac:x64": "electron-builder --mac dmg --x64 --publish never",
+    "dist:mac:arm64": "electron-builder --mac dmg --arm64 --publish never",
+    "dist:win": "electron-builder --win nsis --publish never",
+    "dist:linux": "electron-builder --linux AppImage --publish never",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
