@@ -1,6 +1,6 @@
 {
   "name": "builder",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "main": "index.js",
   "scripts": {
     "start": "env -u ELECTRON_RUN_AS_NODE electron . --disable-gpu --disable-software-rasterizer",

@@ -31,6 +31,11 @@ npm run dist:win
 npm run dist:linux
 ```
 
+Tagged GitHub releases automatically build the Windows and Linux installers
+on GitHub-hosted runners and attach them to the release. See the [BuildPay
+releases](https://github.com/Bahatilusabe/BuildPay/releases) page to download
+the installers.
+
 For release builds that users can install without operating-system security
 warnings, sign and notarize the macOS app and sign the Windows installer with
 your publisher certificates.
